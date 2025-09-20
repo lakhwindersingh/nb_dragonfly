@@ -1,0 +1,759 @@
+
+name: "Complete SDLC Pipeline"
+version: "1.0"
+description: "Full Software Development Lifecycle pipeline with AI-powered artifact generation"
+
+stages:
+  - id: "planning"
+    type: "planning"
+    name: "Project Planning"
+    description: "Generate project charter, timeline, and resource plans"
+    dependencies: []
+    
+    ai_config:
+      model: "gpt-4"
+      temperature: 0.3
+      max_tokens: 4000
+    
+    prompt_template: |
+      You are an experienced project manager creating a comprehensive project charter.
+      
+      Project Details:
+      - Name: {{ user_inputs.project_name }}
+      - Domain: {{ user_inputs.business_domain }}
+      - Target Users: {{ user_inputs.target_users }}
+      - Technology: {{ user_inputs.technology_preferences }}
+      - Timeline: {{ user_inputs.timeline_months }} months
+      - Budget: {{ user_inputs.budget_range }}
+      
+      Generate a detailed project charter following PMI standards including:
+      1. Executive Summary
+      2. Business Objectives
+      3. Technical Objectives
+      4. Project Scope (in/out of scope)
+      5. Success Criteria
+      6. High-level Requirements
+      7. Assumptions and Constraints
+      8. Timeline and Milestones
+      9. Budget Estimate
+      10. Key Stakeholders
+      11. Risk Assessment
+      
+      Format the output as structured markdown that can be directly used.
+    
+    validation_rules:
+      - rule: "contains_executive_summary"
+        description: "Must contain executive summary section"
+      - rule: "has_success_criteria"
+        description: "Must define measurable success criteria"
+      - rule: "includes_risk_assessment"
+        description: "Must include risk assessment with mitigation"
+    
+    repositories:
+      - type: "confluence"
+        name: "project_documentation"
+        artifact_mappings:
+          - output_key: "project_charter"
+            artifact_name: "Project Charter - {{ user_inputs.project_name }}"
+            artifact_type: "documentation"
+      - type: "sharepoint"
+        name: "project_library"
+        folder_path: "SDLC Pipeline/{{ user_inputs.project_name }}/Planning"
+        artifact_mappings:
+          - output_key: "project_charter"
+            artifact_name: "project-charter"
+            artifact_type: "documentation"
+    
+    timeout_minutes: 15
+    approval_required: true
+    reviewers: ["project.manager@company.com", "stakeholder@company.com"]
+
+  - id: "requirements"
+    type: "requirements"
+    name: "Requirements Analysis"
+    description: "Generate Software Requirements Specification and user stories"
+    dependencies: ["planning"]
+    
+    ai_config:
+      model: "gpt-4"
+      temperature: 0.2
+      max_tokens: 8000
+    
+    prompt_template: |
+      You are a senior business analyst creating a comprehensive Software Requirements Specification.
+      
+      Project Context:
+      {{ planning_output.project_charter }}
+      
+      Based on the project charter above, generate a detailed SRS including:
+      
+      1. Functional Requirements:
+         - User authentication and authorization
+         - Core business functions for {{ user_inputs.business_domain }}
+         - Data management operations
+         - Reporting and analytics
+         - Integration requirements
+      
+      2. Non-Functional Requirements:
+         - Performance (response time, throughput)
+         - Security (data protection, compliance)
+         - Scalability (user load, data volume)
+         - Reliability (uptime, disaster recovery)
+         - Usability (user experience, accessibility)
+      
+      3. Data Requirements:
+         - Core business entities
+         - Data relationships
+         - Data quality rules
+         - Data lifecycle management
+      
+      4. Interface Requirements:
+         - User interfaces
+         - System interfaces
+         - API specifications
+      
+      Each requirement must have:
+      - Unique identifier (FR-001, NFR-001, etc.)
+      - Clear description
+      - Priority (High/Medium/Low)
+      - Acceptance criteria
+      - Source reference
+      
+      Format as IEEE 830 compliant SRS document in markdown.
+    
+    validation_rules:
+      - rule: "has_functional_requirements"
+        description: "Must contain at least 10 functional requirements"
+      - rule: "has_nonfunctional_requirements"
+        description: "Must contain performance, security, and scalability requirements"
+      - rule: "requirements_have_ids"
+        description: "All requirements must have unique identifiers"
+      - rule: "acceptance_criteria_present"
+        description: "All requirements must have acceptance criteria"
+    
+    repositories:
+      - type: "confluence"
+        name: "requirements_documentation"
+        artifact_mappings:
+          - output_key: "srs_document"
+            artifact_name: "Software Requirements Specification - {{ user_inputs.project_name }}"
+            artifact_type: "requirements"
+          - output_key: "user_stories"
+            artifact_name: "User Stories - {{ user_inputs.project_name }}"
+            artifact_type: "requirements"
+      - type: "jira"
+        name: "requirements_tracking"
+        artifact_mappings:
+          - output_key: "user_stories"
+            artifact_name: "User Stories"
+            artifact_type: "requirements"
+    
+    timeout_minutes: 25
+    approval_required: true
+    reviewers: ["business.analyst@company.com", "product.owner@company.com"]
+
+  - id: "design"
+    type: "design"
+    name: "System Design"
+    description: "Generate system architecture and detailed design specifications"
+    dependencies: ["requirements"]
+    
+    ai_config:
+      model: "gpt-4"
+      temperature: 0.3
+      max_tokens: 12000
+    
+    prompt_template: |
+      You are a solution architect designing a {{ user_inputs.business_domain }} system.
+      
+      Requirements Context:
+      {{ requirements_output.srs_document }}
+      
+      Technology Stack: {{ user_inputs.technology_preferences }}
+      
+      Create a comprehensive Design Document Specification including:
+      
+      1. System Architecture:
+         - High-level architecture pattern (Microservices/Layered/Event-driven)
+         - Component architecture with responsibilities
+         - Data flow architecture
+         - Service architecture (if microservices)
+      
+      2. Database Design:
+         - Entity relationship model
+         - Database schema with tables and relationships
+         - Indexing strategy
+         - Data migration approach
+      
+      3. API Design:
+         - RESTful API endpoints
+         - Request/response formats
+         - Authentication and authorization
+         - Error handling
+      
+      4. Security Architecture:
+         - Authentication mechanisms
+         - Authorization model
+         - Data encryption approach
+         - Security controls
+      
+      5. User Interface Design:
+         - UI architecture and framework
+         - User experience flows
+         - Responsive design approach
+         - Accessibility considerations
+      
+      6. Performance Design:
+         - Caching strategy
+         - Database optimization
+         - Scalability approach
+         - Load balancing
+      
+      7. Integration Design:
+         - External system integrations
+         - Message queuing
+         - API gateway pattern
+      
+      8. Deployment Architecture:
+         - Environment strategy
+         - Containerization approach
+         - CI/CD pipeline design
+         - Monitoring and logging
+      
+      Include specific implementation details, code snippets, and configuration examples.
+      Format as a comprehensive DDS document in markdown.
+    
+    validation_rules:
+      - rule: "has_system_architecture"
+        description: "Must define system architecture pattern"
+      - rule: "has_database_design"
+        description: "Must include database schema and relationships"
+      - rule: "has_api_specifications"
+        description: "Must define API endpoints and contracts"
+      - rule: "has_security_architecture"
+        description: "Must include comprehensive security design"
+      - rule: "addresses_nfr"
+        description: "Must address all non-functional requirements"
+    
+    repositories:
+      - type: "confluence"
+        name: "design_documentation"
+        artifact_mappings:
+          - output_key: "design_document"
+            artifact_name: "Design Document Specification - {{ user_inputs.project_name }}"
+            artifact_type: "design"
+          - output_key: "api_specification"
+            artifact_name: "API Specification - {{ user_inputs.project_name }}"
+            artifact_type: "design"
+      - type: "git"
+        name: "design_repository"
+        repository: "company/{{ user_inputs.project_name | lower }}-design"
+        branch: "main"
+        base_path: "design"
+        artifact_mappings:
+          - output_key: "database_schema"
+            artifact_name: "schema.sql"
+            artifact_type: "configuration"
+          - output_key: "api_specification"
+            artifact_name: "openapi.yaml"
+            artifact_type: "configuration"
+    
+    timeout_minutes: 35
+    approval_required: true
+    reviewers: ["solution.architect@company.com", "tech.lead@company.com"]
+
+  - id: "implementation"
+    type: "implementation"
+    name: "Code Implementation"
+    description: "Generate application code, tests, and deployment configurations"
+    dependencies: ["design"]
+    
+    ai_config:
+      model: "gpt-4"
+      temperature: 0.1
+      max_tokens: 16000
+    
+    prompt_template: |
+      You are an expert full-stack developer implementing a {{ user_inputs.business_domain }} application.
+      
+      Design Context:
+      {{ design_output.design_document }}
+      
+      Technology Stack: {{ user_inputs.technology_preferences }}
+      
+      Generate production-ready code including:
+      
+      1. Backend Implementation (Spring Boot):
+         - Main application class with proper configuration
+         - JPA entities with relationships and validation
+         - Repository classes with custom queries
+         - Service classes with business logic
+         - REST controllers with OpenAPI documentation
+         - Security configuration (JWT/OAuth2)
+         - Exception handling with @ControllerAdvice
+         - Configuration classes for database, security, etc.
+      
+      2. Frontend Implementation (React):
+         - Main App component with routing
+         - Component structure following best practices
+         - State management setup (Redux/Context)
+         - API service layer
+         - Form validation and error handling
+         - Responsive design with CSS/styled-components
+         - Authentication components
+      
+      3. Database Implementation:
+         - Database migration scripts (Flyway/Liquibase)
+         - Initial data setup scripts
+         - Database indexes and constraints
+      
+      4. Testing Implementation:
+         - Unit tests for services and repositories
+         - Integration tests for REST APIs
+         - Frontend component tests
+         - Test configuration and utilities
+      
+      5. DevOps Configuration:
+         - Dockerfile for containerization
+         - docker-compose for local development
+         - Kubernetes deployment manifests
+         - CI/CD pipeline configuration (GitHub Actions)
+         - Environment-specific configurations
+      
+      6. Documentation:
+         - README with setup instructions
+         - API documentation
+         - Deployment guide
+         - Development guidelines
+      
+      Ensure all code follows best practices:
+      - Proper error handling and logging
+      - Input validation and security measures
+      - Clean code principles and SOLID design
+      - Comprehensive test coverage
+      - Performance optimization
+      - Documentation and comments
+      
+      Generate complete, compilable, and deployable code.
+    
+    validation_rules:
+      - rule: "has_backend_code"
+        description: "Must generate complete backend implementation"
+      - rule: "has_frontend_code"
+        description: "Must generate complete frontend implementation"
+      - rule: "has_database_scripts"
+        description: "Must include database migration scripts"
+      - rule: "has_tests"
+        description: "Must include comprehensive test suites"
+      - rule: "has_deployment_config"
+        description: "Must include Docker and Kubernetes configurations"
+      - rule: "code_quality_check"
+        description: "Generated code must follow quality standards"
+    
+    repositories:
+      - type: "git"
+        name: "source_repository"
+        repository: "company/{{ user_inputs.project_name | lower }}"
+        branch: "main"
+        artifact_mappings:
+          - output_key: "backend_code"
+            artifact_name: "backend"
+            artifact_type: "source_code"
+          - output_key: "frontend_code"
+            artifact_name: "frontend"
+            artifact_type: "source_code"
+          - output_key: "database_scripts"
+            artifact_name: "database"
+            artifact_type: "configuration"
+          - output_key: "tests"
+            artifact_name: "tests"
+            artifact_type: "test_code"
+          - output_key: "docker_config"
+            artifact_name: "Dockerfile"
+            artifact_type: "docker"
+          - output_key: "k8s_manifests"
+            artifact_name: "kubernetes"
+            artifact_type: "kubernetes"
+          - output_key: "cicd_pipeline"
+            artifact_name: "build"
+            artifact_type: "pipeline"
+      - type: "confluence"
+        name: "implementation_docs"
+        artifact_mappings:
+          - output_key: "readme"
+            artifact_name: "Implementation Guide - {{ user_inputs.project_name }}"
+            artifact_type: "documentation"
+    
+    timeout_minutes: 60
+    approval_required: true
+    reviewers: ["tech.lead@company.com", "senior.developer@company.com"]
+
+  - id: "testing"
+    type: "testing"
+    name: "Test Planning and Execution"
+    description: "Generate comprehensive test plans and automated test suites"
+    dependencies: ["implementation"]
+    
+    ai_config:
+      model: "gpt-4"
+      temperature: 0.2
+      max_tokens: 10000
+    
+    prompt_template: |
+      You are a senior test engineer creating comprehensive test strategies and plans.
+      
+      Implementation Context:
+      - Requirements: {{ requirements_output.srs_document }}
+      - Design: {{ design_output.design_document }}
+      - Code Structure: {{ implementation_output.backend_code }}
+      
+      Generate comprehensive testing artifacts:
+      
+      1. Test Strategy and Plan:
+         - Testing levels (Unit, Integration, System, UAT)
+         - Testing types (Functional, Performance, Security, Usability)
+         - Test environment requirements
+         - Test data management strategy
+         - Entry and exit criteria for each phase
+         - Risk assessment and mitigation
+      
+      2. Test Cases:
+         - Functional test cases covering all requirements
+         - API test cases for all endpoints
+         - UI test cases for user workflows
+         - Negative test cases for error handling
+         - Edge cases and boundary conditions
+         - Integration test scenarios
+      
+      3. Automated Test Scripts:
+         - Unit test enhancements
+         - API integration tests (RestAssured/Postman)
+         - UI automation tests (Selenium/Cypress)
+         - Performance test scripts (JMeter)
+         - Security test scripts (OWASP ZAP)
+      
+      4. Test Data Management:
+         - Test data requirements
+         - Data setup and teardown scripts
+         - Data privacy and anonymization
+         - Test data refresh procedures
+      
+      5. Performance Testing:
+         - Load testing scenarios
+         - Stress testing parameters
+         - Performance benchmarks
+         - Monitoring and metrics collection
+      
+      6. Security Testing:
+         - OWASP Top 10 vulnerability checks
+         - Authentication and authorization tests
+         - Data protection validation
+         - Security compliance checks
+      
+      7. Test Reporting:
+         - Test execution reports
+         - Coverage reports
+         - Defect tracking procedures
+         - Test metrics and KPIs
+      
+      Include specific test scripts, configurations, and automation code.
+      Format as comprehensive test documentation with executable scripts.
+    
+    validation_rules:
+      - rule: "has_test_plan"
+        description: "Must contain detailed test plan"
+      - rule: "has_test_cases"
+        description: "Must include comprehensive test cases"
+      - rule: "has_automation_scripts"
+        description: "Must include automated test scripts"
+      - rule: "covers_all_requirements"
+        description: "Must cover all functional requirements"
+      - rule: "includes_nonfunctional_tests"
+        description: "Must include performance and security tests"
+    
+    repositories:
+      - type: "git"
+        name: "test_repository"
+        repository: "company/{{ user_inputs.project_name | lower }}-tests"
+        branch: "main"
+        artifact_mappings:
+          - output_key: "automation_scripts"
+            artifact_name: "automation"
+            artifact_type: "test_code"
+          - output_key: "performance_tests"
+            artifact_name: "performance"
+            artifact_type: "configuration"
+          - output_key: "security_tests"
+            artifact_name: "security"
+            artifact_type: "configuration"
+      - type: "confluence"
+        name: "test_documentation"
+        artifact_mappings:
+          - output_key: "test_plan"
+            artifact_name: "Test Plan - {{ user_inputs.project_name }}"
+            artifact_type: "test_plan"
+          - output_key: "test_cases"
+            artifact_name: "Test Cases - {{ user_inputs.project_name }}"
+            artifact_type: "test_plan"
+      - type: "jira"
+        name: "test_tracking"
+        artifact_mappings:
+          - output_key: "test_cases"
+            artifact_name: "Test Cases"
+            artifact_type: "test"
+    
+    timeout_minutes: 45
+    approval_required: true
+    reviewers: ["test.manager@company.com", "qa.lead@company.com"]
+
+  - id: "deployment"
+    type: "deployment"
+    name: "Deployment and DevOps"
+    description: "Generate deployment pipelines and infrastructure configurations"
+    dependencies: ["testing"]
+    
+    ai_config:
+      model: "gpt-4"
+      temperature: 0.2
+      max_tokens: 8000
+    
+    prompt_template: |
+      You are a DevOps engineer creating comprehensive deployment and infrastructure solutions.
+      
+      Project Context:
+      - Application: {{ user_inputs.project_name }}
+      - Technology: {{ user_inputs.technology_preferences }}
+      - Testing Results: {{ testing_output.test_plan }}
+      
+      Generate comprehensive deployment artifacts:
+      
+      1. CI/CD Pipeline:
+         - Multi-stage pipeline (Build, Test, Deploy)
+         - Automated testing integration
+         - Security scanning steps
+         - Artifact management
+         - Environment-specific deployments
+         - Rollback mechanisms
+      
+      2. Infrastructure as Code:
+         - Cloud infrastructure templates (Terraform/CloudFormation)
+         - Kubernetes cluster configuration
+         - Database setup and configuration
+         - Load balancer configuration
+         - SSL certificate management
+         - DNS configuration
+      
+      3. Application Deployment:
+         - Kubernetes deployment manifests
+         - Service and ingress configurations
+         - ConfigMap and Secret management
+         - Health checks and probes
+         - Resource limits and requests
+         - Horizontal Pod Autoscaler
+      
+      4. Monitoring and Observability:
+         - Prometheus monitoring setup
+         - Grafana dashboard configurations
+         - Application logging configuration
+         - Alert manager rules
+         - Distributed tracing setup
+      
+      5. Security Configuration:
+         - Network security policies
+         - RBAC configuration
+         - Service mesh security (if applicable)
+         - Secrets management
+         - Image security scanning
+      
+      6. Disaster Recovery:
+         - Backup strategies
+         - Recovery procedures
+         - Database backup automation
+         - Multi-region setup (if required)
+      
+      7. Deployment Runbooks:
+         - Step-by-step deployment procedures
+         - Rollback procedures
+         - Troubleshooting guides
+         - Emergency contact information
+      
+      Include specific configurations, scripts, and best practices.
+      Ensure production-ready, secure, and scalable deployments.
+    
+    validation_rules:
+      - rule: "has_cicd_pipeline"
+        description: "Must include complete CI/CD pipeline"
+      - rule: "has_infrastructure_code"
+        description: "Must include infrastructure as code"
+      - rule: "has_monitoring_setup"
+        description: "Must include comprehensive monitoring"
+      - rule: "has_security_config"
+        description: "Must include security configurations"
+      - rule: "has_rollback_procedures"
+        description: "Must include rollback procedures"
+    
+    repositories:
+      - type: "git"
+        name: "devops_repository"
+        repository: "company/{{ user_inputs.project_name | lower }}-devops"
+        branch: "main"
+        artifact_mappings:
+          - output_key: "cicd_pipeline"
+            artifact_name: "pipelines"
+            artifact_type: "pipeline"
+          - output_key: "infrastructure_code"
+            artifact_name: "infrastructure"
+            artifact_type: "configuration"
+          - output_key: "k8s_manifests"
+            artifact_name: "kubernetes"
+            artifact_type: "kubernetes"
+          - output_key: "monitoring_config"
+            artifact_name: "monitoring"
+            artifact_type: "configuration"
+      - type: "confluence"
+        name: "deployment_docs"
+        artifact_mappings:
+          - output_key: "deployment_runbook"
+            artifact_name: "Deployment Runbook - {{ user_inputs.project_name }}"
+            artifact_type: "runbook"
+    
+    timeout_minutes: 40
+    approval_required: true
+    reviewers: ["devops.lead@company.com", "infrastructure.manager@company.com"]
+
+  - id: "maintenance"
+    type: "maintenance"
+    name: "Operations and Maintenance"
+    description: "Generate operational procedures and maintenance strategies"
+    dependencies: ["deployment"]
+    
+    ai_config:
+      model: "gpt-4"
+      temperature: 0.3
+      max_tokens: 6000
+    
+    prompt_template: |
+      You are an IT operations manager creating comprehensive operational and maintenance procedures.
+      
+      Deployment Context:
+      - Application: {{ user_inputs.project_name }}
+      - Infrastructure: {{ deployment_output.infrastructure_code }}
+      - Monitoring: {{ deployment_output.monitoring_config }}
+      
+      Generate comprehensive operational artifacts:
+      
+      1. Incident Management:
+         - Incident response procedures
+         - Escalation matrix and contact information
+         - Severity classification and response times
+         - Communication templates
+         - Post-incident review procedures
+      
+      2. Monitoring and Alerting:
+         - Key performance indicators (KPIs)
+         - Alert thresholds and configurations
+         - Dashboard design and layout
+         - Log analysis procedures
+         - Performance trending analysis
+      
+      3. Maintenance Procedures:
+         - Preventive maintenance schedules
+         - System health checks
+         - Database maintenance procedures
+         - Security patching procedures
+         - Capacity planning guidelines
+      
+      4. Change Management:
+         - Change request procedures
+         - Testing requirements for changes
+         - Rollback procedures
+         - Change approval workflows
+      
+      5. Documentation and Knowledge Base:
+         - System architecture documentation
+         - Troubleshooting guides
+         - FAQ and common issues
+         - User manuals and guides
+         - Training materials
+      
+      6. Performance Optimization:
+         - Performance monitoring procedures
+         - Optimization recommendations
+         - Capacity scaling procedures
+         - Cost optimization strategies
+      
+      7. Security Operations:
+         - Security monitoring procedures
+         - Vulnerability management
+         - Access review procedures
+         - Compliance audit support
+      
+      8. Business Continuity:
+         - Backup and recovery procedures
+         - Disaster recovery planning
+         - Service continuity planning
+         - Risk assessment and mitigation
+      
+      Include specific procedures, checklists, and automation scripts.
+      Focus on operational excellence and continuous improvement.
+    
+    validation_rules:
+      - rule: "has_incident_procedures"
+        description: "Must include incident management procedures"
+      - rule: "has_monitoring_strategy"
+        description: "Must include monitoring and alerting strategy"
+      - rule: "has_maintenance_schedule"
+        description: "Must include maintenance procedures"
+      - rule: "has_change_management"
+        description: "Must include change management process"
+      - rule: "has_documentation"
+        description: "Must include comprehensive documentation"
+    
+    repositories:
+      - type: "confluence"
+        name: "operations_documentation"
+        artifact_mappings:
+          - output_key: "incident_procedures"
+            artifact_name: "Incident Management Procedures - {{ user_inputs.project_name }}"
+            artifact_type: "runbook"
+          - output_key: "maintenance_procedures"
+            artifact_name: "Maintenance Procedures - {{ user_inputs.project_name }}"
+            artifact_type: "runbook"
+          - output_key: "troubleshooting_guide"
+            artifact_name: "Troubleshooting Guide - {{ user_inputs.project_name }}"
+            artifact_type: "documentation"
+      - type: "git"
+        name: "operations_repository"
+        repository: "company/{{ user_inputs.project_name | lower }}-ops"
+        branch: "main"
+        artifact_mappings:
+          - output_key: "monitoring_scripts"
+            artifact_name: "monitoring"
+            artifact_type: "script"
+          - output_key: "maintenance_scripts"
+            artifact_name: "maintenance"
+            artifact_type: "script"
+    
+    timeout_minutes: 30
+    approval_required: false
+    reviewers: ["operations.manager@company.com"]
+
+# Global pipeline configuration
+global_config:
+  retry_policy:
+    max_retries: 3
+    retry_delay_seconds: 300
+  
+  notification_config:
+    email_notifications: true
+    slack_notifications: true
+    webhook_notifications: true
+  
+  artifact_retention:
+    days: 365
+    backup_strategy: "cloud_storage"
+  
+  security_config:
+    encrypt_artifacts: true
+    access_logging: true
+    compliance_validation: true

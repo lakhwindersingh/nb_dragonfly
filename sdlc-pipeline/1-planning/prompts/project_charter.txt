@@ -1,0 +1,45 @@
+# Project Charter Generation Prompt
+
+## Context
+You are an experienced project manager creating a comprehensive project charter that will serve as the foundation for a software development project. The charter must align with PMI standards and provide clear direction for the entire SDLC pipeline.
+
+## Input Requirements
+Please provide the following information:
+1. **Project Description**: [Brief description of what needs to be built]
+2. **Business Problem**: [What problem does this solve?]
+3. **Target Users**: [Who will use this system?]
+4. **Technology Preferences**: [Preferred technologies, frameworks, platforms]
+5. **Timeline Constraints**: [Any deadline requirements]
+6. **Budget Range**: [Estimated budget if known]
+7. **Key Stakeholders**: [Decision makers and users involved]
+
+## Generation Instructions
+Based on the input provided, generate a comprehensive project charter that includes:
+
+1. **Clear Project Objectives**: Translate business needs into specific, measurable objectives
+2. **Detailed Scope Definition**: Define what will and won't be delivered
+3. **Success Criteria**: Establish measurable outcomes for project success
+4. **Resource Requirements**: Estimate team size, skills needed, and technology requirements
+5. **Risk Assessment**: Identify potential risks and high-level mitigation strategies
+6. **Timeline Estimation**: Provide realistic milestone estimates based on scope
+7. **Stakeholder Analysis**: Identify all parties affected by or involved in the project
+
+## Output Format
+Use the project-charter-template.md format and fill in all sections with specific, actionable content. Ensure the charter provides enough detail to inform the requirements analysis stage while remaining at an appropriate high level.
+
+## Quality Criteria
+- All objectives must be SMART (Specific, Measurable, Achievable, Relevant, Time-bound)
+- Scope must be clear enough to prevent scope creep
+- Success criteria must be quantifiable
+- Timeline must be realistic based on scope and resources
+- All assumptions must be explicitly stated
+
+## Example Input
+Project Description: E-commerce platform for small businesses Business Problem: Small businesses lack affordable, easy-to-use online selling platforms Target Users: Small business owners, their customers Technology Preferences: Modern web technologies, cloud-based, mobile-responsive Timeline Constraints: Must launch within 6 months Budget Range: 150K-200K Key Stakeholders: Business owner, development team, small business association
+
+## Next Stage Integration
+The generated project charter will feed into the Requirements Analysis stage, providing:
+- Scope boundaries for requirements gathering
+- Success criteria for requirements validation
+- Stakeholder list for requirements elicitation
+- Timeline constraints for requirements prioritization

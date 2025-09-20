@@ -1,0 +1,96 @@
+# Software Requirements Specification (SRS) Generation Prompt
+
+## Context
+You are a senior business analyst creating a comprehensive Software Requirements Specification that will serve as the foundation for system design and development. The SRS must be detailed enough to guide architects and developers while being clear enough for stakeholders to validate.
+
+## Input Requirements
+Please provide the following information:
+1. **Project Charter**: [Reference to or content from the project charter]
+2. **Stakeholder Interviews**: [Key insights from stakeholder discussions]
+3. **Business Processes**: [Current processes and desired improvements]
+4. **User Personas**: [Description of different user types]
+5. **System Context**: [How this system fits into the broader ecosystem]
+6. **Compliance Requirements**: [Any regulatory or industry standards]
+7. **Integration Needs**: [Systems that need to integrate with this solution]
+
+## Generation Instructions
+Based on the input provided, generate a comprehensive SRS that includes:
+
+### 1. Functional Requirements
+- **User Authentication and Authorization**: Define roles, permissions, and access controls
+- **Core Business Functions**: Translate business processes into specific system capabilities
+- **Data Management**: Define CRUD operations and data validation rules
+- **Reporting and Analytics**: Specify reporting requirements and data analysis needs
+- **Integration Points**: Define API requirements and data exchange formats
+- **Workflow Management**: Map business workflows to system processes
+
+### 2. Non-Functional Requirements
+- **Performance**: Response times, throughput, concurrent users
+- **Security**: Data protection, encryption, audit trails
+- **Scalability**: Growth projections and capacity planning
+- **Reliability**: Uptime requirements, disaster recovery
+- **Usability**: User experience standards and accessibility
+- **Maintainability**: Code quality, documentation, monitoring
+
+### 3. Data Requirements
+- **Data Entities**: Core business objects and their attributes
+- **Data Relationships**: How entities relate to each other
+- **Data Quality**: Validation rules, integrity constraints
+- **Data Lifecycle**: Creation, updates, archival, deletion policies
+- **Data Security**: Classification, access controls, privacy requirements
+
+### 4. Interface Requirements
+- **User Interfaces**: Screen layouts, navigation patterns, responsive design
+- **System Interfaces**: API specifications, data formats, protocols
+- **External Services**: Third-party integrations and dependencies
+
+## Quality Criteria
+- Requirements must be **Specific** and unambiguous
+- Requirements must be **Measurable** with clear acceptance criteria
+- Requirements must be **Achievable** with available technology and resources
+- Requirements must be **Relevant** to business objectives
+- Requirements must be **Testable** with clear validation methods
+- Requirements must be **Traceable** to project charter objectives
+
+## Template Usage
+Use the srs-template.md format and ensure every section is thoroughly completed. Each functional requirement should have:
+- Unique identifier (FR-001, FR-002, etc.)
+- Clear description in business terms
+- Priority level (High/Medium/Low)
+- Source reference (stakeholder, document, regulation)
+- Detailed acceptance criteria
+
+Each non-functional requirement should include:
+- Specific measurement criteria
+- Target values or thresholds
+- Testing methodology
+- Compliance standards if applicable
+
+## Example Input Processing
+Input: "Users need to manage customer orders" Output: FR-012: Order Management Description: The system shall allow authorized users to create, view, modify, and cancel customer orders throughout the order lifecycle. Priority: High Source: Sales Manager Interview, Customer Service Team Acceptance Criteria:
+- Users can create new orders with customer information, product selection, and pricing
+- Users can view order history with search and filter capabilities
+- Users can modify orders in 'pending' status only
+- Users can cancel orders with appropriate reason codes and notifications
+- All order changes are logged with user identification and timestamp
+- System prevents deletion of orders (soft delete only for audit purposes)
+
+## Next Stage Integration
+The generated SRS will feed into the Design stage, providing:
+- Functional specifications for system architecture
+- Data models for database design
+- Interface requirements for UI/UX design
+- Non-functional requirements for technology selection
+- Integration requirements for API design
+- Security requirements for security architecture
+
+## Validation Checklist
+Before finalizing the SRS, ensure:
+- [ ] All project charter objectives are addressed
+- [ ] All stakeholder needs are captured
+- [ ] Requirements are prioritized based on business value
+- [ ] Non-functional requirements include specific metrics
+- [ ] Data requirements support all functional requirements
+- [ ] Interface requirements consider all user types
+- [ ] Requirements are consistent and non-conflicting
+- [ ] Assumptions and dependencies are clearly stated

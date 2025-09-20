@@ -1,0 +1,180 @@
+
+# Spring Boot Service Generation Prompt
+
+## Context
+You are an expert Spring Boot developer creating a production-ready microservice that follows enterprise best practices, implements secure coding standards, and includes comprehensive testing.
+
+## Input Requirements
+Please provide the following information:
+1. **Service Details**:
+   - Service name and purpose
+   - Main business entities
+   - Key operations and endpoints
+
+2. **Database Requirements**:
+   - Entity definitions from DDS
+   - Relationships between entities
+   - Required queries and operations
+
+3. **Security Requirements**:
+   - Authentication method (JWT/OAuth2/Basic)
+   - Authorization requirements (roles/permissions)
+   - Data protection needs
+
+4. **Integration Requirements**:
+   - External APIs to integrate with
+   - Message queues or event streams
+   - Database connections
+
+5. **Performance Requirements**:
+   - Expected load and concurrency
+   - Response time requirements
+   - Caching needs
+
+## Generation Instructions
+Create a complete Spring Boot microservice with the following components:
+
+### 1. Application Configuration
+```java
+@SpringBootApplication
+@EnableJpaRepositories
+@EnableScheduling
+@EnableAsync
+public class [ServiceName]Application {
+    public static void main(String[] args) {
+        SpringApplication.run([ServiceName]Application.class, args);
+    }
+}
+```
+### 2. Entity Classes
+Generate JPA entities with:
+- Proper annotations (@Entity, @Table, @Column)
+- Validation constraints (@NotNull, @Size, @Email, etc.)
+- Audit fields (createdAt, updatedAt, createdBy, updatedBy)
+- Relationships (@OneToMany, @ManyToOne, @ManyToMany)
+- Proper toString, equals, and hashCode methods
+
+### 3. Repository Layer
+Create Spring Data JPA repositories with:
+- Custom query methods
+- Native queries for complex operations
+- Pagination and sorting support
+- Audit repository support
+
+### 4. Service Layer
+Implement business logic with:
+- @Transactional annotations
+- Input validation
+- Business rule enforcement
+- Exception handling
+- Logging at appropriate levels
+
+### 5. Controller Layer
+REST controllers with:
+- OpenAPI 3 annotations for documentation
+- Request/Response DTOs
+- Input validation (@Valid, @RequestBody)
+- Proper HTTP status codes
+- Exception handling (@ControllerAdvice)
+
+### 6. Security Configuration
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
+public class SecurityConfig {
+    // JWT/OAuth2 configuration
+    // Role-based access control
+    // CORS configuration
+    // Security headers
+}
+### 7. Configuration Classes
+- Database configuration
+- Cache configuration
+- Message queue configuration
+- External service configuration
+
+### 8. Exception Handling
+Global exception handling with:
+- Custom exception classes
+- @ControllerAdvice implementation
+- Proper error response formats
+- Logging of exceptions
+
+### 9. Testing Suite
+Comprehensive tests including:
+- Unit tests for services
+- Integration tests for repositories
+- Web layer tests for controllers
+- TestContainers for database testing
+
+### 10. Docker Configuration
+FROM openjdk:17-jre-slim
+COPY target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app.jar"]
+
+## Code Quality Standards
+- Follow Spring Boot best practices
+- Use proper dependency injection
+- Implement proper logging (SLF4J with Logback)
+- Include health checks and metrics
+- Use configuration properties instead of hard-coded values
+- Implement proper exception handling
+- Follow RESTful API design principles
+- Include comprehensive JavaDoc comments
+
+## File Structure Generation
+Generate the complete file structure with:
+- Maven pom.xml with all necessary dependencies
+- Application properties files for different environments
+- Database migration scripts (Flyway/Liquibase)
+- Docker and Kubernetes configuration files
+- README with setup and deployment instructions
+
+## Testing Strategy
+Include tests for:
+- Unit tests covering business logic
+- Integration tests for data layer
+- API tests for REST endpoints
+- Security tests for authentication/authorization
+- Performance tests for critical paths
+
+## Example Entity Generation
+@Entity
+@Table(name = "users")
+@Audited
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    @Email
+    private String email;
+
+    @Column(nullable = false)
+    @Size(min = 2, max = 50)
+    private String firstName;
+
+    @Column(nullable = false)
+    @Size(min = 2, max = 50)
+    private String lastName;
+
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+
+    // Constructors, getters, setters, equals, hashCode, toString
+}
+
+## Next Stage Integration
+The generated Spring Boot service will provide:
+- Deployable JAR file for testing
+- REST API endpoints for integration testing
+- Database schema for test data setup
+- Docker container for containerized testing
+- Health check endpoints for monitoring
+- Metrics endpoints for performance testing
