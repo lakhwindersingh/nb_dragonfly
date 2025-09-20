@@ -37,7 +37,8 @@
 
 ## 2. Deployment Procedure
 ### 2.1 Infrastructure Preparation
-``` bash
+
+```bash
 # 1. Verify infrastructure resources
 kubectl get nodes
 kubectl get pods --all-namespaces
@@ -54,7 +55,8 @@ kubectl get secrets
 kubectl get configmaps
 ```
 ### 2.2 Database Migration
-``` sql
+
+```sql
 -- 1. Create backup
 pg_dump -h [host] -U [user] -d [database] > backup_$(date +%Y%m%d_%H%M%S).sql
 
@@ -65,7 +67,8 @@ pg_dump -h [host] -U [user] -d [database] > backup_$(date +%Y%m%d_%H%M%S).sql
 SELECT version FROM schema_migrations ORDER BY version DESC LIMIT 1;
 ```
 ### 2.3 Application Deployment
-``` bash
+
+```bash
 # 1. Deploy application using Blue-Green strategy
 kubectl apply -f k8s/blue-green-deployment.yaml
 
@@ -82,7 +85,8 @@ kubectl patch service [service-name] -p '{"spec":{"selector":{"version":"blue"}}
 kubectl get service [service-name] -o yaml
 ```
 ### 2.4 Configuration Updates
-``` bash
+
+```bash
 # 1. Update configuration maps
 kubectl create configmap [config-name] --from-file=config/ --dry-run=client -o yaml | kubectl apply -f -
 
@@ -94,7 +98,8 @@ kubectl rollout restart deployment/[app-name]
 ```
 ## 3. Post-Deployment Verification
 ### 3.1 Application Health Checks
-``` bash
+
+```bash
 # 1. Check application status
 kubectl get pods -l app=[app-name]
 kubectl describe pod [pod-name]
@@ -117,7 +122,8 @@ kubectl logs -f deployment/[app-name] --since=10m
 - Report generation functional
 
 ### 3.3 Performance Verification
-``` bash
+
+```bash
 # 1. Check response times
 curl -w "@curl-format.txt" -o /dev/null -s https://[domain]/api/health
 
@@ -138,7 +144,8 @@ kubectl top nodes
 
 ## 4. Monitoring and Alerting
 ### 4.1 Enable Monitoring
-``` bash
+
+```bash
 # 1. Verify monitoring stack
 kubectl get pods -n monitoring
 
@@ -157,7 +164,8 @@ curl http://grafana:3000/api/health
 - Security incident alerts
 
 ### 4.3 Log Aggregation
-``` bash
+
+```bash
 # 1. Verify log collection
 kubectl logs -n logging fluentd-[pod-id]
 
@@ -178,7 +186,8 @@ Initiate rollback if:
 - Business stakeholder requests rollback
 
 ### 5.2 Rollback Steps
-``` bash
+
+```bash
 # 1. Immediate rollback using Kubernetes
 kubectl rollout undo deployment/[app-name]
 
@@ -205,20 +214,26 @@ curl -f https://[domain]/health
 ## 6. Communication Plan
 ### 6.1 Deployment Communication
 
+```text
 | Stakeholder Group | Method | Timing | Content |
 | --- | --- | --- | --- |
 | Development Team | Slack | Real-time | Technical status updates |
 | Business Users | Email | Before/After | Business impact summary |
 | Support Team | Dashboard | Real-time | System health status |
 | Management | Report | Weekly | Deployment metrics |
+```
+
 ### 6.2 Incident Communication
 
+```text
 | Severity | Response Time | Escalation | Communication Method |
 | --- | --- | --- | --- |
 | Critical | 15 minutes | Immediate | Phone + Slack |
 | High | 1 hour | 2 hours | Slack + Email |
 | Medium | 4 hours | 8 hours | Email |
 | Low | 24 hours | 48 hours | Ticket system |
+```
+
 ## 7. Success Criteria
 ### 7.1 Deployment Success Metrics
 - Zero downtime achieved
@@ -231,12 +246,15 @@ curl -f https://[domain]/health
 
 ### 7.2 Performance Metrics
 
+```text
 | Metric | Target | Current | Status |
 | --- | --- | --- | --- |
 | Availability | 99.9% | [Current] | [Status] |
 | Response Time | < 2s | [Current] | [Status] |
 | Error Rate | < 0.1% | [Current] | [Status] |
 | Throughput | [Target] TPS | [Current] | [Status] |
+```
+
 ## 8. Post-Deployment Activities
 ### 8.1 Documentation Updates
 - Update deployment documentation
@@ -261,6 +279,7 @@ curl -f https://[domain]/health
 
 ## 9. Emergency Contacts
 
+```text
 | Role | Name | Primary Contact | Secondary Contact |
 | --- | --- | --- | --- |
 | Deployment Manager | [Name] | [Phone/Email] | [Phone/Email] |
@@ -268,6 +287,8 @@ curl -f https://[domain]/health
 | Database Administrator | [Name] | [Phone/Email] | [Phone/Email] |
 | Infrastructure Lead | [Name] | [Phone/Email] | [Phone/Email] |
 | Business Owner | [Name] | [Phone/Email] | [Phone/Email] |
+```
+
 ## 10. Appendices
 ### Appendix A: Environment-Specific Configurations
 [Include environment-specific details]
@@ -279,6 +300,8 @@ curl -f https://[domain]/health
 [Include monitoring and alerting queries]
 ## Document History
 
+```text
 | Version | Date | Changes | Author |
 | --- | --- | --- | --- |
 | 1.0 | [Date] | Initial version | [Author] |
+```

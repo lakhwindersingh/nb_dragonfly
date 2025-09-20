@@ -1,4 +1,3 @@
-
 # Software Requirements Specification (SRS)
 
 ## Document Information
@@ -17,10 +16,17 @@
 [Define the scope of the software product being specified]
 
 ### 1.3 Definitions, Acronyms, and Abbreviations
+
+```text
 | Term | Definition |
+```
+
 |------|------------|
+
+```text
 | [Term 1] | [Definition] |
 | [Term 2] | [Definition] |
+```
 
 ### 1.4 References
 - [Reference 1]
@@ -38,10 +44,17 @@
 [Provide a summary of the major functions that the software will perform]
 
 ### 2.3 User Classes and Characteristics
+
+```text
 | User Class | Description | Technical Expertise | Primary Activities |
+```
+
 |------------|-------------|-------------------|-------------------|
+
+```text
 | [User Type 1] | [Description] | [Level] | [Activities] |
 | [User Type 2] | [Description] | [Level] | [Activities] |
+```
 
 ### 2.4 Operating Environment
 - **Hardware Platform**: [Description]
@@ -154,9 +167,16 @@
 [Describe key data entities and their relationships]
 
 ### 4.2 Data Dictionary
+
+```text
 | Entity | Attribute | Type | Description | Constraints |
+```
+
 |--------|-----------|------|-------------|-------------|
+
+```text
 | [Entity 1] | [Attribute] | [Type] | [Description] | [Constraints] |
+```
 
 ### 4.3 Data Flow Requirements
 [Describe how data flows through the system]
@@ -170,11 +190,25 @@
 [Include data flow diagrams]
 
 ### Appendix C: Requirements Traceability Matrix
+
+```text
 | Requirement ID | Source | Design Element | Test Case | Status |
+```
+
 |----------------|--------|----------------|-----------|---------|
+
+```text
 | FR-001 | [Source] | [Design Element] | [Test Case] | [Status] |
+```
 
 ## Document History
+
+```text
 | Version | Date | Changes | Author |
+```
+
 |---------|------|---------|--------|
+
+```text
 | 1.0 | [Date] | Initial version | [Author] |
+```

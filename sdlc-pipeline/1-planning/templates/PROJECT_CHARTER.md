@@ -52,10 +52,17 @@
 - [Constraint 2]
 
 ## Timeline and Milestones
+
+```text
 | Milestone | Target Date | Description |
+```
+
 |-----------|-------------|-------------|
+
+```text
 | [Milestone 1] | [Date] | [Description] |
 | [Milestone 2] | [Date] | [Description] |
+```
 
 ## Budget Estimate
 - **Total Budget**: [Amount]
@@ -64,14 +71,28 @@
 - **Contingency**: [Amount]
 
 ## Key Stakeholders
+
+```text
 | Name | Role | Responsibility | Contact |
+```
+
 |------|------|----------------|---------|
+
+```text
 | [Name] | [Role] | [Responsibility] | [Contact] |
+```
 
 ## Risks and Mitigation
+
+```text
 | Risk | Probability | Impact | Mitigation Strategy |
+```
+
 |------|-------------|--------|-------------------|
+
+```text
 | [Risk 1] | [High/Med/Low] | [High/Med/Low] | [Strategy] |
+```
 
 ## Approval
 - **Project Sponsor**: [Name] _________________ Date: _______

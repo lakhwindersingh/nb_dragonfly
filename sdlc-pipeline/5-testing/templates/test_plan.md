@@ -53,6 +53,7 @@
 ### 2.2 Testing Types
 #### 2.2.1 Functional Testing
 
+```text
 | Test Type | Description | Tools | Automation |
 | --- | --- | --- | --- |
 | Smoke Testing | Basic functionality verification | [Tool] | Yes |
@@ -60,8 +61,11 @@
 | Regression Testing | Ensure existing functionality | [Tool] | Yes |
 | User Interface Testing | UI components and interactions | [Tool] | Yes |
 | API Testing | Service endpoints and data flow | [Tool] | Yes |
+```
+
 #### 2.2.2 Non-Functional Testing
 
+```text
 | Test Type | Description | Tools | Criteria |
 | --- | --- | --- | --- |
 | Performance Testing | Response time and throughput | [JMeter/LoadRunner] | [Response < 2s] |
@@ -70,15 +74,20 @@
 | Security Testing | Vulnerabilities and threats | [OWASP ZAP] | [No high-risk vulnerabilities] |
 | Usability Testing | User experience validation | [Manual/Tools] | [SUS score > 80] |
 | Compatibility Testing | Cross-browser/device testing | [BrowserStack] | [Major browsers/devices] |
+```
+
 ## 3. Test Environment
 ### 3.1 Test Environment Requirements
 
+```text
 | Environment | Purpose | Configuration | Access |
 | --- | --- | --- | --- |
 | Development | Developer testing | [Config details] | [Team access] |
 | Integration | Integration testing | [Config details] | [QA access] |
 | Staging | Pre-production testing | [Config details] | [Stakeholder access] |
 | UAT | User acceptance testing | [Config details] | [Business user access] |
+```
+
 ### 3.2 Test Data Requirements
 - **Test Data Types**: [Master data, transaction data, reference data]
 - **Data Volume**: [Specify volumes for different test types]
@@ -101,6 +110,7 @@
 ## 4. Test Schedule
 ### 4.1 Test Phases Timeline
 
+```text
 | Phase | Start Date | End Date | Duration | Dependencies |
 | --- | --- | --- | --- | --- |
 | Unit Testing | [Date] | [Date] | [Duration] | [Code completion] |
@@ -109,12 +119,17 @@
 | Performance Testing | [Date] | [Date] | [Duration] | [System testing] |
 | Security Testing | [Date] | [Date] | [Duration] | [System testing] |
 | UAT | [Date] | [Date] | [Duration] | [All tests pass] |
+```
+
 ### 4.2 Milestone Schedule
 
+```text
 | Milestone | Date | Deliverable |
 | --- | --- | --- |
 | [Milestone 1] | [Date] | [Deliverable] |
 | [Milestone 2] | [Date] | [Deliverable] |
+```
+
 ## 5. Test Deliverables
 ### 5.1 Test Design Deliverables
 - Test cases and test scripts
@@ -138,6 +153,7 @@
 ## 6. Resource Requirements
 ### 6.1 Human Resources
 
+```text
 | Role | Responsibility | Skills Required | Count |
 | --- | --- | --- | --- |
 | Test Manager | Test planning and coordination | [Skills] | 1 |
@@ -145,19 +161,27 @@
 | Test Engineers | Test case design and execution | [Skills] | [Count] |
 | Automation Engineers | Test automation development | [Skills] | [Count] |
 | Performance Testers | Performance testing | [Skills] | [Count] |
+```
+
 ### 6.2 Tool Requirements
 
+```text
 | Tool | Purpose | License | Cost |
 | --- | --- | --- | --- |
 | [Tool 1] | [Purpose] | [License type] | [Cost] |
 | [Tool 2] | [Purpose] | [License type] | [Cost] |
+```
+
 ## 7. Risk Assessment
 ### 7.1 Testing Risks
 
+```text
 | Risk | Probability | Impact | Mitigation Strategy |
 | --- | --- | --- | --- |
 | [Risk 1] | [High/Med/Low] | [High/Med/Low] | [Strategy] |
 | [Risk 2] | [High/Med/Low] | [High/Med/Low] | [Strategy] |
+```
+
 ### 7.2 Contingency Plans
 - [Contingency plan 1]
 - [Contingency plan 2]
@@ -210,12 +234,15 @@
 ## 9. Defect Management
 ### 9.1 Defect Classification
 
+```text
 | Priority | Severity | Description | Resolution Time |
 | --- | --- | --- | --- |
 | P1 | Critical | System crash, data loss | 24 hours |
 | P2 | High | Major functionality impacted | 72 hours |
 | P3 | Medium | Minor functionality issues | 1 week |
 | P4 | Low | Cosmetic or enhancement | 2 weeks |
+```
+
 ### 9.2 Defect Lifecycle
 1. **Discovery** → Log defect with details
 2. **Assignment** → Assign to developer
@@ -238,11 +265,14 @@
 
 ### 10.2 Stakeholder Communication
 
+```text
 | Stakeholder | Frequency | Method | Content |
 | --- | --- | --- | --- |
 | Development Team | Daily | [Method] | [Content] |
 | Project Manager | Weekly | [Method] | [Content] |
 | Business Users | Milestone | [Method] | [Content] |
+```
+
 ## 11. Test Metrics and KPIs
 ### 11.1 Test Coverage Metrics
 - Requirements coverage
@@ -264,14 +294,19 @@
 
 ## 12. Approval
 
+```text
 | Role | Name | Signature | Date |
 | --- | --- | --- | --- |
 | Test Manager | [Name] | _________________ | _______ |
 | Project Manager | [Name] | _________________ | _______ |
 | Development Lead | [Name] | _________________ | _______ |
 | Business Stakeholder | [Name] | _________________ | _______ |
+```
+
 ## Document History
 
+```text
 | Version | Date | Changes | Author |
 | --- | --- | --- | --- |
 | 1.0 | [Date] | Initial version | [Author] |
+```

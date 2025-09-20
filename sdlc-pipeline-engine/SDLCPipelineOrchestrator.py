@@ -16,7 +16,6 @@ import uuid
 from sdlc_pipeline_engine.ai_processor import AIPromptProcessor
 from sdlc_pipeline_engine.artifact_manager import ArtifactManager
 from sdlc_pipeline_engine.repository_connectors import RepositoryConnectorFactory
-from sdlc_pipeline_engine.workflow_engine import WorkflowEngine
 from sdlc_pipeline_engine.validation_engine import ValidationEngine
 
 class StageType(Enum):
@@ -86,7 +85,6 @@ class SDLCPipelineOrchestrator:
         # Initialize components
         self.ai_processor = AIPromptProcessor(config.get("ai_config", {}))
         self.artifact_manager = ArtifactManager(config.get("artifact_config", {}))
-        self.workflow_engine = WorkflowEngine(config.get("workflow_config", {}))
         self.validation_engine = ValidationEngine(config.get("validation_config", {}))
         self.repository_factory = RepositoryConnectorFactory(config.get("repository_config", {}))
         

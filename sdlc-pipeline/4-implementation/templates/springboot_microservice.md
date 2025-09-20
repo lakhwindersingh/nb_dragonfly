@@ -13,29 +13,31 @@ This template provides a complete Spring Boot microservice structure following b
 - Structured logging with Logback
 
 ## Project Structure
-* **src/ 
-* ├── main/ 
-* │ ├── java/com/company/service/ 
-* │ │ ├── ServiceApplication.java 
-* │ │ ├── config/ 
-* │ │ ├── controller/ 
-* │ │ ├── service/ 
-* │ │ ├── repository/ 
-* │ │ ├── entity/ 
-* │ │ ├── dto/ 
-* │ │ ├── exception/ 
-* │ │ └── security/ 
-* │ └── resources/ 
-* │ ├── application.yml 
-* │ ├── application-dev.yml 
-* │ ├── application-prod.yml 
-* │ └── db/migration/ 
-* └── test/ 
-* └── java/com/company/service/ 
-* ├── integration/ 
-* ├── unit/ 
-* └── testcontainers/**
+- **src/
 
+```text
+- ├── main/
+- │ ├── java/com/company/service/
+- │ │ ├── ServiceApplication.java
+- │ │ ├── config/
+- │ │ ├── controller/
+- │ │ ├── service/
+- │ │ ├── repository/
+- │ │ ├── entity/
+- │ │ ├── dto/
+- │ │ ├── exception/
+- │ │ └── security/
+- │ └── resources/
+- │ ├── application.yml
+- │ ├── application-dev.yml
+- │ ├── application-prod.yml
+- │ └── db/migration/
+- └── test/
+- └── java/com/company/service/
+- ├── integration/
+- ├── unit/
+- └── testcontainers/**
+```
 
 ## Configuration Files
 - `pom.xml` - Maven dependencies and build configuration

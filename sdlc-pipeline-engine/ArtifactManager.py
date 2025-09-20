@@ -55,7 +55,8 @@ class ArtifactManager:
         
         # In-memory index for performance
         self.artifact_index: Dict[str, Artifact] = {}
-        self._load_index()
+        # Load index asynchronously
+        asyncio.create_task(self._load_index())
     
     def _initialize_storage(self):
         """Initialize storage directory structure"""
@@ -469,4 +470,11 @@ class ArtifactManager:
             if artifact.execution_id not in execution_stats:
                 execution_stats[artifact.execution_id] = {'count': 0, 'size': 0}
             execution_stats[artifact.execution_id]['count'] += 1
-            execution_stats[artifact.execution_i
+            execution_stats[artifact.execution_id]['size'] += artifact.size
+
+        return {
+            'total_artifacts': total_artifacts,
+            'total_size': total_size,
+            'by_type': type_stats,
+            'by_execution': execution_stats,
+        }

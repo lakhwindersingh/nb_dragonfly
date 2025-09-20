@@ -71,11 +71,14 @@ This procedure covers:
 
 ### 2.2 Priority Matrix
 
+```text
 | Urgency | Impact High | Impact Medium | Impact Low |
 | --- | --- | --- | --- |
 | High | Priority 1 | Priority 2 | Priority 3 |
 | Medium | Priority 2 | Priority 3 | Priority 4 |
 | Low | Priority 3 | Priority 4 | Priority 4 |
+```
+
 ## 3. Incident Response Team
 ### 3.1 Roles and Responsibilities
 #### Incident Manager
@@ -199,12 +202,15 @@ This procedure covers:
 
 #### Escalation Matrix
 
+```text
 | Time Elapsed | Severity 1 | Severity 2 | Severity 3 |
 | --- | --- | --- | --- |
 | 30 minutes | IT Manager | IT Manager | - |
 | 1 hour | CTO | IT Manager | IT Manager |
 | 2 hours | CEO | CTO | - |
 | 4 hours | Board notification | CTO | CTO |
+```
+
 ### 5.2 External Communication
 #### Customer Communication
 - **Status Page Updates**: Within 30 minutes of confirmed incident
@@ -214,12 +220,15 @@ This procedure covers:
 
 #### Stakeholder Communication
 
+```text
 | Stakeholder | Method | Frequency | Content |
 | --- | --- | --- | --- |
 | Executive Team | Email/Phone | Every 2 hours (Sev 1) | Status and ETA |
 | Business Units | Email | Every 4 hours | Impact assessment |
 | Customer Support | Slack | Every 30 minutes | Talking points |
 | Partners | Email | As needed | Service impact |
+```
+
 ## 6. Incident Documentation
 ### 6.1 Required Documentation
 - **Incident Record**: Detailed log of all activities and decisions
@@ -230,7 +239,8 @@ This procedure covers:
 - **Lessons Learned**: Improvement opportunities identified
 
 ### 6.2 Incident Report Template
-``` 
+
+```
 Incident ID: [INC-YYYY-MMDD-XXX]
 Date/Time: [Start time - End time]
 Severity: [1-4]
@@ -279,6 +289,7 @@ FOLLOW-UP ACTIONS:
 
 ### 7.2 Alert Configuration
 
+```text
 | Metric | Threshold | Severity | Action |
 | --- | --- | --- | --- |
 | Response Time | 5 seconds | High | Page on-call engineer |
@@ -286,6 +297,8 @@ FOLLOW-UP ACTIONS:
 | CPU Usage | 90% | Medium | Monitor and investigate |
 | Disk Space | 85% | High | Immediate attention |
 | Failed Logins | 100/minute | High | Security team alert |
+```
+
 ### 7.3 Monitoring Tools
 - **APM Tools**: [New Relic, Datadog, AppDynamics]
 - **Infrastructure**: [Prometheus, Grafana, Nagios]
@@ -336,6 +349,7 @@ FOLLOW-UP ACTIONS:
 ## 9. Performance Metrics
 ### 9.1 Key Performance Indicators (KPIs)
 
+```text
 | Metric | Target | Measurement |
 | --- | --- | --- |
 | Mean Time to Detect (MTTD) | < 5 minutes | Time from incident to detection |
@@ -343,6 +357,8 @@ FOLLOW-UP ACTIONS:
 | Mean Time to Resolve (MTTR) | < 4 hours (Sev 1) | Time from detection to resolution |
 | First Call Resolution | 80% | Incidents resolved on first contact |
 | Customer Satisfaction | 4.0/5.0 | Post-incident survey scores |
+```
+
 ### 9.2 Trending and Analysis
 - **Monthly Reports**: Incident volume, categories, trends
 - **Root Cause Analysis**: Common causes and prevention strategies
@@ -367,7 +383,9 @@ FOLLOW-UP ACTIONS:
 
 ## Document History
 
+```text
 | Version | Date | Changes | Author |
 | --- | --- | --- | --- |
 | 1.0 | [Date] | Initial version | [Author] |
 | 1.1 | [Date] | Updated escalation procedures | [Author] |
+```

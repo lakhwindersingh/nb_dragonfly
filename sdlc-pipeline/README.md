@@ -16,40 +16,42 @@ This framework provides standardized templates and prompts for:
 - **Maintenance**: Monitoring, Incident Management, Optimization
 
 ## Project Structure
-sdlc-pipeline/ 
-├── 1-planning/ 
-│ ├── templates/ 
-│ ├── prompts/ 
-│ └── outputs/ 
-├── 2-requirements/ 
-│ ├── templates/ 
-│ ├── prompts/ 
-│ └── outputs/ 
-├── 3-design/ 
-│ ├── templates/ 
-│ ├── prompts/ 
-│ └── outputs/ 
-├── 4-implementation/ 
-│ ├── templates/ 
-│ ├── prompts/ 
-│ └── outputs/ 
-├── 5-testing/ 
-│ ├── templates/ 
-│ ├── prompts/ 
-│ └── outputs/ 
-├── 6-deployment/ 
-│ ├── templates/ 
-│ ├── prompts/ 
-│ └── outputs/ 
-├── 7-maintenance/ 
-│ ├── templates/ 
-│ ├── prompts/ 
-│ └── outputs/ 
-└── shared/ 
-├── standards/ 
-├── utilities/ 
-└── examples/
+sdlc-pipeline/
 
+```text
+├── 1-planning/
+│ ├── templates/
+│ ├── prompts/
+│ └── outputs/
+├── 2-requirements/
+│ ├── templates/
+│ ├── prompts/
+│ └── outputs/
+├── 3-design/
+│ ├── templates/
+│ ├── prompts/
+│ └── outputs/
+├── 4-implementation/
+│ ├── templates/
+│ ├── prompts/
+│ └── outputs/
+├── 5-testing/
+│ ├── templates/
+│ ├── prompts/
+│ └── outputs/
+├── 6-deployment/
+│ ├── templates/
+│ ├── prompts/
+│ └── outputs/
+├── 7-maintenance/
+│ ├── templates/
+│ ├── prompts/
+│ └── outputs/
+└── shared/
+├── standards/
+├── utilities/
+└── examples/
+```
 
 ## Getting Started
 

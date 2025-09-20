@@ -39,14 +39,21 @@
 [Provide a high-level view of the system architecture]
 
 ### 2.3 Technology Stack
+
+```text
 | Layer | Technology | Version | Rationale |
+```
+
 |-------|------------|---------|-----------|
+
+```text
 | Frontend | [Technology] | [Version] | [Why chosen] |
 | Backend | [Technology] | [Version] | [Why chosen] |
 | Database | [Technology] | [Version] | [Why chosen] |
 | Caching | [Technology] | [Version] | [Why chosen] |
 | Message Queue | [Technology] | [Version] | [Why chosen] |
 | Monitoring | [Technology] | [Version] | [Why chosen] |
+```
 
 ## 3. Architectural Design
 
@@ -74,10 +81,17 @@
 [Describe how data flows through the system components]
 
 ### 3.4 Service Architecture (if applicable)
+
+```text
 | Service Name | Purpose | Technology | Port/Endpoint | Dependencies |
+```
+
 |--------------|---------|------------|---------------|--------------|
+
+```text
 | [Service 1] | [Purpose] | [Tech] | [Port] | [Dependencies] |
 | [Service 2] | [Purpose] | [Tech] | [Port] | [Dependencies] |
+```
 
 ## 4. Database Design
 
@@ -92,26 +106,49 @@
 
 #### 4.2.2 Entity Definitions
 **[Entity 1 Name]**
+
+```text
 | Attribute | Type | Constraints | Description |
+```
+
 |-----------|------|-------------|-------------|
+
+```text
 | [field1] | [type] | [constraints] | [description] |
 | [field2] | [type] | [constraints] | [description] |
+```
 
 **[Entity 2 Name]**
+
+```text
 | Attribute | Type | Constraints | Description |
+```
+
 |-----------|------|-------------|-------------|
+
+```text
 | [field1] | [type] | [constraints] | [description] |
 | [field2] | [type] | [constraints] | [description] |
+```
 
 ### 4.3 Database Schema Design
+
+```text
 sql -- [Table 1] CREATE TABLE [table_name] ( [field1] [TYPE] [CONSTRAINTS], [field2] [TYPE] [CONSTRAINTS], PRIMARY KEY ([key_field]), FOREIGN KEY ([fk_field]) REFERENCES other_table );
 -- [Table 2] CREATE TABLE [table_name] ( [field1] [TYPE] [CONSTRAINTS], [field2] [TYPE] [CONSTRAINTS] );
-
+```
 
 ### 4.4 Database Indexing Strategy
+
+```text
 | Table | Index Name | Columns | Type | Purpose |
+```
+
 |-------|------------|---------|------|---------|
+
+```text
 | [table] | [index_name] | [columns] | [B-Tree/Hash] | [purpose] |
+```
 
 ## 5. API Design
 
@@ -122,16 +159,22 @@ sql -- [Table 1] CREATE TABLE [table_name] ( [field1] [TYPE] [CONSTRAINTS], [fie
 
 ### 5.2 API Endpoints
 #### 5.2.1 [Resource Name] API
+
+```text
 | Method | Endpoint | Description | Request Body | Response |
+```
+
 |--------|----------|-------------|--------------|----------|
+
+```text
 | GET | /api/v1/[resource] | [Description] | N/A | [Response format] |
 | POST | /api/v1/[resource] | [Description] | [Request format] | [Response format] |
 | PUT | /api/v1/[resource]/{id} | [Description] | [Request format] | [Response format] |
 | DELETE | /api/v1/[resource]/{id} | [Description] | N/A | [Response format] |
+```
 
 ### 5.3 Data Transfer Objects (DTOs)
 json { "[ResourceName]DTO": { "field1": "string", "field2": "integer", "field3": "boolean", "relatedObject": { "id": "string", "name": "string" } } }
-
 
 ## 6. Security Architecture
 
@@ -153,12 +196,19 @@ json { "[ResourceName]DTO": { "field1": "string", "field2": "integer", "field3":
 - **Policy Engine**: [How permissions are evaluated]
 
 ### 6.3 Security Measures
+
+```text
 | Security Aspect | Implementation | Standards |
+```
+
 |----------------|----------------|-----------|
+
+```text
 | Data Encryption | [Method] | [Standard] |
 | API Security | [Method] | [Standard] |
 | Input Validation | [Method] | [Standard] |
 | Audit Logging | [Method] | [Standard] |
+```
 
 ## 7. User Interface Design
 
@@ -185,11 +235,18 @@ json { "[ResourceName]DTO": { "field1": "string", "field2": "integer", "field3":
 ## 8. Performance Design
 
 ### 8.1 Performance Requirements
+
+```text
 | Metric | Target | Measurement Method |
+```
+
 |--------|--------|--------------------|
+
+```text
 | Response Time | [Target] | [Method] |
 | Throughput | [Target] | [Method] |
 | Concurrent Users | [Target] | [Method] |
+```
 
 ### 8.2 Performance Strategies
 - **Caching**: [Strategy and implementation]
@@ -205,10 +262,17 @@ json { "[ResourceName]DTO": { "field1": "string", "field2": "integer", "field3":
 ## 9. Integration Design
 
 ### 9.1 External Integrations
+
+```text
 | System | Integration Type | Protocol | Data Format | Authentication |
+```
+
 |--------|------------------|----------|-------------|----------------|
+
+```text
 | [System 1] | [Real-time/Batch] | [HTTP/MQ] | [JSON/XML] | [Method] |
 | [System 2] | [Real-time/Batch] | [HTTP/MQ] | [JSON/XML] | [Method] |
+```
 
 ### 9.2 Integration Patterns
 - **Message Queuing**: [Implementation and patterns]
@@ -218,12 +282,19 @@ json { "[ResourceName]DTO": { "field1": "string", "field2": "integer", "field3":
 ## 10. Deployment Architecture
 
 ### 10.1 Environment Strategy
+
+```text
 | Environment | Purpose | Configuration | Deployment Method |
+```
+
 |-------------|---------|---------------|-------------------|
+
+```text
 | Development | [Purpose] | [Config] | [Method] |
 | Testing | [Purpose] | [Config] | [Method] |
 | Staging | [Purpose] | [Config] | [Method] |
 | Production | [Purpose] | [Config] | [Method] |
+```
 
 ### 10.2 Infrastructure Design
 - **Cloud Provider**: [AWS/Azure/GCP]
@@ -237,26 +308,47 @@ json { "[ResourceName]DTO": { "field1": "string", "field2": "integer", "field3":
 ## 11. Quality Attributes
 
 ### 11.1 Quality Attribute Scenarios
+
+```text
 | Quality Attribute | Scenario | Response Measure |
+```
+
 |-------------------|----------|------------------|
+
+```text
 | Availability | [Scenario] | [Measure] |
 | Performance | [Scenario] | [Measure] |
 | Security | [Scenario] | [Measure] |
 | Usability | [Scenario] | [Measure] |
+```
 
 ## 12. Design Decisions and Rationale
 
 ### 12.1 Technology Choices
+
+```text
 | Decision | Options Considered | Choice Made | Rationale |
+```
+
 |----------|-------------------|-------------|-----------|
+
+```text
 | [Decision 1] | [Options] | [Choice] | [Rationale] |
 | [Decision 2] | [Options] | [Choice] | [Rationale] |
+```
 
 ### 12.2 Architectural Patterns
+
+```text
 | Pattern | Alternative | Rationale for Choice |
+```
+
 |---------|-------------|---------------------|
+
+```text
 | [Pattern 1] | [Alternative] | [Rationale] |
 | [Pattern 2] | [Alternative] | [Rationale] |
+```
 
 ## 13. Appendices
 
@@ -273,6 +365,13 @@ json { "[ResourceName]DTO": { "field1": "string", "field2": "integer", "field3":
 [Include security flow diagrams]
 
 ## Document History
+
+```text
 | Version | Date | Changes | Author |
+```
+
 |---------|------|---------|--------|
+
+```text
 | 1.0 | [Date] | Initial version | [Author] |
+```

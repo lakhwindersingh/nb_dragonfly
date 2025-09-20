@@ -33,7 +33,7 @@ This guide provides best practices for creating and optimizing AI prompts within
 ## Stage-Specific Prompt Patterns
 
 ### Planning Stage Prompts
-```markdown
+```
 ## Role Definition
 You are an experienced project manager with [X] years of experience in [domain].
 
@@ -63,10 +63,11 @@ Generate a comprehensive project charter that includes:
 - Scope must prevent scope creep
 - Risks must include probability and impact
 - Timeline must account for dependencies
+
 ```
 
 ### Requirements Analysis Prompts
-```markdown
+```
 ## Role Definition
 You are a senior business analyst specializing in requirements engineering with expertise in [domain].
 
@@ -103,10 +104,11 @@ Generate requirements following IEEE 830 standard:
 - Priority level (High/Medium/Low)
 - Source traceability
 - Acceptance criteria with measurable outcomes
+
 ```
 
 ### Design Stage Prompts
-```markdown
+```
 ## Role Definition
 You are a solution architect with expertise in [technology stack] and [architectural patterns].
 
@@ -140,13 +142,14 @@ Create comprehensive design documentation including:
 - API specifications (OpenAPI format)
 - Security architecture
 - Deployment architecture
+
 ```
 
 ## Prompt Optimization Techniques
 
 ### 1. Chain of Thought Prompting
 Guide the AI through step-by-step reasoning:
-```markdown
+```
 Let's approach this systematically:
 
 Step 1: Analyze the business requirements
@@ -168,11 +171,12 @@ Step 4: Validate the design
 - Review against requirements
 - Check scalability considerations
 - Verify security measures
+
 ```
 
 ### 2. Few-Shot Learning
 Provide examples of desired outputs:
-```markdown
+```
 Here are examples of well-written requirements:
 
 Example 1:
@@ -191,11 +195,12 @@ Description: All API endpoints shall respond within 2 seconds under normal load
 Priority: High
 Measurement: Average response time under 1000 concurrent users
 Testing Method: Load testing with JMeter
+
 ```
 
 ### 3. Constraint-Based Prompting
 Define explicit boundaries and limitations:
-```markdown
+```
 Constraints:
 - Technology stack must use Java Spring Boot
 - Database must be PostgreSQL
@@ -204,11 +209,12 @@ Constraints:
 - Budget limit of $200,000
 - Timeline of 6 months
 - Team of 8 developers
+
 ```
 
 ### 4. Validation Prompts
 Include self-checking mechanisms:
-```markdown
+```
 After generating the requirements, validate that:
 1. Each requirement has a unique identifier
 2. All requirements trace back to business objectives
@@ -218,6 +224,7 @@ After generating the requirements, validate that:
 6. Requirements are consistent and non-conflicting
 
 If any validation fails, revise the requirements accordingly.
+
 ```
 
 ## Quality Assurance for AI-Generated Content

@@ -1,0 +1,27 @@
+2025-09-20 14:05:29,854 - SDLCConfigurationAndExecutionEngine - INFO - Starting SDLC Pipeline Engine
+2025-09-20 14:05:29,855 - ArtifactManager - INFO - Initialized artifact storage at artifacts
+2025-09-20 14:05:29,855 - SDLCConfigurationAndExecutionEngine - ERROR - Engine error: 'WorkflowEngine' object has no attribute '_cleanup_completed_executions'
+Traceback (most recent call last):
+  File "/Users/lakhwinder/data/projects/nb_dragonfly/sdlc-pipeline-engine/SDLCConfigurationAndExecutionEngine.py", line 102, in main
+    orchestrator = SDLCPipelineOrchestrator(config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lakhwinder/data/projects/nb_dragonfly/sdlc-pipeline-engine/SDLCPipelineOrchestrator.py", line 89, in __init__
+    self.workflow_engine = WorkflowEngine(config.get("workflow_config", {}))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lakhwinder/data/projects/nb_dragonfly/sdlc-pipeline-engine/WorkflowExecutionEngine.py", line 77, in __init__
+    asyncio.create_task(self._cleanup_completed_executions())
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorkflowEngine' object has no attribute '_cleanup_completed_executions'
+2025-09-20 14:05:29,856 - SDLCConfigurationAndExecutionEngine - INFO - SDLC Pipeline Engine stopped
+2025-09-20 14:06:42,761 - SDLCConfigurationAndExecutionEngine - INFO - Starting SDLC Pipeline Engine
+2025-09-20 14:06:42,761 - ArtifactManager - INFO - Initialized artifact storage at artifacts
+2025-09-20 14:06:42,762 - SDLCConfigurationAndExecutionEngine - INFO - Validating AI configuration...
+2025-09-20 14:06:42,762 - SDLCConfigurationAndExecutionEngine - INFO - ✗ openai: Not configured
+2025-09-20 14:06:42,762 - SDLCConfigurationAndExecutionEngine - ERROR - No AI providers configured. Please check configuration.
+2025-09-20 14:06:42,762 - SDLCConfigurationAndExecutionEngine - INFO - SDLC Pipeline Engine stopped
+2025-09-20 14:07:06,346 - SDLCConfigurationAndExecutionEngine - INFO - Starting SDLC Pipeline Engine
+2025-09-20 14:07:06,346 - ArtifactManager - INFO - Initialized artifact storage at artifacts
+2025-09-20 14:07:06,346 - SDLCConfigurationAndExecutionEngine - INFO - Validating AI configuration...
+2025-09-20 14:07:06,346 - SDLCConfigurationAndExecutionEngine - INFO - ✗ openai: Not configured
+2025-09-20 14:07:06,346 - SDLCConfigurationAndExecutionEngine - ERROR - No AI providers configured. Please check configuration.
+2025-09-20 14:07:06,346 - SDLCConfigurationAndExecutionEngine - INFO - SDLC Pipeline Engine stopped

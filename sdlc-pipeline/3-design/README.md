@@ -1,4 +1,3 @@
-
 # Design Stage
 
 ## Objective

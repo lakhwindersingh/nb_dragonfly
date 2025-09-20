@@ -1,4 +1,3 @@
-
 # Spring Boot Service Generation Prompt
 
 ## Context
@@ -35,6 +34,7 @@ Please provide the following information:
 Create a complete Spring Boot microservice with the following components:
 
 ### 1. Application Configuration
+
 ```java
 @SpringBootApplication
 @EnableJpaRepositories

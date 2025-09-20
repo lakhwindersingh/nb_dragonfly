@@ -1,0 +1,6 @@
+2025-09-20 14:07:34,261 - SDLCConfigurationAndExecutionEngine - INFO - Starting SDLC Pipeline Engine
+2025-09-20 14:07:34,261 - ArtifactManager - INFO - Initialized artifact storage at artifacts
+2025-09-20 14:07:34,261 - SDLCConfigurationAndExecutionEngine - INFO - Validating AI configuration...
+2025-09-20 14:07:34,261 - SDLCConfigurationAndExecutionEngine - INFO - ✗ openai: Not configured
+2025-09-20 14:07:34,261 - SDLCConfigurationAndExecutionEngine - ERROR - No AI providers configured. Please check configuration.
+2025-09-20 14:07:34,261 - SDLCConfigurationAndExecutionEngine - INFO - SDLC Pipeline Engine stopped

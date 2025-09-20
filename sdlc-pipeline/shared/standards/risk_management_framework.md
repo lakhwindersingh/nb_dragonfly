@@ -8,11 +8,14 @@
 
 ### Risk Assessment Matrix
 
+```text
 | Probability | Impact Low | Impact Medium | Impact High |
 | --- | --- | --- | --- |
 | High | Medium | High | Critical |
 | Medium | Low | Medium | High |
 | Low | Low | Low | Medium |
+```
+
 ### Risk Mitigation Strategies
 - **Avoid**: Change approach to eliminate risk
 - **Mitigate**: Reduce probability or impact
