@@ -37,11 +37,7 @@ Analyze the project needs and map to required skills:
 
 ```text
 | Skill Category | Required Skills | Proficiency Level | Person-Months | Priority |
-```
-
 |----------------|----------------|-------------------|---------------|----------|
-
-```text
 | **Backend Development** | {{technology_stack}} programming, API development | Senior/Mid/Junior | X months | High |
 | **Frontend Development** | {{frontend_tech}}, UX/UI implementation | Senior/Mid | X months | High |
 | **Database** | Database design, optimization, administration | Senior | X months | Medium |
@@ -71,11 +67,7 @@ For each available team member:
 
 ```text
 | Name/Role | Current Skills | Proficiency | Availability | Utilization | Gap Analysis |
-```
-
 |-----------|----------------|-------------|--------------|-------------|--------------|
-
-```text
 | [Team Member] | [Skills list] | [Level] | [%] | [Current projects] | [Skill gaps] |
 ```
 
@@ -188,11 +180,7 @@ If permanent hires are needed:
 
 ```text
 | Resource Type | Monthly Cost | Duration | Total Cost | Cost Category |
-```
-
 |---------------|--------------|----------|------------|---------------|
-
-```text
 | Project Manager | $X | X months | $X | Internal |
 | Technical Lead | $X | X months | $X | Internal |
 | Senior Developers | $X | X months | $X | Internal |
@@ -214,11 +202,7 @@ If permanent hires are needed:
 
 ```text
 | Risk | Probability | Impact | Risk Score | Mitigation Strategy |
-```
-
 |------|-------------|--------|------------|-------------------|
-
-```text
 | Key team member unavailable | Medium | High | High | Cross-training, documentation |
 | Skill gaps delay delivery | Low | High | Medium | Training plan, contractor backup |
 | Resource conflicts with other projects | High | Medium | High | Priority matrix, resource sharing agreements |

@@ -31,6 +31,7 @@ def load_config(config_path: str = None) -> Dict[str, Any]:
     
     # Default configuration
     config = {
+        'prompts_base_dir': os.getenv('PROMPTS_BASE_DIR') or str(Path(__file__).resolve().parent.parent / 'sdlc-pipeline'),
         'ai_config': {
             'openai': {
                 'api_key': os.getenv('OPENAI_API_KEY'),

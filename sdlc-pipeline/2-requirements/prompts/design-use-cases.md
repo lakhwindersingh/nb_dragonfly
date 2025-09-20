@@ -311,11 +311,7 @@ Create detailed use case specifications following UML standards and best practic
 
 ```text
 | Requirement ID | Requirement Name | Use Case ID | Use Case Name | Coverage |
-```
-
 |----------------|------------------|-------------|---------------|----------|
-
-```text
 | REQ-001 | User Authentication | UC-001 | User Login | Complete |
 | REQ-002 | Data Entry | UC-005 | Create Record | Complete |
 | REQ-003 | Reporting | UC-015 | Generate Report | Partial |
@@ -325,11 +321,7 @@ Create detailed use case specifications following UML standards and best practic
 
 ```text
 | Use Case ID | Scenario | Test Case ID | Test Description |
-```
-
 |-------------|----------|--------------|------------------|
-
-```text
 | UC-001 | Main Success | TC-001-01 | Valid login credentials |
 | UC-001 | Extension 3a | TC-001-02 | Invalid password |
 | UC-001 | Extension 3b | TC-001-03 | Account locked |

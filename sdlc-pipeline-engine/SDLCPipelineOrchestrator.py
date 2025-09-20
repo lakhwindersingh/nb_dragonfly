@@ -12,6 +12,8 @@ from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
 from enum import Enum
 import uuid
+from pathlib import Path
+import os
 
 from sdlc_pipeline_engine.ai_processor import AIPromptProcessor
 from sdlc_pipeline_engine.artifact_manager import ArtifactManager
@@ -304,17 +306,101 @@ class SDLCPipelineOrchestrator:
         stage: StageDefinition, 
         inputs: Dict[str, Any]
     ) -> str:
-        """Build the prompt for AI processing"""
+        """Build the prompt for AI processing.
+        Supports externalized prompt files in sdlc-pipeline repository via:
+        - Absolute or relative file paths ending with .md/.txt/.yaml
+        - Strings starting with "file:" prefix
+        - Logical keys like "analyze-resources" resolved under stage directory
+        - Fully qualified keys like "1-planning/prompts/analyze-resources.md"
+        Falls back to treating stage.prompt_template as inline Jinja template.
+        """
         
-        # Load base prompt template
-        base_prompt = stage.prompt_template
+        prompt_spec = stage.prompt_template or ""
+        base_dir = self.config.get('prompts_base_dir')
+        try:
+            content = self._resolve_prompt_content(prompt_spec, stage, base_dir)
+        except Exception as e:
+            self.logger.warning(f"Prompt resolution failed for stage {stage.stage_id}: {e}. Using inline content if provided.")
+            content = prompt_spec
         
         # Replace placeholders with actual values
         import jinja2
-        template = jinja2.Template(base_prompt)
+        template = jinja2.Template(content)
         rendered_prompt = template.render(**inputs)
         
         return rendered_prompt
+
+    def _resolve_prompt_content(self, prompt_spec: str, stage: StageDefinition, base_dir: Optional[str]) -> str:
+        """Resolve prompt content from file system if prompt_spec indicates a file or key.
+        If resolution fails or no spec, raises Exception.
+        """
+        # If no spec, raise
+        if not prompt_spec:
+            raise ValueError("Empty prompt_spec")
+        
+        # Normalize
+        spec = prompt_spec.strip()
+        # If starts with file: prefix
+        if spec.lower().startswith("file:"):
+            spec = spec[5:].strip()
+        
+        # Determine candidate paths
+        candidates: List[Path] = []
+        # Absolute path
+        p = Path(spec)
+        if p.is_absolute():
+            candidates.append(p)
+        
+        # If looks like relative file path (has extension)
+        if p.suffix.lower() in {'.md', '.txt', '.yaml', '.yml'}:
+            if not p.is_absolute():
+                if base_dir:
+                    candidates.append(Path(base_dir) / p)
+                candidates.append((Path(__file__).resolve().parent / p).resolve())
+        else:
+            # Treat as logical key, possibly including stage folder
+            # Map StageType to directory prefix
+            stage_dir_map = {
+                'planning': '1-planning',
+                'requirements': '2-requirements',
+                'design': '3-design',
+                'implementation': '4-implementation',
+                'testing': '5-testing',
+                'deployment': '6-deployment',
+                'maintenance': '7-maintenance',
+            }
+            stage_dir = stage_dir_map.get(stage.stage_type.value, stage.stage_type.value)
+            # If the spec already includes a slash, try as-is under prompts_base_dir
+            if '/' in spec or '\\' in spec:
+                if base_dir:
+                    candidates.append(Path(base_dir) / spec)
+            else:
+                # Build common paths under sdlc-pipeline
+                for ext in ['.md', '.txt']:
+                    if base_dir:
+                        candidates.append(Path(base_dir) / stage_dir / 'prompts' / f"{spec}{ext}")
+                        candidates.append(Path(base_dir) / stage_dir / 'prompts' / spec)
+        
+        # Also try full qualified under base_dir if provided
+        if base_dir:
+            candidates.append(Path(base_dir) / spec)
+        
+        # Filter unique and existing
+        tried = []
+        for c in candidates:
+            c = c.resolve()
+            if c in tried:
+                continue
+            tried.append(c)
+            if c.exists() and c.is_file():
+                try:
+                    return c.read_text(encoding='utf-8')
+                except Exception as e:
+                    # Try without encoding fallback
+                    return c.read_text()
+        
+        # If nothing matched, raise
+        raise FileNotFoundError(f"No prompt file found for spec '{prompt_spec}'. Tried: {', '.join(str(t) for t in tried)}")
     
     async def _validate_stage_outputs(
         self, 

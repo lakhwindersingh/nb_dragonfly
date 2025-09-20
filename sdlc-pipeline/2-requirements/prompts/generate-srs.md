@@ -83,11 +83,7 @@ Detailed user analysis:
 
 ```text
 | User Class | Description | Technical Expertise | Primary Goals | Usage Frequency |
-```
-
 |------------|-------------|-------------------|---------------|-----------------|
-
-```text
 | {{user_type_1}} | {{description}} | {{expertise_level}} | {{primary_goals}} | {{frequency}} |
 | {{user_type_2}} | {{description}} | {{expertise_level}} | {{primary_goals}} | {{frequency}} |
 ```
