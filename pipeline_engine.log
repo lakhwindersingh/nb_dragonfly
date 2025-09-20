@@ -25,3 +25,9 @@ AttributeError: 'WorkflowEngine' object has no attribute '_cleanup_completed_exe
 2025-09-20 14:07:06,346 - SDLCConfigurationAndExecutionEngine - INFO - ✗ openai: Not configured
 2025-09-20 14:07:06,346 - SDLCConfigurationAndExecutionEngine - ERROR - No AI providers configured. Please check configuration.
 2025-09-20 14:07:06,346 - SDLCConfigurationAndExecutionEngine - INFO - SDLC Pipeline Engine stopped
+2025-09-20 16:58:54,399 - SDLCConfigurationAndExecutionEngine - INFO - Starting SDLC Pipeline Engine
+2025-09-20 16:58:54,400 - ArtifactManager - INFO - Initialized artifact storage at artifacts
+2025-09-20 16:58:54,400 - SDLCConfigurationAndExecutionEngine - INFO - Validating AI configuration...
+2025-09-20 16:58:54,400 - SDLCConfigurationAndExecutionEngine - INFO - ✗ openai: Not configured
+2025-09-20 16:58:54,400 - SDLCConfigurationAndExecutionEngine - ERROR - No AI providers configured. Please check configuration.
+2025-09-20 16:58:54,400 - SDLCConfigurationAndExecutionEngine - INFO - SDLC Pipeline Engine stopped

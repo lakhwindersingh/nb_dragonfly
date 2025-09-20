@@ -112,54 +112,38 @@ Create a comprehensive system architecture that addresses all requirements and c
 - **Deployment Flexibility**: Independent deployment and release cycles
 
 #### 3.2 System-Level Architecture
-┌─────────────────────────────────────────────────────────────┐
-
 ```text
-│ Presentation Layer │
+
+┌─────────────────────────────────────────────────────────────┐
+│                       Presentation Layer                    │
 ├─────────────────────────────────────────────────────────────┤
-│ Web UI │ Mobile Apps │ Admin Portal │ API Docs │
+│   Web UI │    Mobile Apps │   Admin Portal │  API Docs      │
 └─────────────────────────────────────────────────────────────┘
-```
-
-↓
+                                ↓
 ┌─────────────────────────────────────────────────────────────┐
-
-```text
-│ API Gateway Layer │
+│                       API Gateway Layer                     │
 ├─────────────────────────────────────────────────────────────┤
-│ Authentication │ Rate Limiting │ Routing │ Load Balancing │
+│ Authentication │ Rate Limiting │ Routing │ Load Balancing   │
 └─────────────────────────────────────────────────────────────┘
-```
-
-↓
+                                ↓
 ┌─────────────────────────────────────────────────────────────┐
-
-```text
-│ Business Services Layer │
+│                     Business Services Layer                 │
 ├─────────────────────────────────────────────────────────────┤
-│ User Service │ {{Service_2}} │ {{Service_3}} │ Analytics │
-│ Auth Service │ {{Service_4}} │ {{Service_5}} │ Reporting │
+│ User Service │ {{Service_2}} │ {{Service_3}} │ Analytics    │
+│ Auth Service │ {{Service_4}} │ {{Service_5}} │ Reporting    │
 └─────────────────────────────────────────────────────────────┘
-```
-
-↓
+                                ↓
 ┌─────────────────────────────────────────────────────────────┐
-
-```text
-│ Data Access Layer │
+│                       Data Access Layer                     │
 ├─────────────────────────────────────────────────────────────┤
-│ Repository Pattern │ Database Abstraction │
+│ Repository Pattern            │ Database Abstraction        │
 └─────────────────────────────────────────────────────────────┘
-```
-
-↓
+                                ↓
 ┌─────────────────────────────────────────────────────────────┐
-
-```text
-│ Data Storage Layer │
+│                       Data Storage Layer                    │
 ├─────────────────────────────────────────────────────────────┤
-│ Primary DB │ Cache │ Search │ File Storage │
-│ ({{db_type}})│ (Redis) │ ({{search}}) │ ({{storage}}) │
+│     Primary DB │   Cache      │     Search    │ File Storage│
+│ ({{db_type}})  │   (Redis)    │ ({{search}})  │ ({{storage}})│
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -335,8 +319,12 @@ Create a comprehensive system architecture that addresses all requirements and c
 #### 5.3 Data Flow Architecture
 
 ```text
-[Application] ──write──→ [Primary DB] ──replicate──→ [Read Replicas] │
-│ │ ├──CDC──→ [Search Index] │ │ ├────cache────→ [Redis Cache] │
+[Application] 
+──write──→ [Primary DB] ──replicate──→ [Read Replicas] 
+│
+│ │ ├──CDC──→ [Search Index] 
+│ │ ├────cache────→ [Redis Cache] 
+│
 └────files────→ [Object Storage] ──CDN──→ [Global Distribution]
 ```
 
@@ -370,7 +358,9 @@ Create a comprehensive system architecture that addresses all requirements and c
 [User] ──credentials──→ [Auth Service] ──validate──→ [Identity Provider]
 
 ```text
-│ │ ←────JWT Token─────────────┘ │ [JWT Token] ──→ [API Gateway] ──verify──→ [Services]
+│ 
+│ ←────JWT Token─────────────┘ 
+│ [JWT Token] ──→ [API Gateway] ──verify──→ [Services]
 ```
 
 **Authorization Model:**
@@ -404,11 +394,7 @@ Create a comprehensive system architecture that addresses all requirements and c
 
 ```text
 | System | Protocol | Data Format | Authentication | SLA |
-```
-
 |--------|----------|-------------|---------------|-----|
-
-```text
 | {{external_1}} | REST | JSON | OAuth 2.0 | {{sla_1}} |
 | {{external_2}} | SOAP | XML | Certificate | {{sla_2}} |
 | {{external_3}} | GraphQL | JSON | API Key | {{sla_3}} |
@@ -470,10 +456,10 @@ Create a comprehensive system architecture that addresses all requirements and c
 - **Secret Management**: Secure handling of sensitive configuration
 
 **Kubernetes Architecture:**
-┌─────────────────────────────────────────────────┐
 
 ```text
-│ Ingress Controller │
+┌─────────────────────────────────────────────────┐
+│                  Ingress Controller             │
 ├─────────────────────────────────────────────────┤
 │ Service 1 │ Service 2 │ Service 3 │
 │ [Pod Pool] │ [Pod Pool] │ [Pod Pool] │

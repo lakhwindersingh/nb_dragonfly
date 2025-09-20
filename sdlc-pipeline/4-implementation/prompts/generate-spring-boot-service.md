@@ -37,7 +37,8 @@ Create a comprehensive, production-ready Spring Boot microservice:
 
 #### 1.1 Maven Configuration (pom.xml)
 
-xml
+
+```text
 <project xmlns="[http://maven.apache.org/POM/4.0.0](http://maven.apache.org/POM/4.0.0)" xmlns:xsi="[http://www.w3.org/2001/XMLSchema-instance](http://www.w3.org/2001/XMLSchema-instance)" xsi:schemaLocation="[http://maven.apache.org/POM/4.0.0](http://maven.apache.org/POM/4.0.0) [">http://maven.apache.org/xsd/maven-4.0.0.xsd">](http://maven.apache.org/xsd/maven-4.0.0.xsd) 4.0.0
 <parent>
 <groupId>org.springframework.boot</groupId>
@@ -64,9 +65,9 @@ xml
 
 <dependencies>
 
-```text
+
     <!-- Spring Boot Starters -->
-```
+
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -98,9 +99,8 @@ xml
         <artifactId>spring-boot-starter-cache</artifactId>
     </dependency>
 
-```text
     <!-- Database -->
-```
+
 
     <dependency>
         <groupId>{{database_driver_group}}</groupId>
@@ -108,18 +108,16 @@ xml
         <scope>runtime</scope>
     </dependency>
 
-```text
     <!-- Redis for Caching -->
-```
+
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-redis</artifactId>
     </dependency>
 
-```text
     <!-- OpenAPI Documentation -->
-```
+
 
     <dependency>
         <groupId>org.springdoc</groupId>
@@ -127,9 +125,7 @@ xml
         <version>${openapi.version}</version>
     </dependency>
 
-```text
     <!-- MapStruct for Mapping -->
-```
 
     <dependency>
         <groupId>org.mapstruct</groupId>
@@ -144,9 +140,7 @@ xml
         <scope>provided</scope>
     </dependency>
 
-```text
     <!-- JSON Web Token -->
-```
 
     <dependency>
         <groupId>io.jsonwebtoken</groupId>
@@ -168,9 +162,7 @@ xml
         <scope>runtime</scope>
     </dependency>
 
-```text
     <!-- Testing Dependencies -->
-```
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -198,9 +190,9 @@ xml
         <scope>test</scope>
     </dependency>
 
-```text
+
     <!-- Logging -->
-```
+
 
     <dependency>
         <groupId>net.logstash.logback</groupId>
@@ -233,18 +225,17 @@ xml
             </configuration>
         </plugin>
 
-```text
+
         <!-- Failsafe Plugin for Integration Tests -->
-```
+
 
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
         </plugin>
 
-```text
         <!-- JaCoCo Code Coverage -->
-```
+
 
         <plugin>
             <groupId>org.jacoco</groupId>
@@ -267,9 +258,12 @@ xml
         </plugin>
     </plugins>
 </build>
+```
 
 #### 1.2 Application Configuration (application.yml)
-yaml spring: application: name: {{service_name}}-service
+yaml 
+---
+spring: application: name: {{service_name}}-service
 profiles: active: ${SPRING_PROFILES_ACTIVE:local}
 datasource: url: {DATABASE_URL:jdbc:{{database_url}}} username:{DATABASE_USERNAME:{{db_username}}} password: ${DATABASE_PASSWORD:{{db_password}}} driver-class-name: {{database_driver}}
 jpa: hibernate: ddl-auto: validate show-sql: false database-platform: {{database_dialect}} properties: hibernate: dialect: {{database_dialect}} format_sql: true use_sql_comments: true generate_statistics: false
@@ -284,7 +278,7 @@ springdoc: api-docs: path: /api-docs swagger-ui: path: /swagger-ui.html enabled:
 spring: config: activate: on-profile: local h2: console: enabled: true datasource: url: jdbc:h2:mem:testdb driver-class-name: org.h2.Driver username: sa password: password jpa: hibernate: ddl-auto: create-drop show-sql: true
 spring: config: activate: on-profile: test datasource: url: jdbc:h2:mem:testdb driver-class-name: org.h2.Driver username: sa password: password jpa: hibernate: ddl-auto: create-drop
 logging: level: {{base_package}}: INFO
-
+---
 ### 2. Main Application Class
 
 #### 2.1 Application Entry Point

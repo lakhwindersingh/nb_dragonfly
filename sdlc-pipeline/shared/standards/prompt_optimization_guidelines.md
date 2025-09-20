@@ -1,4 +1,4 @@
-```markdown
+
 # Prompt Optimization Guide for SDLC Pipeline
 
 ## Introduction
@@ -318,7 +318,7 @@ If any validation fails, revise the requirements accordingly.
 - Document changes and rationale
 - Track performance improvements
 - Enable rollback if needed
-```
+
 
 This comprehensive GenAI-Powered SDLC Prompt Pipeline project provides:
 
