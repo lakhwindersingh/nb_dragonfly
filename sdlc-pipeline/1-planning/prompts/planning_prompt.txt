@@ -1,0 +1,10 @@
+# Planning prompt (GenAI)
+
+Given the following project brief:
+<<PASTE_BRIEF_HERE>>
+
+Produce:
+1. Project Charter (bulleted)
+2. High-level milestones and timeline
+3. Resource plan (roles & headcount)
+Format the output as structured markdown.

@@ -1,0 +1,9 @@
+# Requirements prompt (GenAI)
+
+Input: Project Charter and high-level goals.
+
+Produce:
+- Functional requirements (as enumerated items)
+- Non-functional requirements (performance, security, compliance)
+- Acceptance criteria per requirement
+Return: Structured JSON and markdown.
