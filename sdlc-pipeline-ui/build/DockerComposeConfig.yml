@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  sdlc-pipeline-ui:
+    build: .
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - REACT_APP_WS_URL=ws://localhost:8000
+    depends_on:
+      - sdlc-pipeline-api
+    networks:
+      - sdlc-network
+    restart: unless-stopped
+
+  sdlc-pipeline-api:
+    build: ../engine
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@postgres:5432/sdlc_pipeline
+      - REDIS_URL=redis://redis:6379/0
+      - JWT_SECRET=your-secret-key
+      - AI_API_KEY=your-openai-api-key
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - sdlc-network
+    restart: unless-stopped
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./logs:/app/logs
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=sdlc_pipeline
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - sdlc-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    networks:
+      - sdlc-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  sdlc-network:
+    driver: bridge
