@@ -9,6 +9,7 @@ import sys
 import os
 from pathlib import Path
 import yaml
+import re
 from typing import Dict, Any
 
 # Import orchestrator from package
@@ -26,6 +27,44 @@ def setup_logging(level: str = "INFO"):
         ]
     )
 
+def _load_dotenv_if_present(engine_dir: Path):
+    """Load .env file into os.environ if present (simple parser, no external deps)."""
+    candidates = [engine_dir / '.env', Path.cwd() / '.env']
+    for env_file in candidates:
+        try:
+            if env_file.exists():
+                with open(env_file, 'r') as f:
+                    for line in f:
+                        line = line.strip()
+                        if not line or line.startswith('#'):
+                            continue
+                        if '=' not in line:
+                            continue
+                        key, value = line.split('=', 1)
+                        key = key.strip()
+                        value = value.strip().strip('"').strip("'")
+                        if key and key not in os.environ:
+                            os.environ[key] = value
+        except Exception as e:
+            print(f"Warning: Failed to load .env from {env_file}: {e}")
+
+
+def _expand_env_placeholders(obj: Any) -> Any:
+    """Recursively replace ${VAR} placeholders in strings with environment values."""
+    pattern = re.compile(r"\$\{([A-Za-z_][A-Za-z0-9_]*)\}")
+
+    if isinstance(obj, dict):
+        return {k: _expand_env_placeholders(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_expand_env_placeholders(v) for v in obj]
+    if isinstance(obj, str):
+        def repl(match):
+            var = match.group(1)
+            return os.getenv(var, match.group(0))
+        return pattern.sub(repl, obj)
+    return obj
+
+
 def load_config(config_path: str = None) -> Dict[str, Any]:
     """Load configuration from file or environment.
     Preference order:
@@ -35,10 +74,14 @@ def load_config(config_path: str = None) -> Dict[str, Any]:
     4) config.yaml (fallback)
     """
 
+    engine_dir = Path(__file__).resolve().parent
+
+    # Load .env first to populate environment
+    _load_dotenv_if_present(engine_dir)
+
     # Resolve candidate config path if not explicitly provided
     if not config_path:
         env_path = os.getenv('CONFIG_PATH')
-        engine_dir = Path(__file__).resolve().parent
         candidates = [
             env_path if env_path else None,
             str(engine_dir / 'config.yml'),
@@ -54,7 +97,7 @@ def load_config(config_path: str = None) -> Dict[str, Any]:
 
     # Default configuration (used as base)
     config = {
-        'prompts_base_dir': os.getenv('PROMPTS_BASE_DIR') or str(Path(__file__).resolve().parent.parent / 'sdlc-pipeline'),
+        'prompts_base_dir': os.getenv('PROMPTS_BASE_DIR') or str(engine_dir.parent / 'sdlc-pipeline'),
         'ai_config': {
             'openai': {
                 'api_key': os.getenv('OPENAI_API_KEY'),
@@ -100,10 +143,15 @@ def load_config(config_path: str = None) -> Dict[str, Any]:
         try:
             with open(config_path, 'r') as f:
                 file_config = yaml.safe_load(f) or {}
+                # Expand env placeholders inside file config
+                file_config = _expand_env_placeholders(file_config)
                 # Shallow merge: config file values override defaults
                 config.update(file_config)
         except Exception as e:
             print(f"Warning: Failed to load config file {config_path}: {e}")
+
+    # Final pass: expand env placeholders in merged config (in case any remain)
+    config = _expand_env_placeholders(config)
 
     return config
 

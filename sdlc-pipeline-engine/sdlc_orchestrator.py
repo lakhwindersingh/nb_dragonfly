@@ -407,7 +407,10 @@ class SDLCPipelineOrchestrator:
         stage: StageDefinition, 
         outputs: Dict[str, Any]
     ) -> Dict[str, Any]:
-        """Validate stage outputs against defined rules"""
+        """Validate stage outputs against defined rules.
+        Returns a plain dict to keep execution state JSON-serializable and
+        compatible with existing callers that expect subscriptable results.
+        """
         
         validation_result = await self.validation_engine.validate(
             outputs=outputs,
@@ -415,7 +418,15 @@ class SDLCPipelineOrchestrator:
             quality_gates=stage.quality_gates
         )
         
-        return validation_result
+        # Convert ValidationResult dataclass to a dict shape expected by callers
+        return {
+            "passed": bool(validation_result.passed),
+            "errors": list(validation_result.errors),
+            "warnings": list(validation_result.warnings),
+            "info": list(validation_result.info),
+            "score": float(validation_result.score),
+            "details": dict(validation_result.details),
+        }
     
     async def _handle_approval_gate(
         self, 

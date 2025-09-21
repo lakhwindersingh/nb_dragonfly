@@ -56,3 +56,124 @@
 2025-09-21 13:25:32,765 - sdlc_engine - INFO - ✗ google_gemini: Not configured
 2025-09-21 13:25:32,765 - sdlc_engine - ERROR - No AI providers configured. Please check configuration.
 2025-09-21 13:25:32,765 - sdlc_engine - INFO - SDLC Pipeline Engine stopped
+2025-09-21 14:26:42,305 - sdlc_engine - INFO - Starting SDLC Pipeline Engine
+2025-09-21 14:26:42,308 - artifact_manager - INFO - Initialized artifact storage at artifacts
+2025-09-21 14:26:42,308 - sdlc_engine - INFO - Validating AI configuration...
+2025-09-21 14:26:42,995 - sdlc_engine - INFO - ✗ openai: Not configured
+2025-09-21 14:26:42,995 - sdlc_engine - INFO - ✗ anthropic: Not configured
+2025-09-21 14:26:42,995 - sdlc_engine - INFO - ✗ azure_openai: Not configured
+2025-09-21 14:26:42,995 - sdlc_engine - INFO - ✗ google_gemini: Not configured
+2025-09-21 14:26:42,995 - sdlc_engine - ERROR - No AI providers configured. Please check configuration.
+2025-09-21 14:26:42,995 - sdlc_engine - INFO - SDLC Pipeline Engine stopped
+2025-09-21 15:08:14,531 - sdlc_engine - INFO - Starting SDLC Pipeline Engine
+2025-09-21 15:08:14,534 - artifact_manager - INFO - Initialized artifact storage at artifacts
+2025-09-21 15:08:14,534 - sdlc_engine - INFO - Validating AI configuration...
+2025-09-21 15:08:14,534 - sdlc_engine - INFO - ✓ openai: Available
+2025-09-21 15:08:14,534 - sdlc_engine - INFO - ✓ anthropic: Available
+2025-09-21 15:08:14,534 - sdlc_engine - INFO - ✓ azure_openai: Available
+2025-09-21 15:08:14,534 - sdlc_engine - INFO - ✓ google_gemini: Available
+2025-09-21 15:08:14,534 - sdlc_engine - INFO - No pipeline file specified. Engine ready for API requests.
+2025-09-21 15:08:30,454 - sdlc_engine - INFO - SDLC Pipeline Engine stopped
+2025-09-21 19:12:35,702 - sdlc_engine - INFO - Starting SDLC Pipeline Engine
+2025-09-21 19:12:35,707 - artifact_manager - INFO - Initialized artifact storage at artifacts
+2025-09-21 19:12:35,707 - sdlc_engine - INFO - Validating AI configuration...
+2025-09-21 19:12:35,707 - sdlc_engine - INFO - ✓ openai: Available
+2025-09-21 19:12:35,707 - sdlc_engine - INFO - ✓ anthropic: Available
+2025-09-21 19:12:35,707 - sdlc_engine - INFO - ✓ azure_openai: Available
+2025-09-21 19:12:35,707 - sdlc_engine - INFO - ✓ google_gemini: Available
+2025-09-21 19:12:35,708 - sdlc_engine - INFO - No pipeline file specified. Engine ready for API requests.
+2025-09-21 21:03:05,026 - sdlc_engine - INFO - Starting SDLC Pipeline Engine
+2025-09-21 21:03:05,031 - artifact_manager - INFO - Initialized artifact storage at artifacts
+2025-09-21 21:03:05,032 - sdlc_engine - INFO - Validating AI configuration...
+2025-09-21 21:03:05,032 - sdlc_engine - INFO - ✓ openai: Available
+2025-09-21 21:03:05,032 - sdlc_engine - INFO - ✓ anthropic: Available
+2025-09-21 21:03:05,032 - sdlc_engine - INFO - ✓ azure_openai: Available
+2025-09-21 21:03:05,032 - sdlc_engine - INFO - ✓ google_gemini: Available
+2025-09-21 21:03:05,032 - sdlc_engine - INFO - No pipeline file specified. Engine ready for API requests.
+2025-09-21 21:03:14,984 - sdlc_engine - INFO - SDLC Pipeline Engine stopped
+2025-09-21 21:04:13,167 - sdlc_engine - INFO - Starting SDLC Pipeline Engine
+2025-09-21 21:04:13,171 - artifact_manager - INFO - Initialized artifact storage at artifacts
+2025-09-21 21:04:13,171 - sdlc_engine - INFO - Validating AI configuration...
+2025-09-21 21:04:13,171 - sdlc_engine - INFO - ✓ openai: Available
+2025-09-21 21:04:13,172 - sdlc_engine - INFO - ✓ anthropic: Available
+2025-09-21 21:04:13,172 - sdlc_engine - INFO - ✓ azure_openai: Available
+2025-09-21 21:04:13,172 - sdlc_engine - INFO - ✓ google_gemini: Available
+2025-09-21 21:04:13,172 - sdlc_engine - INFO - No pipeline file specified. Engine ready for API requests.
+2025-09-21 21:04:19,072 - sdlc_engine - INFO - SDLC Pipeline Engine stopped
+2025-09-21 17:28:16,436 - sdlc_engine - INFO - Starting SDLC Pipeline Engine
+2025-09-21 17:28:16,441 - artifact_manager - INFO - Initialized artifact storage at artifacts
+2025-09-21 17:28:16,441 - sdlc_engine - INFO - Validating AI configuration...
+2025-09-21 17:28:16,441 - sdlc_engine - INFO - ✓ openai: Available
+2025-09-21 17:28:16,441 - sdlc_engine - INFO - ✓ anthropic: Available
+2025-09-21 17:28:16,441 - sdlc_engine - INFO - ✓ azure_openai: Available
+2025-09-21 17:28:16,441 - sdlc_engine - INFO - ✓ google_gemini: Available
+2025-09-21 17:28:16,441 - sdlc_engine - INFO - Loading pipeline from ./samples/sample_pipeline.yaml
+2025-09-21 17:28:16,455 - artifact_manager - INFO - Stored pipeline definition: eb2abd14-f7a5-4476-adb2-b1e5de84c360
+2025-09-21 17:28:16,455 - sdlc_orchestrator - INFO - Created pipeline eb2abd14-f7a5-4476-adb2-b1e5de84c360
+2025-09-21 17:28:16,455 - sdlc_engine - INFO - Created pipeline: eb2abd14-f7a5-4476-adb2-b1e5de84c360
+2025-09-21 17:28:16,456 - sdlc_orchestrator - INFO - Started pipeline execution e0496986-61db-4af5-923f-ce0fa64d2164
+2025-09-21 17:28:16,456 - sdlc_engine - INFO - Started pipeline execution: e0496986-61db-4af5-923f-ce0fa64d2164
+2025-09-21 17:28:16,456 - sdlc_engine - INFO - Execution Status: pending, Progress: 0.0%
+2025-09-21 17:28:16,456 - sdlc_orchestrator - INFO - Starting stage planning-1: Project Charter Draft
+2025-09-21 17:28:16,572 - ai_prompt_processors - ERROR - AI processing failed: Cannot connect to host api.openai.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')]
+2025-09-21 17:28:16,573 - sdlc_orchestrator - ERROR - Stage planning-1 failed: Cannot connect to host api.openai.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')]
+2025-09-21 17:28:16,573 - artifact_manager - INFO - Stored execution result: e0496986-61db-4af5-923f-ce0fa64d2164
+2025-09-21 17:28:26,458 - sdlc_engine - INFO - Execution Status: failed, Progress: 100.0%
+2025-09-21 17:28:26,458 - sdlc_engine - INFO - Pipeline execution completed with status: failed
+2025-09-21 17:28:26,459 - sdlc_engine - INFO - SDLC Pipeline Engine stopped
+2025-09-21 17:29:20,997 - sdlc_engine - INFO - Starting SDLC Pipeline Engine
+2025-09-21 17:29:21,000 - artifact_manager - INFO - Initialized artifact storage at artifacts
+2025-09-21 17:29:21,000 - sdlc_engine - INFO - Validating AI configuration...
+2025-09-21 17:29:21,000 - sdlc_engine - INFO - ✓ google_gemini: Available
+2025-09-21 17:29:21,000 - sdlc_engine - INFO - Loading pipeline from ./samples/sample_pipeline.yaml
+2025-09-21 17:29:21,004 - artifact_manager - INFO - Stored pipeline definition: 9ea1cd06-b14e-49d2-923c-4619151462e7
+2025-09-21 17:29:21,004 - sdlc_orchestrator - INFO - Created pipeline 9ea1cd06-b14e-49d2-923c-4619151462e7
+2025-09-21 17:29:21,004 - sdlc_engine - INFO - Created pipeline: 9ea1cd06-b14e-49d2-923c-4619151462e7
+2025-09-21 17:29:21,005 - sdlc_orchestrator - INFO - Started pipeline execution d042144a-3df4-4ffe-9828-05e6224d6da6
+2025-09-21 17:29:21,005 - sdlc_engine - INFO - Started pipeline execution: d042144a-3df4-4ffe-9828-05e6224d6da6
+2025-09-21 17:29:21,005 - sdlc_engine - INFO - Execution Status: pending, Progress: 0.0%
+2025-09-21 17:29:21,005 - sdlc_orchestrator - INFO - Starting stage planning-1: Project Charter Draft
+2025-09-21 17:29:21,019 - ai_prompt_processors - ERROR - AI processing failed: OpenAI API key not configured
+2025-09-21 17:29:21,019 - sdlc_orchestrator - ERROR - Stage planning-1 failed: OpenAI API key not configured
+2025-09-21 17:29:21,020 - artifact_manager - INFO - Stored execution result: d042144a-3df4-4ffe-9828-05e6224d6da6
+2025-09-21 17:29:31,007 - sdlc_engine - INFO - Execution Status: failed, Progress: 100.0%
+2025-09-21 17:29:31,007 - sdlc_engine - INFO - Pipeline execution completed with status: failed
+2025-09-21 17:29:31,007 - sdlc_engine - INFO - SDLC Pipeline Engine stopped
+2025-09-21 17:34:25,395 - sdlc_engine - INFO - Starting SDLC Pipeline Engine
+2025-09-21 17:34:25,398 - artifact_manager - INFO - Initialized artifact storage at artifacts
+2025-09-21 17:34:25,398 - sdlc_engine - INFO - Validating AI configuration...
+2025-09-21 17:34:25,398 - sdlc_engine - INFO - ✓ google_gemini: Available
+2025-09-21 17:34:25,398 - sdlc_engine - INFO - Loading pipeline from ./samples/sample_pipeline.yaml
+2025-09-21 17:34:25,434 - artifact_manager - INFO - Stored pipeline definition: ba491924-efa2-41d4-a8e9-c0c20148be9a
+2025-09-21 17:34:25,434 - sdlc_orchestrator - INFO - Created pipeline ba491924-efa2-41d4-a8e9-c0c20148be9a
+2025-09-21 17:34:25,434 - sdlc_engine - INFO - Created pipeline: ba491924-efa2-41d4-a8e9-c0c20148be9a
+2025-09-21 17:34:25,436 - sdlc_orchestrator - INFO - Started pipeline execution a18fad9e-d19d-4b0f-8439-992343ee6f67
+2025-09-21 17:34:25,436 - sdlc_engine - INFO - Started pipeline execution: a18fad9e-d19d-4b0f-8439-992343ee6f67
+2025-09-21 17:34:25,436 - sdlc_engine - INFO - Execution Status: pending, Progress: 0.0%
+2025-09-21 17:34:25,436 - sdlc_orchestrator - INFO - Starting stage planning-1: Project Charter Draft
+2025-09-21 17:34:25,454 - ai_prompt_processors - INFO - AI selection -> provider=google_gemini, model=gemini-2.0-flash
+2025-09-21 17:34:25,936 - ai_prompt_processors - ERROR - AI processing failed: Cannot connect to host generativelanguage.googleapis.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')]
+2025-09-21 17:34:25,936 - sdlc_orchestrator - ERROR - Stage planning-1 failed: Cannot connect to host generativelanguage.googleapis.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')]
+2025-09-21 17:34:25,939 - artifact_manager - INFO - Stored execution result: a18fad9e-d19d-4b0f-8439-992343ee6f67
+2025-09-21 17:34:35,437 - sdlc_engine - INFO - Execution Status: failed, Progress: 100.0%
+2025-09-21 17:34:35,437 - sdlc_engine - INFO - Pipeline execution completed with status: failed
+2025-09-21 17:34:35,438 - sdlc_engine - INFO - SDLC Pipeline Engine stopped
+2025-09-21 17:37:32,535 - sdlc_engine - INFO - Starting SDLC Pipeline Engine
+2025-09-21 17:37:32,537 - artifact_manager - INFO - Initialized artifact storage at artifacts
+2025-09-21 17:37:32,538 - sdlc_engine - INFO - Validating AI configuration...
+2025-09-21 17:37:32,538 - sdlc_engine - INFO - ✓ google_gemini: Available
+2025-09-21 17:37:32,538 - sdlc_engine - INFO - Loading pipeline from ./samples/sample_pipeline.yaml
+2025-09-21 17:37:32,542 - artifact_manager - INFO - Stored pipeline definition: fd352ccb-4936-46f9-8e97-6d2f6a24326b
+2025-09-21 17:37:32,542 - sdlc_orchestrator - INFO - Created pipeline fd352ccb-4936-46f9-8e97-6d2f6a24326b
+2025-09-21 17:37:32,542 - sdlc_engine - INFO - Created pipeline: fd352ccb-4936-46f9-8e97-6d2f6a24326b
+2025-09-21 17:37:32,543 - sdlc_orchestrator - INFO - Started pipeline execution d14ffffe-e4a4-4675-90bb-d89b824cf4c9
+2025-09-21 17:37:32,543 - sdlc_engine - INFO - Started pipeline execution: d14ffffe-e4a4-4675-90bb-d89b824cf4c9
+2025-09-21 17:37:32,543 - sdlc_engine - INFO - Execution Status: pending, Progress: 0.0%
+2025-09-21 17:37:32,543 - sdlc_orchestrator - INFO - Starting stage planning-1: Project Charter Draft
+2025-09-21 17:37:32,555 - ai_prompt_processors - INFO - AI selection -> provider=google_gemini, model=gemini-2.0-flash
+2025-09-21 17:37:33,847 - ai_prompt_processors - INFO - AI request completed: gemini-2.0-flash, tokens: 1426
+2025-09-21 17:37:33,848 - sdlc_orchestrator - ERROR - Stage planning-1 failed: 'ValidationResult' object is not subscriptable
+2025-09-21 17:37:33,851 - artifact_manager - INFO - Stored execution result: d14ffffe-e4a4-4675-90bb-d89b824cf4c9
+2025-09-21 17:37:42,544 - sdlc_engine - INFO - Execution Status: failed, Progress: 100.0%
+2025-09-21 17:37:42,546 - sdlc_engine - INFO - Pipeline execution completed with status: failed
+2025-09-21 17:37:42,546 - sdlc_engine - INFO - SDLC Pipeline Engine stopped

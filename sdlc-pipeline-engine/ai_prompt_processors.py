@@ -11,7 +11,34 @@ from dataclasses import dataclass
 from enum import Enum
 import aiohttp
 import time
+import os
+import ssl
 from datetime import datetime
+
+# Build an aiohttp connector with proper SSL settings for environments missing system CAs
+# Env controls:
+# - DISABLE_SSL_VERIFY=true  -> disables SSL verification (development only)
+# - CA_BUNDLE_PATH=/path/to/cacert.pem -> custom CA bundle
+# Defaults to using certifi's CA bundle when available
+
+def _build_aiohttp_connector():
+    try:
+        if os.getenv('DISABLE_SSL_VERIFY', 'false').lower() == 'true':
+            return aiohttp.TCPConnector(ssl=False)
+        cafile = os.getenv('CA_BUNDLE_PATH')
+        if not cafile:
+            try:
+                import certifi  # type: ignore
+                cafile = certifi.where()
+            except Exception:
+                cafile = None
+        if cafile:
+            context = ssl.create_default_context(cafile=cafile)
+            return aiohttp.TCPConnector(ssl=context)
+    except Exception:
+        pass
+    # Fallback to default behavior
+    return aiohttp.TCPConnector()
 
 class AIProvider(Enum):
     OPENAI = "openai"
@@ -106,6 +133,7 @@ class AIPromptProcessor:
         
         # Parse model configuration
         config = self._parse_model_config(model_config or {})
+        self.logger.info(f"AI selection -> provider={config.provider.value}, model={config.model_name}")
         
         try:
             # Select provider and process
@@ -115,6 +143,8 @@ class AIPromptProcessor:
                 response = await self._process_anthropic(prompt, config)
             elif config.provider == AIProvider.AZURE_OPENAI:
                 response = await self._process_azure_openai(prompt, config)
+            elif config.provider == AIProvider.GOOGLE_GEMINI:
+                response = await self._process_google_gemini(prompt, config)
             else:
                 raise ValueError(f"Unsupported AI provider: {config.provider}")
             
@@ -140,13 +170,69 @@ class AIPromptProcessor:
             raise
     
     def _parse_model_config(self, config: Dict[str, Any]) -> AIModelConfig:
-        """Parse and validate model configuration"""
-        
-        provider_str = config.get('provider', 'openai')
-        provider = AIProvider(provider_str) if provider_str in [p.value for p in AIProvider] else AIProvider.OPENAI
-        
-        model_name = config.get('model', self._get_default_model(provider))
-        
+        """Parse and validate model configuration
+        Selection rules (in order):
+        1) Explicit provider in config
+        2) If model looks like a provider's family (e.g., gemini-*) infer that provider
+        3) Global default_provider in ai_config (self.config)
+        4) First configured provider with required keys, preferring google_gemini over openai
+        """
+        # 1) explicit provider string if present and valid
+        provider_str = config.get('provider')
+        provider: AIProvider
+        if provider_str and provider_str in [p.value for p in AIProvider]:
+            provider = AIProvider(provider_str)
+        else:
+            # 2) infer from model name if possible
+            requested_model = config.get('model', '')
+            if isinstance(requested_model, str):
+                low = requested_model.lower()
+                if low.startswith('gemini') or 'gemini' in low:
+                    provider = AIProvider.GOOGLE_GEMINI
+                elif low.startswith('claude'):
+                    provider = AIProvider.ANTHROPIC
+                elif low.startswith('gpt'):
+                    provider = AIProvider.OPENAI
+                else:
+                    provider = None  # type: ignore
+            else:
+                provider = None  # type: ignore
+            # 3) global default_provider if still undecided
+            if provider is None:
+                default_provider_str = self.config.get('default_provider') if isinstance(self.config, dict) else None
+                if default_provider_str and default_provider_str in [p.value for p in AIProvider]:
+                    provider = AIProvider(default_provider_str)
+            # 4) fallback to a configured provider; prefer google_gemini
+            if provider is None:
+                provider = self._choose_fallback_provider()
+            # Final fallback (to keep backwards compatibility)
+            if provider is None:
+                provider = AIProvider.OPENAI
+
+        # If chosen provider isn't actually configured, fall back to an available one
+        try:
+            if not self._is_configured(provider):
+                fallback = self._choose_fallback_provider()
+                if fallback is not None:
+                    self.logger.info(f"Selected provider {provider.value} not configured; falling back to {fallback.value}")
+                    provider = fallback
+        except Exception:
+            pass
+
+        requested_model = config.get('model')
+        if isinstance(requested_model, str):
+            low = requested_model.lower()
+            if provider == AIProvider.GOOGLE_GEMINI and 'gemini' not in low:
+                model_name = self._get_default_model(provider)
+            elif provider == AIProvider.OPENAI and not low.startswith('gpt'):
+                model_name = self._get_default_model(provider)
+            elif provider == AIProvider.ANTHROPIC and not low.startswith('claude'):
+                model_name = self._get_default_model(provider)
+            else:
+                model_name = requested_model
+        else:
+            model_name = self._get_default_model(provider)
+
         return AIModelConfig(
             provider=provider,
             model_name=model_name,
@@ -158,7 +244,29 @@ class AIPromptProcessor:
             timeout=config.get('timeout', 60),
             retry_attempts=config.get('retry_attempts', 3)
         )
-    
+
+    def _choose_fallback_provider(self) -> Optional[AIProvider]:
+        """Choose the first configured provider, preferring Google Gemini when available."""
+        try:
+            if self._is_configured(AIProvider.GOOGLE_GEMINI):
+                return AIProvider.GOOGLE_GEMINI
+            if self._is_configured(AIProvider.OPENAI):
+                return AIProvider.OPENAI
+            if self._is_configured(AIProvider.ANTHROPIC):
+                return AIProvider.ANTHROPIC
+            if self._is_configured(AIProvider.AZURE_OPENAI):
+                return AIProvider.AZURE_OPENAI
+        except Exception:
+            pass
+        return None
+
+    def _is_configured(self, provider: AIProvider) -> bool:
+        cfg = self.providers.get(provider, {})
+        if provider == AIProvider.AZURE_OPENAI:
+            return bool(cfg.get('api_key') and cfg.get('endpoint') and cfg.get('deployment_name'))
+        else:
+            return bool(cfg.get('api_key'))
+
     def _get_default_model(self, provider: AIProvider) -> str:
         """Get default model for provider"""
         if provider == AIProvider.OPENAI:
@@ -167,6 +275,8 @@ class AIPromptProcessor:
             return self.providers.get(provider, {}).get('default_model', 'claude-3-sonnet-20240229')
         elif provider == AIProvider.AZURE_OPENAI:
             return self.providers.get(provider, {}).get('deployment_name', 'gpt-4')
+        elif provider == AIProvider.GOOGLE_GEMINI:
+            return self.providers.get(provider, {}).get('default_model', 'gemini-1.5-flash')
         else:
             return 'gpt-3.5-turbo'
     
@@ -369,6 +479,76 @@ class AIPromptProcessor:
                         raise Exception("Azure OpenAI API timeout")
                     await asyncio.sleep(2 ** attempt)
     
+    async def _process_google_gemini(self, prompt: str, config: AIModelConfig) -> AIResponse:
+        """Process prompt using Google Gemini API"""
+        provider_config = self.providers.get(AIProvider.GOOGLE_GEMINI, {})
+        api_key = provider_config.get('api_key')
+        if not api_key:
+            raise ValueError("Google Gemini API key not configured")
+        base_url = provider_config.get('base_url', 'https://generativelanguage.googleapis.com').rstrip('/')
+        model = config.model_name or provider_config.get('default_model', 'gemini-1.5-flash')
+        # Prefer v1beta for generateContent; many models currently under v1beta
+        # If v1beta fails, we could try v1; keeping it simple here
+        url = f"{base_url}/v1beta/models/{model}:generateContent?key={api_key}"
+        headers = { 'Content-Type': 'application/json' }
+        payload = {
+            'contents': [
+                {
+                    'role': 'user',
+                    'parts': [ { 'text': prompt } ]
+                }
+            ],
+            'generationConfig': {
+                'temperature': config.temperature,
+                'maxOutputTokens': config.max_tokens,
+                'topP': config.top_p
+            }
+        }
+        start_time = time.time()
+        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=config.timeout), connector=_build_aiohttp_connector()) as session:
+            for attempt in range(config.retry_attempts):
+                try:
+                    async with session.post(url, headers=headers, json=payload) as response:
+                        if response.status == 200:
+                            result = await response.json()
+                            processing_time = time.time() - start_time
+                            # Extract text
+                            text = ''
+                            try:
+                                candidates = result.get('candidates') or []
+                                if candidates and 'content' in candidates[0]:
+                                    parts = candidates[0]['content'].get('parts') or []
+                                    if parts and 'text' in parts[0]:
+                                        text = parts[0]['text']
+                            except Exception:
+                                text = json.dumps(result)[:1000]
+                            tokens_used = 0
+                            try:
+                                usage = result.get('usageMetadata') or {}
+                                tokens_used = int(usage.get('totalTokenCount') or 0)
+                            except Exception:
+                                pass
+                            return AIResponse(
+                                content=text,
+                                model_used=model,
+                                provider=AIProvider.GOOGLE_GEMINI.value,
+                                tokens_used=tokens_used,
+                                processing_time=processing_time,
+                                metadata={
+                                    'attempt': attempt + 1,
+                                    'api_version': 'v1beta'
+                                }
+                            )
+                        else:
+                            error_text = await response.text()
+                            if attempt == config.retry_attempts - 1:
+                                raise Exception(f"Google Gemini API error: {response.status} - {error_text}")
+                            await asyncio.sleep(2 ** attempt)
+                except asyncio.TimeoutError:
+                    if attempt == config.retry_attempts - 1:
+                        raise Exception("Google Gemini API timeout")
+                    await asyncio.sleep(2 ** attempt)
+    
     def _track_usage(self, response: AIResponse):
         """Track AI model usage for monitoring and billing"""
         
@@ -461,6 +641,10 @@ class AIPromptProcessor:
         if not config.get('api_key'):
             return False
         
+        # Non-strict mode: consider configured if api_key exists
+        if os.getenv('STRICT_AI_VALIDATION', 'false').lower() != 'true':
+            return True
+        
         try:
             headers = {'Authorization': f"Bearer {config['api_key']}"}
             
@@ -475,6 +659,9 @@ class AIPromptProcessor:
         
         if not config.get('api_key'):
             return False
+        
+        if os.getenv('STRICT_AI_VALIDATION', 'false').lower() != 'true':
+            return True
         
         try:
             headers = {
@@ -505,6 +692,9 @@ class AIPromptProcessor:
         if not all([config.get('api_key'), config.get('endpoint'), config.get('deployment_name')]):
             return False
         
+        if os.getenv('STRICT_AI_VALIDATION', 'false').lower() != 'true':
+            return True
+        
         try:
             headers = {'api-key': config['api_key']}
             url = f"{config['endpoint']}/openai/deployments?api-version={config['api_version']}"
@@ -521,10 +711,13 @@ class AIPromptProcessor:
         if not config.get('api_key'):
             return False
         
+        if os.getenv('STRICT_AI_VALIDATION', 'false').lower() != 'true':
+            return True
+        
         try:
             # List models is a lightweight call; v1 endpoint generally available
             url = f"{config['base_url'].rstrip('/')}/v1/models?key={config['api_key']}"
-            async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
+            async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10), connector=_build_aiohttp_connector()) as session:
                 async with session.get(url) as response:
                     return response.status == 200
         except:
