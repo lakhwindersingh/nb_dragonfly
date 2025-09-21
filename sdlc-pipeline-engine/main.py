@@ -4,7 +4,7 @@ Entrypoint script for SDLC Pipeline Engine
 """
 import asyncio
 
-from SDLCConfigurationAndExecutionEngine import main as engine_main
+from sdlc_engine import main as engine_main
 
 if __name__ == "__main__":
     asyncio.run(engine_main())

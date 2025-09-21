@@ -12,12 +12,19 @@ ai_config:
     api_key: "${ANTHROPIC_API_KEY}"
     base_url: "https://api.anthropic.com"
     default_model: "claude-3-sonnet-20240229"
-  
+
+  google_gemini:
+    api_key: "AIzaSyAYMrHHzrScXoXIGPU57Zk-mXHm9P7Qv2o"
+    base_url: "https://generativelanguage.googleapis.com"
+    default_model: "gemini-2.0-flash"
+
   azure_openai:
     api_key: "${AZURE_OPENAI_KEY}"
     endpoint: "${AZURE_OPENAI_ENDPOINT}"
     api_version: "2024-02-01"
     deployment_name: "${AZURE_DEPLOYMENT_NAME}"
+
+
 
 # Artifact Storage Configuration
 artifact_config:

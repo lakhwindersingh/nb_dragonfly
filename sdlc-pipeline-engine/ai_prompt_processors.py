@@ -17,6 +17,7 @@ class AIProvider(Enum):
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
     AZURE_OPENAI = "azure_openai"
+    GOOGLE_GEMINI = "google_gemini"
     HUGGINGFACE = "huggingface"
     LOCAL = "local"
 
@@ -83,6 +84,14 @@ class AIPromptProcessor:
                 'endpoint': self.config['azure_openai'].get('endpoint'),
                 'api_version': self.config['azure_openai'].get('api_version', '2024-02-01'),
                 'deployment_name': self.config['azure_openai'].get('deployment_name')
+            }
+        
+        # Google Gemini Configuration
+        if 'google_gemini' in self.config:
+            self.providers[AIProvider.GOOGLE_GEMINI] = {
+                'api_key': self.config['google_gemini'].get('api_key'),
+                'base_url': self.config['google_gemini'].get('base_url', 'https://generativelanguage.googleapis.com'),
+                'default_model': self.config['google_gemini'].get('default_model', 'gemini-1.5-flash')
             }
     
     async def process_prompt(
@@ -436,6 +445,8 @@ class AIPromptProcessor:
                     validation_results[provider.value] = await self._validate_anthropic(config)
                 elif provider == AIProvider.AZURE_OPENAI:
                     validation_results[provider.value] = await self._validate_azure_openai(config)
+                elif provider == AIProvider.GOOGLE_GEMINI:
+                    validation_results[provider.value] = await self._validate_google_gemini(config)
                 else:
                     validation_results[provider.value] = False
             except Exception as e:
@@ -500,6 +511,21 @@ class AIPromptProcessor:
             
             async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
                 async with session.get(url, headers=headers) as response:
+                    return response.status == 200
+        except:
+            return False
+    
+    async def _validate_google_gemini(self, config: Dict[str, Any]) -> bool:
+        """Validate Google Gemini configuration"""
+        
+        if not config.get('api_key'):
+            return False
+        
+        try:
+            # List models is a lightweight call; v1 endpoint generally available
+            url = f"{config['base_url'].rstrip('/')}/v1/models?key={config['api_key']}"
+            async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
+                async with session.get(url) as response:
                     return response.status == 200
         except:
             return False

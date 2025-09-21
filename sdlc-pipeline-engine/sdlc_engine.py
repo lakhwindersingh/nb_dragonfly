@@ -12,7 +12,7 @@ import yaml
 from typing import Dict, Any
 
 # Import orchestrator from package
-from sdlc_pipeline_engine.SDLCPipelineOrchestrator import SDLCPipelineOrchestrator
+from sdlc_pipeline_engine.pipeline_orchestrator import SDLCPipelineOrchestrator
 
 def setup_logging(level: str = "INFO"):
     """Setup logging configuration"""
@@ -27,9 +27,32 @@ def setup_logging(level: str = "INFO"):
     )
 
 def load_config(config_path: str = None) -> Dict[str, Any]:
-    """Load configuration from file or environment"""
-    
-    # Default configuration
+    """Load configuration from file or environment.
+    Preference order:
+    1) Explicit path argument
+    2) CONFIG_PATH env var
+    3) config.yml (engine dir -> CWD)
+    4) config.yaml (fallback)
+    """
+
+    # Resolve candidate config path if not explicitly provided
+    if not config_path:
+        env_path = os.getenv('CONFIG_PATH')
+        engine_dir = Path(__file__).resolve().parent
+        candidates = [
+            env_path if env_path else None,
+            str(engine_dir / 'config.yml'),
+            'config.yml',
+            str(engine_dir / 'config.yaml'),
+            'config.yaml',
+        ]
+        # pick the first existing candidate
+        for cand in candidates:
+            if cand and os.path.exists(cand):
+                config_path = cand
+                break
+
+    # Default configuration (used as base)
     config = {
         'prompts_base_dir': os.getenv('PROMPTS_BASE_DIR') or str(Path(__file__).resolve().parent.parent / 'sdlc-pipeline'),
         'ai_config': {
@@ -71,17 +94,17 @@ def load_config(config_path: str = None) -> Dict[str, Any]:
             }
         }
     }
-    
-    # Load from config file if provided
+
+    # Load from resolved config file if any
     if config_path and os.path.exists(config_path):
         try:
             with open(config_path, 'r') as f:
-                file_config = yaml.safe_load(f)
-                # Merge configurations
+                file_config = yaml.safe_load(f) or {}
+                # Shallow merge: config file values override defaults
                 config.update(file_config)
         except Exception as e:
             print(f"Warning: Failed to load config file {config_path}: {e}")
-    
+
     return config
 
 async def main():
@@ -96,8 +119,12 @@ async def main():
     
     try:
         # Load configuration
-        config_path = os.getenv('CONFIG_PATH', 'config.yaml')
-        config = load_config(config_path)
+        # Prefer config.yml by default; fall back to config.yaml if needed
+        explicit_path = os.getenv('CONFIG_PATH')
+        if explicit_path and not os.path.exists(explicit_path):
+            logging.warning(f"CONFIG_PATH set to '{explicit_path}' but file does not exist; falling back to auto-detect")
+            explicit_path = None
+        config = load_config(explicit_path)
         
         # Create orchestrator
         orchestrator = SDLCPipelineOrchestrator(config)

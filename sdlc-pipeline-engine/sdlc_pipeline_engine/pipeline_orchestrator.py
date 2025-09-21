@@ -2,12 +2,12 @@
 import os
 import sys
 
-# Ensure parent directory (where SDLCPipelineOrchestrator.py resides) is importable
+# Ensure parent directory (where sdlc_orchestrator.py resides) is importable
 PARENT_DIR = os.path.dirname(os.path.dirname(__file__))
 if PARENT_DIR not in sys.path:
     sys.path.insert(0, PARENT_DIR)
 
 # Import the orchestrator class
-from SDLCPipelineOrchestrator import SDLCPipelineOrchestrator  # noqa: E402
+from pipeline_orchestrator import SDLCPipelineOrchestrator  # noqa: E402
 
-__all__ = ["SDLCPipelineOrchestrator"]
+__all__ = ["pipeline_orchestrator.py"]

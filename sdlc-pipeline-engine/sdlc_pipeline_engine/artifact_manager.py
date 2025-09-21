@@ -2,7 +2,7 @@
 import os
 import sys
 
-# Ensure parent directory (where ArtifactManager.py resides) is importable
+# Ensure parent directory (where artifact_manager.py resides) is importable
 PARENT_DIR = os.path.dirname(os.path.dirname(__file__))
 if PARENT_DIR not in sys.path:
     sys.path.insert(0, PARENT_DIR)
