@@ -4,9 +4,9 @@ services:
     ports:
       - "3000:80"
     environment:
-      - REACT_APP_API_URL=http://localhost:8000
-      - REACT_APP_WS_URL=ws://localhost:8000
-      - API_ORIGIN=http://sdlc-pipeline-api:8000
+      - REACT_APP_API_URL=http://localhost:9800
+      - REACT_APP_WS_URL=ws://localhost:9800
+      - API_ORIGIN=http://sdlc-pipeline-api:9801
     depends_on:
       - sdlc-pipeline-api
     networks:
@@ -14,9 +14,10 @@ services:
     restart: unless-stopped
 
   sdlc-pipeline-api:
-    build: ../engine
+    image: python:3.11-slim
+    command: python -m http.server 9801
     ports:
-      - "8000:8000"
+      - "9801:8000"
     environment:
       - DATABASE_URL=postgresql://user:password@postgres:5432/sdlc_pipeline
       - REDIS_URL=redis://redis:6379/0
