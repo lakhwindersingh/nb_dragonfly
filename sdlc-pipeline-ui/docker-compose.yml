@@ -9,15 +9,17 @@ services:
       - API_ORIGIN=http://sdlc-pipeline-api:9801
     depends_on:
       - sdlc-pipeline-api
+      - sdlc-pipeline-engine
     networks:
       - sdlc-network
     restart: unless-stopped
 
+  # Placeholder API (kept to avoid breaking UI proxy); can be replaced by a real API later
   sdlc-pipeline-api:
     image: python:3.11-slim
     command: python -m http.server 9801
-    ports:
-      - "9801:8000"
+    expose:
+      - "9801"
     environment:
       - DATABASE_URL=postgresql://user:password@postgres:5432/sdlc_pipeline
       - REDIS_URL=redis://redis:6379/0
@@ -32,6 +34,24 @@ services:
     volumes:
       - ./artifacts:/app/artifacts
       - ./logs:/app/logs
+
+  # SDLC Pipeline Engine service
+  sdlc-pipeline-engine:
+    image: python:3.11-slim
+    working_dir: /app
+    command: >-
+      sh -c "pip install --no-cache-dir aiohttp aiofiles PyYAML && python main.py"
+    environment:
+      - LOG_LEVEL=INFO
+      - STRICT_AI_VALIDATION=false
+      - PROMPTS_BASE_DIR=/workspace/sdlc-pipeline
+    volumes:
+      - ../sdlc-pipeline-engine:/app:rw
+      - ../sdlc-pipeline:/workspace/sdlc-pipeline:ro
+      - ../artifacts:/app/artifacts:rw
+    networks:
+      - sdlc-network
+    restart: unless-stopped
 
   postgres:
     image: postgres:15-alpine

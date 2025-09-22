@@ -43,8 +43,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { PipelineDefinition, StageDefinition, StageType } from '../../types/pipeline';
 import { StageNode } from './StageNode';
-import { StageConfigPanel } from './StageConfigPanel';
-import { PipelineConfigPanel } from './PipelineConfigPanel';
 import { createPipeline, updatePipeline, fetchPipeline } from '../../store/slices/pipelinesSlice';
 
 const nodeTypes = {

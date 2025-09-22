@@ -26,9 +26,9 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchPipelines } from '../../store/slices/pipelinesSlice';
 import { fetchExecutions } from '../../store/slices/executionsSlice';
 import { PipelineDefinition, PipelineExecution, ExecutionStatus } from '../../types/pipeline';
-import { MetricsCard } from './MetricsCard';
-import { RecentExecutions } from './RecentExecutions';
-import { QuickActions } from './QuickActions';
+import { MetricsCard } from '../components/common/MetricsCardComponent';
+import { RecentExecutions } from '../components/execution/RecentExecutionsComponent';
+import { QuickActions } from '../components/common/QuickActionsComponent';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();

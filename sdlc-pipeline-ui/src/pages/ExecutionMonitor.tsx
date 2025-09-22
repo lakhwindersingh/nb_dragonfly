@@ -39,9 +39,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchExecution, pauseExecution, resumeExecution, cancelExecution } from '../../store/slices/executionsSlice';
 import { PipelineExecution, ExecutionStatus, StageOutput } from '../../types/pipeline';
 import websocketService from '../../services/websocket';
-import { StageExecutionCard } from './StageExecutionCard';
-import { ExecutionLogs } from './ExecutionLogs';
-import { ArtifactViewer } from './ArtifactViewer';
 
 export const ExecutionMonitor: React.FC = () => {
   const { executionId } = useParams<{ executionId: string }>();
