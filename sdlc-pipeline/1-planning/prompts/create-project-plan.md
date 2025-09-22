@@ -122,11 +122,7 @@ Create a detailed schedule with:
 
 ```text
 | Role | Responsibility | Allocation % | Key Skills | Duration |
-```
-
 |------|----------------|--------------|------------|----------|
-
-```text
 | Project Manager | Overall coordination and delivery | 100% | PMP, Agile, Communication | Full project |
 | Technical Lead | Architecture and technical guidance | 100% | {{technology_stack}}, Leadership | Full project |
 | Senior Developer | Core development and mentoring | 100% | {{primary_technologies}} | Development phases |
@@ -160,11 +156,7 @@ Create a detailed schedule with:
 
 ```text
 | Stakeholder Group | Information Needs | Frequency | Method | Responsible |
-```
-
 |-------------------|-------------------|-----------|---------|-------------|
-
-```text
 | Executive Sponsor | High-level status, risks, budget | Weekly | Dashboard/Email | PM |
 | Product Owner | Sprint progress, scope changes | Daily/Sprint | Standup/Review | Scrum Master |
 | Development Team | Task assignments, blockers | Daily | Standup | Team |

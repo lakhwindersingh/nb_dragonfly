@@ -193,11 +193,7 @@ Create a comprehensive test plan following IEEE 829 standards:
 
 ```text
 | Data Category | Purpose | Volume | Refresh Frequency |
-```
-
 |---------------|---------|--------|-------------------|
-
-```text
 | Functional Test Data | Feature testing | {{functional_data_size}} | Weekly |
 | Performance Test Data | Load testing | {{performance_data_size}} | Monthly |
 | Security Test Data | Security testing | {{security_data_size}} | As needed |
@@ -242,11 +238,7 @@ Create a comprehensive test plan following IEEE 829 standards:
 
 ```text
 | Scenario | Concurrent Users | Duration | Success Criteria |
-```
-
 |----------|------------------|----------|------------------|
-
-```text
 | Normal Load | {{normal_users}} | {{normal_duration}} | Response time < {{response_time_target}} |
 | Peak Load | {{peak_users}} | {{peak_duration}} | Response time < {{peak_response_target}} |
 | Stress Test | {{stress_users}} | {{stress_duration}} | Graceful degradation, no crashes |
@@ -310,11 +302,7 @@ Create a comprehensive test plan following IEEE 829 standards:
 
 ```text
 | Milestone | Target Date | Deliverables | Success Criteria |
-```
-
 |-----------|-------------|--------------|------------------|
-
-```text
 | Test Plan Approval | {{milestone1_date}} | Approved test plan, test strategy | Stakeholder sign-off |
 | Test Environment Ready | {{milestone2_date}} | Configured environments, test data | Environment validation passed |
 | Test Case Development Complete | {{milestone3_date}} | All test cases, automation scripts | Test case review approved |

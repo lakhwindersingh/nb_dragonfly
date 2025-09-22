@@ -283,7 +283,8 @@ logging: level: {{base_package}}: INFO
 
 #### 2.1 Application Entry Point
 
-java package {{base_package}};
+```java 
+package {{base_package}};
 import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.cache.annotation.EnableCaching; import org.springframework.data.jpa.repository.config.EnableJpaAuditing; import org.springframework.data.jpa.repository.config.EnableJpaRepositories; import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
 - Main application class for {{service_name}} Service
@@ -294,10 +295,13 @@ import org.springframework.boot.SpringApplication; import org.springframework.bo
 - @version 1.0.0 */ @SpringBootApplication @EnableJpaRepositories @EnableJpaAuditing @EnableTransactionManagement @EnableCaching public class {{service_class_name}}Application {
   public static void main(String[] args) { SpringApplication.run({{service_class_name}}Application.class, args); } }
 
+```
+
 ### 3. Domain Layer (Entities and Business Logic)
 
 #### 3.1 Base Entity
-java package {{base_package}}.domain.entity;
+```java 
+package {{base_package}}.domain.entity;
 import jakarta.persistence.*; import org.springframework.data.annotation.CreatedDate; import org.springframework.data.annotation.LastModifiedDate; import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime; import java.util.Objects; import java.util.UUID;
 /**
@@ -312,12 +316,13 @@ import java.time.LocalDateTime; import java.util.Objects; import java.util.UUID;
   public LocalDateTime getUpdatedAt() { return updatedAt; }
   public Long getVersion() { return version; }
 
-```text
+
   // equals and hashCode based on ID @Override public boolean equals(Object o) { if (this == o) return true; if (o == null || getClass() != o.getClass()) return false; BaseEntity that = (BaseEntity) o; return Objects.equals(id, that.id); }
-```
+
 
   @Override public int hashCode() { return Objects.hash(id); }
   @Override public String toString() { return String.format("%s{id=%s, createdAt=%s, updatedAt=%s}", getClass().getSimpleName(), id, createdAt, updatedAt); } }
+```
 
 #### 3.2 Domain Entity Example
 ava package {{base_package}}.domain.entity;

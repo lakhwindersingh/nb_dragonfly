@@ -50,11 +50,7 @@ Create a comprehensive system architecture that addresses all requirements and c
 
 ```text
 | Quality Attribute | Priority | Target Metric | Architectural Impact |
-```
-
 |------------------|----------|---------------|---------------------|
-
-```text
 | Performance | High | Response time < 2s | Caching, CDN, optimized queries |
 | Scalability | High | {{concurrent_users}} users | Horizontal scaling, microservices |
 | Availability | Critical | {{availability_sla}}% uptime | Redundancy, fault tolerance |
@@ -89,11 +85,7 @@ Create a comprehensive system architecture that addresses all requirements and c
 
 ```text
 | Dependency | Type | Purpose | SLA Requirements | Risk Mitigation |
-```
-
 |------------|------|---------|------------------|-----------------|
-
-```text
 | {{external_service_1}} | Service | {{purpose}} | {{sla}} | Circuit breaker, retry logic |
 | {{external_service_2}} | Data Source | {{purpose}} | {{sla}} | Data caching, fallback sources |
 | {{external_service_3}} | Infrastructure | {{purpose}} | {{sla}} | Multi-region deployment |
@@ -142,8 +134,8 @@ Create a comprehensive system architecture that addresses all requirements and c
 ┌─────────────────────────────────────────────────────────────┐
 │                       Data Storage Layer                    │
 ├─────────────────────────────────────────────────────────────┤
-│     Primary DB │   Cache      │     Search    │ File Storage│
-│ ({{db_type}})  │   (Redis)    │ ({{search}})  │ ({{storage}})│
+│     Primary DB │   Cache     │     Search    │ File Storage │
+│ ({{db_type}})  │   (Redis)   │ ({{search}})  │ ({{storage}})│
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -319,11 +311,14 @@ Create a comprehensive system architecture that addresses all requirements and c
 #### 5.3 Data Flow Architecture
 
 ```text
-[Application] 
-──write──→ [Primary DB] ──replicate──→ [Read Replicas] 
+[Application] ──write──→ [Primary DB] ──replicate──→ [Read Replicas] 
 │
-│ │ ├──CDC──→ [Search Index] 
-│ │ ├────cache────→ [Redis Cache] 
+│ 
+│ 
+├──CDC──→ [Search Index] 
+│ 
+│ 
+├────cache────→ [Redis Cache] 
 │
 └────files────→ [Object Storage] ──CDN──→ [Global Distribution]
 ```

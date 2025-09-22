@@ -39,7 +39,8 @@ Design a comprehensive, production-ready CI/CD pipeline:
 
 **Pipeline Stages**:
 Source → Build → Test → Security → Package → Deploy Dev → Deploy Staging → Deploy Prod
-↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ Code Compile Static Container Artifact Smoke Integration Production Commit & Unit & Security Registry Tests Tests Deployment Tests Quality Scan Push
+    ↓   ↓ ↓ ↓ ↓ ↓ ↓ ↓ 
+Code Compile Static Container Artifact Smoke Integration Production Commit & Unit & Security Registry Tests Tests Deployment Tests Quality Scan Push
 
 #### 1.2 Pipeline Triggers
 - **Automatic Triggers**:
@@ -89,7 +90,8 @@ main (production)
 #### 3.1 Build Configuration
 
 **GitHub Actions Workflow (.github/workflows/ci-cd.yml)**:
-yaml name: CI/CD Pipeline
+```yaml 
+name: CI/CD Pipeline
 on: push: branches: [ main, develop, staging ] tags: [ 'v*' ] pull_request: branches: [ main, develop ]
 env: REGISTRY: {{container_registry}} IMAGE_NAME: {{application_name}} NODE_VERSION: '{{node_version}}' JAVA_VERSION: '{{java_version}}'
 jobs: build: name: Build and Test runs-on: ubuntu-latest
@@ -295,9 +297,10 @@ steps:
   id: image
   run: |
   echo "image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" >> $GITHUB_OUTPUT
+```
 
 #### 3.2 Multi-Stage Dockerfile
-dockerfile
+```dockerfile
 
 # Multi-stage build for {{application_type}} application
 # Build stage
@@ -328,9 +331,9 @@ rm -rf ~/.{{package_manager}}
 # Set up health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3
 
-```text
+
 CMD curl -f [http://localhost](http://localhost):{{port}}/health || exit 1
-```
+
 
 # Security: Use non-root user
 USER appuser
@@ -340,6 +343,7 @@ EXPOSE {{port}}
 LABEL org.opencontainers.image.title="{{application_name}}" LABEL org.opencontainers.image.description="{{application_description}}" LABEL org.opencontainers.image.vendor="{{organization}}" LABEL org.opencontainers.image.licenses="{{license}}" LABEL org.opencontainers.image.source="{{repository_url}}"
 # Start application
 CMD ["{{start_command}}"]
+```
 
 ### 4. Testing Integration
 
@@ -347,9 +351,8 @@ CMD ["{{start_command}}"]
 
 **Test Stages Integration**:
 
-```text
-yaml performance-tests: name: Performance Tests runs-on: ubuntu-latest needs: build-docker if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/staging'
-```
+```yaml performance-tests: name: Performance Tests runs-on: ubuntu-latest needs: build-docker if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/staging'
+
 
 steps:
 - name: Checkout code
@@ -419,13 +422,15 @@ steps:
   run: |
   # Fail pipeline if critical vulnerabilities found
   trivy image --exit-code 1 --severity CRITICAL ${{ needs.build-docker.outputs.image }}
+```
 
 ### 5. Deployment Automation
 
 #### 5.1 Environment-Specific Deployments
 
 **Development Deployment**:
-yaml deploy-dev: name: Deploy to Development runs-on: ubuntu-latest needs: [build-docker, integration-tests] if: github.ref == 'refs/heads/develop' environment: development
+```yaml 
+deploy-dev: name: Deploy to Development runs-on: ubuntu-latest needs: [build-docker, integration-tests] if: github.ref == 'refs/heads/develop' environment: development
 steps:
 - name: Checkout deployment manifests
   uses: actions/checkout@v4
@@ -440,9 +445,9 @@ steps:
 - name: Configure kubectl
   run: |
 
-```text
+
   echo "${{ secrets.KUBE_CONFIG_DEV }}" | base64 -d > kubeconfig
-```
+
 
   export KUBECONFIG=kubeconfig
 
@@ -471,15 +476,15 @@ steps:
 
   # Run basic health check
 
-```text
+
   curl -f {{dev_url}}/health || exit 1
-```
+
 
   # Run smoke test suite
 
-```text
+
   npm run test:smoke -- --env=dev
-```
+
 
 - name: Notify deployment
   uses: 8398a7/action-slack@v3
@@ -488,9 +493,11 @@ steps:
   channel: '#deployments'
   webhook_url: ${{ secrets.SLACK_WEBHOOK }}
   if: always()
+```
 
 **Staging Deployment with Approval Gate**:
-yaml deploy-staging: name: Deploy to Staging runs-on: ubuntu-latest needs: [build-docker, e2e-tests, security-container-scan] if: github.ref == 'refs/heads/main' environment: staging
+```yaml 
+deploy-staging: name: Deploy to Staging runs-on: ubuntu-latest needs: [build-docker, e2e-tests, security-container-scan] if: github.ref == 'refs/heads/main' environment: staging
 steps:
 - name: Checkout deployment manifests
   uses: actions/checkout@v4
@@ -811,22 +818,65 @@ steps:
 
 #### 9.1 Environment Configuration
 
+
 **environments/development.env**:
-bash NODE_ENV=development LOG_LEVEL=debug DATABASE_URL={DEV_DATABASE_URL} REDIS_URL={DEV_REDIS_URL} API_BASE_URL=[https://api-dev](https://api-dev).{{domain}} CORS_ORIGINS=[https://dev](https://dev).{{domain}},[http://localhost:3000](http://localhost:3000) RATE_LIMIT_WINDOW_MS=60000 RATE_LIMIT_MAX_REQUESTS=1000
+```bash 
+NODE_ENV=development 
+LOG_LEVEL=debug 
+DATABASE_URL={DEV_DATABASE_URL} 
+REDIS_URL={DEV_REDIS_URL} 
+API_BASE_URL=[https://api-dev](https://api-dev).{{domain}} 
+CORS_ORIGINS=[https://dev](https://dev).{{domain}},[http://localhost:3000](http://localhost:3000) 
+RATE_LIMIT_WINDOW_MS=60000 
+RATE_LIMIT_MAX_REQUESTS=1000
+```
 
 **environments/staging.env**:
-bash NODE_ENV=staging LOG_LEVEL=info DATABASE_URL={STAGING_DATABASE_URL} REDIS_URL={STAGING_REDIS_URL} API_BASE_URL=[https://api-staging](https://api-staging).{{domain}} CORS_ORIGINS=[https://staging](https://staging).{{domain}} RATE_LIMIT_WINDOW_MS=60000 RATE_LIMIT_MAX_REQUESTS=500
 
+```bash  
+NODE_ENV=staging 
+LOG_LEVEL=info 
+DATABASE_URL={STAGING_DATABASE_URL} 
+REDIS_URL={STAGING_REDIS_URL} 
+API_BASE_URL=[https://api-staging](https://api-staging).{{domain}} 
+CORS_ORIGINS=[https://staging](https://staging).{{domain}} 
+RATE_LIMIT_WINDOW_MS=60000 
+RATE_LIMIT_MAX_REQUESTS=500
+```
 **environments/production.env**:
-bash NODE_ENV=production LOG_LEVEL=warn DATABASE_URL={PROD_DATABASE_URL} REDIS_URL={PROD_REDIS_URL} API_BASE_URL=[https://api](https://api).{{domain}} CORS_ORIGINS=https://{{domain}} RATE_LIMIT_WINDOW_MS=60000 RATE_LIMIT_MAX_REQUESTS=100
+```bash  
+NODE_ENV=production 
+LOG_LEVEL=warn 
+DATABASE_URL={PROD_DATABASE_URL} 
+REDIS_URL={PROD_REDIS_URL} 
+API_BASE_URL=[https://api](https://api).{{domain}} CORS_ORIGINS=https://{{domain}} 
+RATE_LIMIT_WINDOW_MS=60000 
+RATE_LIMIT_MAX_REQUESTS=100
+```
 
 #### 9.2 Pipeline Quality Gates
-yaml quality-gates: unit-tests: coverage-threshold: 80 required: true
-integration-tests: pass-rate: 95 required: true
-security-scan: max-critical: 0 max-high: 0 required: true
-performance-tests: response-time: 2000ms error-rate: 0.1% required-for: [staging, production]
-code-quality: sonarqube-gate: passed complexity-threshold: 10 duplication-threshold: 3% required: true
-
+```yaml 
+    quality-gates: 
+      unit-tests: 
+        coverage-threshold: 80 
+        required: true
+      integration-tests: 
+        pass-rate: 95 
+        required: true
+      security-scan: 
+        max-critical: 0 
+        max-high: 0 
+        required: true
+      performance-tests: 
+        response-time: 2000ms 
+        error-rate: 0.1% 
+        required-for: [staging, production]
+      code-quality: 
+        sonarqube-gate: passed 
+        complexity-threshold: 10 
+        duplication-threshold: 3% 
+        required: true
+```
 ### 10. Rollback and Recovery Procedures
 
 #### 10.1 Automated Rollback
@@ -878,6 +928,7 @@ code-quality: sonarqube-gate: passed complexity-threshold: 10 duplication-thresh
               ]
             }]
           }
+   ```
 
 ### 11. Pipeline Optimization and Performance
 #### 11.1 Build Optimization

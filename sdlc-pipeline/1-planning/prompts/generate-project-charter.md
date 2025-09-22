@@ -55,11 +55,7 @@ Create a comprehensive stakeholder matrix:
 
 ```text
 | Stakeholder | Role | Interest Level | Influence Level | Engagement Strategy |
-```
-
 |-------------|------|----------------|-----------------|-------------------|
-
-```text
 | [Name/Role] | [Primary/Secondary] | [High/Medium/Low] | [High/Medium/Low] | [Strategy] |
 ```
 

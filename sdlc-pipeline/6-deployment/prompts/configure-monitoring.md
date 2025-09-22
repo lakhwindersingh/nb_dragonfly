@@ -120,9 +120,8 @@ Design a comprehensive monitoring strategy following SRE and observability best 
 - **Storage**: Jaeger backend with {{trace_retention}} retention
 
 #### 3.2 Monitoring Component Architecture
-┌─────────────────────────────────────────────────────────────┐
-
 ```text
+┌─────────────────────────────────────────────────────────────┐
 │                    Monitoring Stack                         │
 ├─────────────────────────────────────────────────────────────┤
 │  Grafana Dashboards  │  Kibana  │  Jaeger UI  │  AlertMgr   │
@@ -131,7 +130,7 @@ Design a comprehensive monitoring strategy following SRE and observability best 
 ├─────────────────────────────────────────────────────────────┤
 │  Prometheus Scraping │  Fluentd Collection  │  OpenTelemetry│
 ├─────────────────────────────────────────────────────────────┤
-│           Application Instances & Infrastructure             │
+│           Application Instances & Infrastructure            │
 └─────────────────────────────────────────────────────────────┘
 ```
 
