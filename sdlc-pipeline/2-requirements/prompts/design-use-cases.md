@@ -310,21 +310,25 @@ Create detailed use case specifications following UML standards and best practic
 **Requirements to Use Cases:**
 
 ```text
-| Requirement ID | Requirement Name | Use Case ID | Use Case Name | Coverage |
-|----------------|------------------|-------------|---------------|----------|
-| REQ-001 | User Authentication | UC-001 | User Login | Complete |
-| REQ-002 | Data Entry | UC-005 | Create Record | Complete |
-| REQ-003 | Reporting | UC-015 | Generate Report | Partial |
++----------------+---------------------+-------------+------------------+----------+
+| Requirement ID |  Requirement Name   | Use Case ID |   Use Case Name  | Coverage |
++----------------+---------------------+-------------+------------------+----------+
+| REQ-001        | User Authentication | UC-001      | User Login       | Complete |
+| REQ-002        | Data Entry          | UC-005      | Create Record    | Complete |
+| REQ-003        | Reporting           | UC-015      | Generate Report  | Partial  |
++----------------+---------------------+-------------+------------------+----------+
 ```
 
 **Use Cases to Test Cases:**
 
 ```text
-| Use Case ID | Scenario | Test Case ID | Test Description |
-|-------------|----------|--------------|------------------|
-| UC-001 | Main Success | TC-001-01 | Valid login credentials |
-| UC-001 | Extension 3a | TC-001-02 | Invalid password |
-| UC-001 | Extension 3b | TC-001-03 | Account locked |
++------------+---------------+--------------+------------------------+
+| Use Case ID|    Scenario   | Test Case ID |    Test Description    |
++------------+---------------+--------------+------------------------+
+| UC-001     | Main Success  | TC-001-01    | Valid login credentials|
+| UC-001     | Extension 3a  | TC-001-02    | Invalid password       |
+| UC-001     | Extension 3b  | TC-001-03    | Account locked         |
++------------+---------------+--------------+------------------------+
 ```
 
 ### 9. Quality Criteria

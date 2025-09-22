@@ -103,34 +103,34 @@ Create a detailed schedule with:
 **Milestone Schedule:**
 
 ```text
-| Milestone | Target Date | Dependencies | Success Criteria | Stakeholder Review |
-```
-
-|-----------|-------------|--------------|------------------|--------------------|
-
-```text
-| Project Kickoff | Week 1 | Team availability | Charter approved, team onboarded | Sponsor |
-| Requirements Baseline | Week 6 | Stakeholder interviews | SRS approved by stakeholders | Product Owner |
-| Architecture Review | Week 10 | Requirements complete | Design approved by architects | Technical Lead |
-| MVP Demo | Week 18 | Core features complete | Stakeholder acceptance | Product Owner |
-| UAT Completion | Week 22 | System testing passed | Business acceptance | Business Users |
-| Production Go-Live | Week 24 | UAT passed, infrastructure ready | System live and stable | All Stakeholders |
++-----------------------+-------------+----------------------------+--------------------------------------+--------------------+
+|       Milestone       | Target Date |       Dependencies         |           Success Criteria            | Stakeholder Review |
++-----------------------+-------------+----------------------------+--------------------------------------+--------------------+
+| Project Kickoff       | Week 1      | Team availability          | Charter approved, team onboarded      | Sponsor            |
+| Requirements Baseline | Week 6      | Stakeholder interviews     | SRS approved by stakeholders          | Product Owner      |
+| Architecture Review   | Week 10     | Requirements complete      | Design approved by architects         | Technical Lead     |
+| MVP Demo              | Week 18     | Core features complete     | Stakeholder acceptance                | Product Owner      |
+| UAT Completion        | Week 22     | System testing passed      | Business acceptance                   | Business Users     |
+| Production Go-Live    | Week 24     | UAT passed, infra ready    | System live and stable                | All Stakeholders   |
++-----------------------+-------------+----------------------------+--------------------------------------+--------------------+
 ```
 
 ### 5. Resource Planning and Allocation
 **Team Roles and Responsibilities:**
 
 ```text
-| Role | Responsibility | Allocation % | Key Skills | Duration |
-|------|----------------|--------------|------------|----------|
-| Project Manager | Overall coordination and delivery | 100% | PMP, Agile, Communication | Full project |
-| Technical Lead | Architecture and technical guidance | 100% | {{technology_stack}}, Leadership | Full project |
-| Senior Developer | Core development and mentoring | 100% | {{primary_technologies}} | Development phases |
-| Developer | Feature development | 100% | {{required_skills}} | Development phases |
-| QA Engineer | Testing and quality assurance | 100% | Testing tools, Automation | Testing phases |
-| DevOps Engineer | Infrastructure and deployment | 50% | CI/CD, Cloud, Containers | Setup and deployment |
-| Business Analyst | Requirements and stakeholder liaison | 75% | Business analysis, Documentation | Requirements phase |
-| UX/UI Designer | User experience and interface design | 50% | Design tools, User research | Design and early development |
++------------------+------------------------------------+--------------+-----------------------------------+----------------------+
+|       Role       |           Responsibility           | Allocation % |            Key Skills             |      Duration        |
++------------------+------------------------------------+--------------+-----------------------------------+----------------------+
+| Project Manager  | Overall coordination and delivery  |    100%      | PMP, Agile, Communication         | Full project         |
+| Technical Lead   | Architecture & technical guidance  |    100%      | {{technology_stack}}, Leadership  | Full project         |
+| Senior Developer | Core development and mentoring     |    100%      | {{primary_technologies}}          | Development phases   |
+| Developer        | Feature development                |    100%      | {{required_skills}}               | Development phases   |
+| QA Engineer      | Testing & quality assurance        |    100%      | Testing tools, Automation         | Testing phases       |
+| DevOps Engineer  | Infrastructure & deployment        |     50%      | CI/CD, Cloud, Containers          | Setup & deployment   |
+| Business Analyst | Requirements & stakeholder liaison |     75%      | Business analysis, Documentation  | Requirements phase   |
+| UX/UI Designer   | UX & interface design              |     50%      | Design tools, User research       | Design & early dev   |
++------------------+------------------------------------+--------------+-----------------------------------+----------------------+
 ```
 
 **Resource Leveling:**
@@ -155,13 +155,15 @@ Create a detailed schedule with:
 **Communication Matrix:**
 
 ```text
-| Stakeholder Group | Information Needs | Frequency | Method | Responsible |
-|-------------------|-------------------|-----------|---------|-------------|
-| Executive Sponsor | High-level status, risks, budget | Weekly | Dashboard/Email | PM |
-| Product Owner | Sprint progress, scope changes | Daily/Sprint | Standup/Review | Scrum Master |
-| Development Team | Task assignments, blockers | Daily | Standup | Team |
-| Business Users | Feature demos, UAT planning | Sprint | Demo/Meeting | PM |
-| IT Operations | Infrastructure, security, deployment | As needed | Email/Meeting | DevOps |
++-------------------+-----------------------------------+-----------+-----------------+-------------+
+| Stakeholder Group |        Information Needs          | Frequency |      Method     | Responsible |
++-------------------+-----------------------------------+-----------+-----------------+-------------+
+| Executive Sponsor | High-level status, risks, budget  | Weekly    | Dashboard/Email | PM          |
+| Product Owner     | Sprint progress, scope changes    | Daily/Sprint | Standup/Review | Scrum Master|
+| Development Team  | Task assignments, blockers        | Daily     | Standup         | Team        |
+| Business Users    | Feature demos, UAT planning       | Sprint    | Demo/Meeting    | PM          |
+| IT Operations     | Infrastructure, security, deploy. | As needed | Email/Meeting   | DevOps      |
++-------------------+-----------------------------------+-----------+-----------------+-------------+
 ```
 
 **Meeting Schedule:**

@@ -166,11 +166,13 @@ For each identified risk, provide comprehensive analysis:
 Create detailed risk register:
 
 ```text
-| Risk ID | Risk Name | Category | Probability | Impact | Score | Owner | Status | Due Date |
-|---------|-----------|----------|-------------|--------|-------|-------|---------|----------|
-| R-001 | Key developer unavailable | Resource | Medium | High | 15 | PM | Open | Ongoing |
-| R-002 | Third-party API changes | Technical | Low | High | 10 | Tech Lead | Monitor | Q2 |
-| R-003 | Requirements change | Business | High | Medium | 15 | BA | Active | Ongoing |
++--------+----------------------------+------------+-------------+--------+-------+-----------+---------+----------+
+| RiskID | Risk Name                  | Category   | Probability | Impact | Score | Owner     | Status  | Due Date |
++--------+----------------------------+------------+-------------+--------+-------+-----------+---------+----------+
+| R-001  | Key developer unavailable  | Resource   | Medium      | High   | 15    | PM        | Open    | Ongoing  |
+| R-002  | Third-party API changes    | Technical  | Low         | High   | 10    | Tech Lead | Monitor | Q2       |
+| R-003  | Requirements change        | Business   | High        | Medium | 15    | BA        | Active  | Ongoing  |
++--------+----------------------------+------------+-------------+--------+-------+-----------+---------+----------+
 ```
 
 **For each risk, provide:**

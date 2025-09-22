@@ -54,9 +54,11 @@ Create a detailed project charter that includes:
 Create a comprehensive stakeholder matrix:
 
 ```text
-| Stakeholder | Role | Interest Level | Influence Level | Engagement Strategy |
-|-------------|------|----------------|-----------------|-------------------|
-| [Name/Role] | [Primary/Secondary] | [High/Medium/Low] | [High/Medium/Low] | [Strategy] |
++----------------+-------------------+----------------+-----------------+-------------------+
+|  Stakeholder   |       Role        | Interest Level | Influence Level | Engagement Strat. |
++----------------+-------------------+----------------+-----------------+-------------------+
+| [Name/Role]    |[Primary/Secondary]| [High/Med/Low] | [High/Med/Low]  | [Strategy]        |
++----------------+-------------------+----------------+-----------------+-------------------+
 ```
 
 ### 6. High-Level Requirements

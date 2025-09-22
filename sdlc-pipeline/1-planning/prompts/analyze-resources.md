@@ -75,9 +75,11 @@ Break down effort estimation by work streams:
 For each available team member:
 
 ```text
-| Name/Role | Current Skills | Proficiency | Availability | Utilization | Gap Analysis |
-|-----------|----------------|-------------|--------------|-------------|--------------|
-| [Team Member] | [Skills list] | [Level] | [%] | [Current projects] | [Skill gaps] |
++--------------+----------------+-------------+--------------+-------------+--------------+
+|  Name/Role   | Current Skills | Proficiency | Availability | Utilization | Gap Analysis |
++--------------+----------------+-------------+--------------+-------------+--------------+
+| Team Member  | Skills list    | Level       |     %        | Current prj | Skill gaps   |
++--------------+----------------+-------------+--------------+-------------+--------------+
 ```
 
 **Skill Gap Analysis:**
@@ -188,15 +190,17 @@ If permanent hires are needed:
 **Resource Cost Breakdown:**
 
 ```text
-| Resource Type | Monthly Cost | Duration | Total Cost | Cost Category |
-|---------------|--------------|----------|------------|---------------|
-| Project Manager | $X | X months | $X | Internal |
-| Technical Lead | $X | X months | $X | Internal |
-| Senior Developers | $X | X months | $X | Internal |
-| Junior Developers | $X | X months | $X | Internal |
-| Contractors | $X | X months | $X | External |
-| Training | $X | One-time | $X | Development |
-| Tools/Licenses | $X | X months | $X | Infrastructure |
++-------------------+--------------+----------+------------+---------------+
+|   Resource Type   | Monthly Cost | Duration | Total Cost | Cost Category |
++-------------------+--------------+----------+------------+---------------+
+| Project Manager   | $X           | X months | $X         | Internal      |
+| Technical Lead    | $X           | X months | $X         | Internal      |
+| Senior Developers | $X           | X months | $X         | Internal      |
+| Junior Developers | $X           | X months | $X         | Internal      |
+| Contractors       | $X           | X months | $X         | External      |
+| Training          | $X           | One-time | $X         | Development   |
+| Tools/Licenses    | $X           | X months | $X         | Infrastructure|
++-------------------+--------------+----------+------------+---------------+
 ```
 
 **Cost Optimization Strategies:**
@@ -210,12 +214,14 @@ If permanent hires are needed:
 **Resource-Related Risks:**
 
 ```text
-| Risk | Probability | Impact | Risk Score | Mitigation Strategy |
-|------|-------------|--------|------------|-------------------|
-| Key team member unavailable | Medium | High | High | Cross-training, documentation |
-| Skill gaps delay delivery | Low | High | Medium | Training plan, contractor backup |
-| Resource conflicts with other projects | High | Medium | High | Priority matrix, resource sharing agreements |
-| New team member integration issues | Medium | Medium | Medium | Structured onboarding, mentoring |
++------------------------------------+-------------+--------+------------+--------------------------------------------+
+|               Risk                 | Probability | Impact | Risk Score | Mitigation Strategy                         |
++------------------------------------+-------------+--------+------------+--------------------------------------------+
+| Key team member unavailable        | Medium      | High   | High       | Cross-training, documentation               |
+| Skill gaps delay delivery          | Low         | High   | Medium     | Training plan, contractor backup            |
+| Resource conflicts w/ other proj.  | High        | Medium | High       | Priority matrix, resource sharing agreements|
+| New team member integration issues | Medium      | Medium | Medium     | Structured onboarding, mentoring            |
++------------------------------------+-------------+--------+------------+--------------------------------------------+
 ```
 
 **Contingency Planning:**

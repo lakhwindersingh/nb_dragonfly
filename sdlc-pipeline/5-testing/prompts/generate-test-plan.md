@@ -192,12 +192,14 @@ Create a comprehensive test plan following IEEE 829 standards:
 **Test Data Categories**:
 
 ```text
-| Data Category | Purpose | Volume | Refresh Frequency |
-|---------------|---------|--------|-------------------|
-| Functional Test Data | Feature testing | {{functional_data_size}} | Weekly |
-| Performance Test Data | Load testing | {{performance_data_size}} | Monthly |
-| Security Test Data | Security testing | {{security_data_size}} | As needed |
-| UAT Data | User acceptance | {{uat_data_size}} | Before each UAT cycle |
++------------------------+----------------+----------------------+-------------------+
+|     Data Category      |     Purpose    |       Volume         | Refresh Frequency |
++------------------------+----------------+----------------------+-------------------+
+| Functional Test Data   | Feature testing| {{functional_data_size}} | Weekly           |
+| Performance Test Data  | Load testing   | {{performance_data_size}} | Monthly          |
+| Security Test Data     | Security testing | {{security_data_size}}   | As needed        |
+| UAT Data               | User acceptance | {{uat_data_size}}        | Before each UAT cycle |
++------------------------+----------------+----------------------+-------------------+
 ```
 
 ### 4. Detailed Test Approach
@@ -237,12 +239,14 @@ Create a comprehensive test plan following IEEE 829 standards:
 **Performance Test Scenarios**:
 
 ```text
-| Scenario | Concurrent Users | Duration | Success Criteria |
-|----------|------------------|----------|------------------|
-| Normal Load | {{normal_users}} | {{normal_duration}} | Response time < {{response_time_target}} |
-| Peak Load | {{peak_users}} | {{peak_duration}} | Response time < {{peak_response_target}} |
-| Stress Test | {{stress_users}} | {{stress_duration}} | Graceful degradation, no crashes |
-| Volume Test | {{volume_users}} | {{volume_duration}} | Performance maintained with large data |
++---------------+------------------+------------------+--------------------------------------------+
+|   Scenario    | Concurrent Users  |     Duration     |             Success Criteria               |
++---------------+------------------+------------------+--------------------------------------------+
+| Normal Load   | {{normal_users}}  | {{normal_duration}} | Response time < {{response_time_target}} |
+| Peak Load     | {{peak_users}}    | {{peak_duration}}   | Response time < {{peak_response_target}} |
+| Stress Test   | {{stress_users}}  | {{stress_duration}} | Graceful degradation, no crashes          |
+| Volume Test   | {{volume_users}}  | {{volume_duration}} | Performance maintained with large data   |
++---------------+------------------+------------------+--------------------------------------------+
 ```
 
 **Security Testing Strategy**:
@@ -301,14 +305,16 @@ Create a comprehensive test plan following IEEE 829 standards:
 #### 5.2 Key Milestones
 
 ```text
-| Milestone | Target Date | Deliverables | Success Criteria |
-|-----------|-------------|--------------|------------------|
-| Test Plan Approval | {{milestone1_date}} | Approved test plan, test strategy | Stakeholder sign-off |
-| Test Environment Ready | {{milestone2_date}} | Configured environments, test data | Environment validation passed |
-| Test Case Development Complete | {{milestone3_date}} | All test cases, automation scripts | Test case review approved |
-| System Testing Complete | {{milestone4_date}} | Test execution reports, defect summary | Exit criteria met |
-| UAT Sign-off | {{milestone5_date}} | UAT completion report, business approval | User acceptance obtained |
-| Production Go-Live | {{milestone6_date}} | Production deployment, smoke test results | System live and stable |
++-------------------------------+-------------------+--------------------------------------+-----------------------------+
+|           Milestone           |    Target Date    |           Deliverables               |       Success Criteria       |
++-------------------------------+-------------------+--------------------------------------+-----------------------------+
+| Test Plan Approval            | {{milestone1_date}} | Approved test plan, test strategy   | Stakeholder sign-off        |
+| Test Environment Ready        | {{milestone2_date}} | Configured environments, test data | Environment validation passed|
+| Test Case Development Complete| {{milestone3_date}} | All test cases, automation scripts  | Test case review approved   |
+| System Testing Complete       | {{milestone4_date}} | Test execution reports, defect summary | Exit criteria met        |
+| UAT Sign-off                  | {{milestone5_date}} |UAT completion report, business approval| User acceptance obtained |
+| Production Go-Live            | {{milestone6_date}} |Production deployment, smoke test result| System live and stable   |
++-------------------------------+-------------------+--------------------------------------+-----------------------------+
 ```
 
 ### 6. Resource Planning

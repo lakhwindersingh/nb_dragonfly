@@ -388,11 +388,13 @@ Create a comprehensive system architecture that addresses all requirements and c
 **External System Integrations:**
 
 ```text
-| System | Protocol | Data Format | Authentication | SLA |
-|--------|----------|-------------|---------------|-----|
-| {{external_1}} | REST | JSON | OAuth 2.0 | {{sla_1}} |
-| {{external_2}} | SOAP | XML | Certificate | {{sla_2}} |
-| {{external_3}} | GraphQL | JSON | API Key | {{sla_3}} |
++------------+----------+------------+----------------+------+
+| System     | Protocol | Data Format| Authentication | SLA  |
++------------+----------+------------+----------------+------+
+| {{external_1}} | REST    | JSON       | OAuth 2.0      | {{sla_1}} |
+| {{external_2}} | SOAP    | XML        | Certificate    | {{sla_2}} |
+| {{external_3}} | GraphQL | JSON       | API Key        | {{sla_3}} |
++------------+----------+------------+----------------+------+
 ```
 
 ### 8. Performance Architecture
@@ -453,16 +455,16 @@ Create a comprehensive system architecture that addresses all requirements and c
 **Kubernetes Architecture:**
 
 ```text
-┌─────────────────────────────────────────────────┐
-│                  Ingress Controller             │
-├─────────────────────────────────────────────────┤
-│ Service 1 │ Service 2 │ Service 3 │
-│ [Pod Pool] │ [Pod Pool] │ [Pod Pool] │
-├─────────────────────────────────────────────────┤
-│ ConfigMaps │ Secrets │
-├─────────────────────────────────────────────────┤
-│ Persistent Volumes │ Network Policies │
-└─────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────┐
+│                    Ingress Controller                     │
+├───────────────────────────────────────────────────────────┤
+│ Service 1       │ Service 2       │ Service 3             │
+│ [Pod Pool]      │ [Pod Pool]      │ [Pod Pool]            │
+├───────────────────────────────────────────────────────────┤
+│ ConfigMaps      │ Secrets                                 │
+├───────────────────────────────────────────────────────────┤
+│ Persistent Volumes               │ Network Policies       │
+└───────────────────────────────────────────────────────────┘
 ```
 
 ### 10. Monitoring and Observability
