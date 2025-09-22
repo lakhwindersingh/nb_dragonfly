@@ -177,3 +177,23 @@
 2025-09-21 17:37:42,544 - sdlc_engine - INFO - Execution Status: failed, Progress: 100.0%
 2025-09-21 17:37:42,546 - sdlc_engine - INFO - Pipeline execution completed with status: failed
 2025-09-21 17:37:42,546 - sdlc_engine - INFO - SDLC Pipeline Engine stopped
+2025-09-21 20:14:54,599 - sdlc_engine - INFO - Starting SDLC Pipeline Engine
+2025-09-21 20:14:54,604 - artifact_manager - INFO - Initialized artifact storage at artifacts
+2025-09-21 20:14:54,604 - sdlc_engine - INFO - Validating AI configuration...
+2025-09-21 20:14:54,604 - sdlc_engine - INFO - ✓ google_gemini: Available
+2025-09-21 20:14:54,604 - sdlc_engine - INFO - Loading pipeline from ./samples/sample_pipeline.yaml
+2025-09-21 20:14:54,620 - artifact_manager - INFO - Stored pipeline definition: 7743a1ee-828b-4489-ba3d-0b73ab02f4e9
+2025-09-21 20:14:54,620 - sdlc_orchestrator - INFO - Created pipeline 7743a1ee-828b-4489-ba3d-0b73ab02f4e9
+2025-09-21 20:14:54,620 - sdlc_engine - INFO - Created pipeline: 7743a1ee-828b-4489-ba3d-0b73ab02f4e9
+2025-09-21 20:14:54,621 - sdlc_orchestrator - INFO - Started pipeline execution 4fe56f7b-ff2a-4803-8bd3-763293ac1dc5
+2025-09-21 20:14:54,621 - sdlc_engine - INFO - Started pipeline execution: 4fe56f7b-ff2a-4803-8bd3-763293ac1dc5
+2025-09-21 20:14:54,621 - sdlc_engine - INFO - Execution Status: pending, Progress: 0.0%
+2025-09-21 20:14:54,621 - sdlc_orchestrator - INFO - Starting stage planning-1: Project Charter Draft
+2025-09-21 20:14:54,640 - ai_prompt_processors - INFO - AI selection -> provider=google_gemini, model=gemini-2.0-flash
+2025-09-21 20:14:56,183 - ai_prompt_processors - INFO - AI request completed: gemini-2.0-flash, tokens: 1423
+2025-09-21 20:14:56,184 - sdlc_orchestrator - INFO - Completed stage planning-1
+2025-09-21 20:14:56,184 - sdlc_orchestrator - INFO - Pipeline execution 4fe56f7b-ff2a-4803-8bd3-763293ac1dc5 completed successfully
+2025-09-21 20:14:56,187 - artifact_manager - INFO - Stored execution result: 4fe56f7b-ff2a-4803-8bd3-763293ac1dc5
+2025-09-21 20:15:04,623 - sdlc_engine - INFO - Execution Status: completed, Progress: 100.0%
+2025-09-21 20:15:04,624 - sdlc_engine - INFO - Pipeline execution completed with status: completed
+2025-09-21 20:15:04,625 - sdlc_engine - INFO - SDLC Pipeline Engine stopped
