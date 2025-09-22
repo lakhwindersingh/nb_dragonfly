@@ -739,27 +739,30 @@ steps:
 ### 7. Security and Compliance Integration
 
 #### 7.1 Security Pipeline Integration
-yaml compliance-checks: name: Compliance and Security Checks runs-on: ubuntu-latest needs: build-docker
-steps:
-- name: Checkout code
-  uses: actions/checkout@v4
-
-- name: OWASP Dependency Check
-  uses: dependency-check/Dependency-Check_Action@main
-  with:
-  project: {{app_name}}
-  path: .
-  format: ALL
-  args: >
-  --enableRetired
-  --enableExperimental
-  --failOnCVSS 7
-
-- name: License compliance check
-  uses: fossa-contrib/fossa-action@v2
-  with:
-  api-key: ${{ secrets.FOSSA_API_KEY }}
-  project-title: {{app_name}}
+```yaml 
+    compliance-checks: 
+      name: Compliance and Security Checks 
+      runs-on: ubuntu-latest 
+      needs: build-docker
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+    with:
+      project: {{app_name}}
+      path: .
+      format: ALL
+      args: >
+          --enableRetired
+          --enableExperimental
+          --failOnCVSS 7
+        - name: License compliance check
+          uses: fossa-contrib/fossa-action@v2
+    with:
+      api-key: ${{ secrets.FOSSA_API_KEY }}
+  
+      project-title: {{app_name}}
 
 - name: Docker image signing
   run: |
@@ -788,10 +791,13 @@ steps:
 ### 8. Monitoring and Observability Integration
 
 #### 8.1 Monitoring Setup Automation
-yaml setup-monitoring: name: Setup Application Monitoring runs-on: ubuntu-latest needs: deploy-production if: success()
+```yaml 
+setup-monitoring: name: Setup Application Monitoring runs-on: ubuntu-latest needs: deploy-production if: success()
+
 steps:
 - name: Configure application monitoring
   run: |
+```
   # Create Datadog dashboard
   curl -X POST "https://api.datadoghq.com/api/v1/dashboard" \
   -H "Content-Type: application/json" \
