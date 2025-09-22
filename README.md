@@ -405,12 +405,15 @@ Comprehensive templates covering:
 
 #### Docker Compose (Recommended)
 
-    ``` bash
+    ```bash
     # Clone and configure
-    git clone [https://github.com/your-org/nb_dragonfly.git](https://github.com/your-org/nb_dragonfly.git) cd nb_dragonfly
+    git clone https://github.com/your-org/nb_dragonfly.git
+    cd nb_dragonfly
+
     # Configure environment
     cp .env.example .env
     # Edit .env with production settings
+
     # Deploy with Docker Compose
     docker-compose up -d
     ```
@@ -419,7 +422,12 @@ Comprehensive templates covering:
 
     ```bash
     # Apply Kubernetes manifests
-    kubectl apply -f k8s/namespace.yaml kubectl apply -f k8s/configmap.yaml kubectl apply -f k8s/secrets.yaml kubectl apply -f k8s/deployment.yaml kubectl apply -f k8s/service.yaml kubectl apply -f k8s/ingress.yaml
+    kubectl apply -f k8s/namespace.yaml
+    kubectl apply -f k8s/configmap.yaml
+    kubectl apply -f k8s/secrets.yaml
+    kubectl apply -f k8s/deployment.yaml
+    kubectl apply -f k8s/service.yaml
+    kubectl apply -f k8s/ingress.yaml
     ```
 
 #### Cloud Platform Deployment
@@ -435,26 +443,44 @@ Comprehensive templates covering:
 
     ```python
     # Define pipeline configuration
-    pipeline_config = { "name": "E-commerce Web App", "business_domain": "retail", "technology": "react-node-postgresql", "timeline_months": 6, "budget_range": "$100k-250k" }
+    pipeline_config = {
+        "name": "E-commerce Web App",
+        "business_domain": "retail",
+        "technology": "react-node-postgresql",
+        "timeline_months": 6,
+        "budget_range": "$100k-250k",
+    }
+
     # Execute pipeline
-    async with SDLCPipelineOrchestrator() as orchestrator: results = await orchestrator.execute_pipeline(
+    async with SDLCPipelineOrchestrator() as orchestrator:
+        results = await orchestrator.execute_pipeline(pipeline_config)
     ```
 
 ### Example 2: Individual Stage Execution
     ```python
     # Execute only requirements analysis
     requirements_result = await orchestrator.execute_stage(
+        stage_id="requirements",
+        inputs={"spec": "Define authentication features and constraints"},
+    )
     ```
 
 ### Example 3: Custom Pipeline Creation
     ```yaml
     # custom-pipeline.yml
-    name: "Microservices API Pipeline" stages:
-    - id: "api-design" type: "design" ai_config: model: "gpt-4" temperature: 0.2 prompt_template: | Design a RESTful API for {{ domain }} with:
-        - OpenAPI 3.0 specification
-        - JWT authentication
-        - Rate limiting
-        - Comprehensive error handling 
+    name: "Microservices API Pipeline"
+    stages:
+      - id: "api-design"
+        type: "design"
+        ai_config:
+          model: "gpt-4"
+          temperature: 0.2
+        prompt_template: |
+          Design a RESTful API for {{ domain }} with:
+            - OpenAPI 3.0 specification
+            - JWT authentication
+            - Rate limiting
+            - Comprehensive error handling
     ```
 
 
@@ -462,34 +488,55 @@ Comprehensive templates covering:
 
 ### Environment Variables
     ```bash
-        # AI Provider Configuration
-        OPENAI_API_KEY=sk-your-openai-key 
-        ANTHROPIC_API_KEY=sk-ant-your-anthropic-key 
-        AZURE_OPENAI_ENDPOINT=[https://your-resource.openai.azure.com/](https://your-resource.openai.azure.com/) 
-        AZURE_OPENAI_API_KEY=your-azure-key
-        # Database Configuration
-        DATABASE_URL=postgresql://user:pass@localhost:5432/pipeline 
-        REDIS_URL=redis://localhost:6379/0
-        # Repository Integrations
-        GITHUB_TOKEN=ghp_your-github-token 
-        CONFLUENCE_URL=[https://your-domain.atlassian.net](https://your-domain.atlassian.net) 
-        CONFLUENCE_TOKEN=your-confluence-token JIRA_URL=[https://your-domain.atlassian.net](https://your-domain.atlassian.net) 
-        JIRA_TOKEN=your-jira-token
-        # Security
-        JWT_SECRET=your-jwt-secret-key 
-        ENCRYPTION_KEY=your-32-byte-encryption-key
-        # Monitoring
-        PROMETHEUS_PORT=9090 LOG_LEVEL=INFO
+    # AI Provider Configuration
+    OPENAI_API_KEY=sk-your-openai-key
+    ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
+    AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+    AZURE_OPENAI_API_KEY=your-azure-key
+
+    # Database Configuration
+    DATABASE_URL=postgresql://user:pass@localhost:5432/pipeline
+    REDIS_URL=redis://localhost:6379/0
+
+    # Repository Integrations
+    GITHUB_TOKEN=ghp_your-github-token
+    CONFLUENCE_URL=https://your-domain.atlassian.net
+    CONFLUENCE_TOKEN=your-confluence-token
+    JIRA_URL=https://your-domain.atlassian.net
+    JIRA_TOKEN=your-jira-token
+
+    # Security
+    JWT_SECRET=your-jwt-secret-key
+    ENCRYPTION_KEY=your-32-byte-encryption-key
+
+    # Monitoring
+    PROMETHEUS_PORT=9090
+    LOG_LEVEL=INFO
     ```
 ### Pipeline Configuration
 
     ```yaml
-    
     # config.yml
-    pipeline_defaults: ai_model: "gpt-4" temperature: 0.3 max_tokens: 4000 timeout_minutes: 15
-    quality_gates: enable_validation: true require_approvals: true min_quality_score: 0.85
-    repository_settings: default_branch: "main" auto_commit: true commit_message_template: "[SDLC] {stage}: {artifact_name}"
-    notification_settings: slack_webhook: "[https://hooks.slack.com/](https://hooks.slack.com/)..." email_enabled: true approval_notifications: true
+    pipeline_defaults:
+      ai_model: "gpt-4"
+      temperature: 0.3
+      max_tokens: 4000
+      timeout_minutes: 15
+
+    quality_gates:
+      enable_validation: true
+      require_approvals: true
+      min_quality_score: 0.85
+
+    repository_settings:
+      default_branch: "main"
+      auto_commit: true
+      commit_message_template: "[SDLC] {stage}: {artifact_name}"
+
+    notification_settings:
+      slack_webhook: "https://hooks.slack.com/..."
+      email_enabled: true
+      approval_notifications: true
     ```
 
 ---
@@ -518,19 +565,31 @@ Comprehensive templates covering:
 #### RESTful API Endpoints
     ```bash
     # Pipeline Management
-    POST /api/v1/pipelines # Create pipeline GET /api/v1/pipelines/{id} # Get pipeline PUT /api/v1/pipelines/{id} # Update pipeline DELETE /api/v1/pipelines/{id} # Delete pipeline
+    POST   /api/v1/pipelines                 # Create pipeline
+    GET    /api/v1/pipelines/{id}           # Get pipeline
+    PUT    /api/v1/pipelines/{id}           # Update pipeline
+    DELETE /api/v1/pipelines/{id}           # Delete pipeline
+
     # Execution Management
-    POST /api/v1/executions # Start execution GET /api/v1/executions/{id} # Get execution status POST /api/v1/executions/{id}/pause # Pause execution POST /api/v1/executions/{id}/resume # Resume execution
+    POST   /api/v1/executions               # Start execution
+    GET    /api/v1/executions/{id}          # Get execution status
+    POST   /api/v1/executions/{id}/pause    # Pause execution
+    POST   /api/v1/executions/{id}/resume   # Resume execution
+
     # Artifact Management
-    GET /api/v1/artifacts # List artifacts GET /api/v1/artifacts/{id} # Download artifact POST /api/v1/artifacts/{id}/approve # Approve artifact
-    
+    GET    /api/v1/artifacts                 # List artifacts
+    GET    /api/v1/artifacts/{id}            # Download artifact
+    POST   /api/v1/artifacts/{id}/approve    # Approve artifact
     ```
 
 #### WebSocket Integration
-    ```javascript 
-    // Real-time execution monitoring const ws = new WebSocket('ws://localhost:8000/ws/executions/{executionId}');
-    ws.onmessage = (event) => { const update = JSON.parse(event.data); console.log(`Stage: ${update.stage}, Status: ${update.status}`); };
-    
+    ```javascript
+    // Real-time execution monitoring
+    const ws = new WebSocket('ws://localhost:8000/ws/executions/{executionId}');
+    ws.onmessage = (event) => {
+      const update = JSON.parse(event.data);
+      console.log(`Stage: ${update.stage}, Status: ${update.status}`);
+    };
     ```
 
 ---

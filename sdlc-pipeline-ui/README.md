@@ -31,28 +31,30 @@ A modern, responsive web interface for managing and monitoring SDLC pipeline exe
 
 ## Architecture
 
-sdlc-pipeline-ui/ 
-├── src/ 
-│ ├── components/ # Reusable UI components 
-│ │ ├── common/ # Common components (buttons, forms, etc.) 
-│ │ ├── pipeline/ # Pipeline-specific components 
-│ │ ├── execution/ # Execution monitoring components 
-│ │ └── repository/ # Repository management components 
-│ ├── pages/ # Main application pages 
-│ │ ├── Dashboard.tsx # Main dashboard 
-│ │ ├── PipelineDesigner.tsx 
-│ │ ├── ExecutionMonitor.tsx 
-│ │ └── RepositoryConfig.tsx 
-│ ├── services/ # API and business logic 
-│ │ ├── api/ # API client services 
-│ │ ├── websocket/ # Real-time communication 
-│ │ └── storage/ # Local storage management 
-│ ├── hooks/ # Custom React hooks 
-│ ├── context/ # React context providers 
-│ ├── utils/ # Utility functions 
-│ └── types/ # TypeScript type definitions 
-├── public/ # Static assets 
-└── build/ # Production build output
+```text
+sdlc-pipeline-ui/
+├── src/
+│ ├── components/           # Reusable UI components
+│ │ ├── common/             # Common components (buttons, forms, etc.)
+│ │ ├── pipeline/           # Pipeline-specific components
+│ │ ├── execution/          # Execution monitoring components
+│ │ └── repository/         # Repository management components
+│ ├── pages/                # Main application pages
+│ │ ├── Dashboard.tsx       # Main dashboard
+│ │ ├── PipelineDesigner.tsx
+│ │ ├── ExecutionMonitor.tsx
+│ │ └── RepositoryConfig.tsx
+│ ├── services/             # API and business logic
+│ │ ├── api/                # API client services
+│ │ ├── websocket/          # Real-time communication
+│ │ └── storage/            # Local storage management
+│ ├── hooks/                # Custom React hooks
+│ ├── context/              # React context providers
+│ ├── utils/                # Utility functions
+│ └── types/                # TypeScript type definitions
+├── public/                 # Static assets
+└── build/                  # Production build output
+```
 
 
 ## Key Components
@@ -93,12 +95,20 @@ sdlc-pipeline-ui/
 - Modern web browser
 
 ### Installation
-bash cd pipeline/web-ui npm install npm start
+```bash
+cd sdlc-pipeline-ui
+npm install
+npm start
+```
 
 ### Configuration
 Set environment variables in `.env`:
 
-REACT_APP_API_URL=http://localhost:8000 REACT_APP_WS_URL=ws://localhost:8000/ws REACT_APP_AUTH_ENABLED=true
+```bash
+REACT_APP_API_URL=http://localhost:8000
+REACT_APP_WS_URL=ws://localhost:8000/ws
+REACT_APP_AUTH_ENABLED=true
+```
 ## Integration Points
 
 ### API Integration
@@ -127,25 +137,27 @@ docker build -t sdlc-pipeline-ui .
 docker run -p 3000:80 sdlc-pipeline-ui
 ```
 
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: sdlc-pipeline-ui
+  name: sdlc-pipeline-ui
 spec:
-replicas: 2
-selector:
-matchLabels:
-app: sdlc-pipeline-ui
-template:
-metadata:
-labels:
-app: sdlc-pipeline-ui
-spec:
-containers:
-- name: ui
-image: sdlc-pipeline-ui:latest
-ports:
-- containerPort: 80
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sdlc-pipeline-ui
+  template:
+    metadata:
+      labels:
+        app: sdlc-pipeline-ui
+    spec:
+      containers:
+        - name: ui
+          image: sdlc-pipeline-ui:latest
+          ports:
+            - containerPort: 80
+```
 
 ### Cloud Deployment
 - Static hosting on AWS S3/CloudFront
