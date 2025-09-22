@@ -6,7 +6,7 @@
 ![Python](https://img.shields.io/badge/Python-3.9+-green.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue.svg)
 ![React](https://img.shields.io/badge/React-18.2.0-blue.svg)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-green.svg)
+![Status](https://img.shields.io/badge/Status-development.svg)
 
 ---
 
