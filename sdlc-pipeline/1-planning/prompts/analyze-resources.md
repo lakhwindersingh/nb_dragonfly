@@ -36,16 +36,32 @@ Conduct a comprehensive resource analysis covering:
 Analyze the project needs and map to required skills:
 
 ```text
-| Skill Category | Required Skills | Proficiency Level | Person-Months | Priority |
-|----------------|----------------|-------------------|---------------|----------|
-| **Backend Development** | {{technology_stack}} programming, API development | Senior/Mid/Junior | X months | High |
-| **Frontend Development** | {{frontend_tech}}, UX/UI implementation | Senior/Mid | X months | High |
-| **Database** | Database design, optimization, administration | Senior | X months | Medium |
-| **DevOps** | CI/CD, containerization, cloud platforms | Senior | X months | High |
-| **Quality Assurance** | Test automation, performance testing | Mid/Senior | X months | Medium |
-| **Business Analysis** | Requirements gathering, stakeholder management | Senior | X months | High |
-| **Project Management** | Agile/Scrum, risk management | Senior | X months | High |
-| **Architecture** | System design, technical leadership | Senior | X months | Critical |
+┌─────────────────────┬─────────────────────────────────────────────┬─────────────────────┬──────────────┬──────────┐
+│ Skill Category      │ Required Skills                             │ Proficiency Level   │ Person-Months│ Priority │
+├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
+│ Backend Development │ {{technology_stack}} programming,           │ Senior/Mid/Junior   │    X months  │   High   │
+│                     │ API development                             │                     │              │          │
+├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
+│ Frontend            │ {{frontend_tech}}, UX/UI implementation     │ Senior/Mid          │    X months  │   High   │
+│ Development         │                                             │                     │              │          │
+├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
+│ Database            │ Database design, optimization,              │ Senior              │    X months  │  Medium  │
+│                     │ administration                              │                     │              │          │
+├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
+│ DevOps              │ CI/CD, containerization,                    │ Senior              │    X months  │   High   │
+│                     │ cloud platforms                             │                     │              │          │
+├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
+│ Quality Assurance   │ Test automation,                            │ Mid/Senior          │    X months  │  Medium  │
+│                     │ performance testing                         │                     │              │          │
+├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
+│ Business Analysis   │ Requirements gathering,                     │ Senior              │    X months  │   High   │
+│                     │ stakeholder management                      │                     │              │          │
+├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
+│ Project Management  │ Agile/Scrum, risk management                │ Senior              │    X months  │   High   │
+├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
+│ Architecture        │ System design,                              │ Senior              │    X months  │ Critical │
+│                     │ technical leadership                        │                     │              │          │
+└─────────────────────┴─────────────────────────────────────────────┴─────────────────────┴──────────────┴──────────┘
 ```
 
 **Workload Analysis:**
