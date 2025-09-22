@@ -107,40 +107,48 @@ graph TB
 ## 📁 Project Structure
 ```text
 nb_dragonfly/ 
-├── 🌐 sdlc-pipeline-ui/ # React TypeScript Web Interface 
-│ ├── src/ 
-│ │ ├── components/ # Reusable UI components 
-│ │ ├── pages/ # Main application pages 
-│ │ ├── services/ # API and business logic 
-│ │ ├── hooks/ # Custom React hooks 
-│ │ └── types/ # TypeScript definitions 
-│ ├── public/ # Static assets 
-│ ├── package.json # Dependencies and scripts 
-│ └── Dockerfile # Container configuration 
-│ ├── ⚙️ sdlc-pipeline-engine/ # Python Orchestration Engine 
-│ ├── sdlc_pipeline_engine/ # Core engine package 
-│ ├── ai_prompt_processors.py # AI integration layer 
-│ ├── artifact_manager.py # Artifact storage and versioning 
-│ ├── workflow_engine.py # Pipeline orchestration 
-│ ├── validation_engine.py # Quality validation 
-│ ├── repository_connectors.py # External system integrations 
-│ ├── requirements.txt # Python dependencies 
-│ └── config.yml # Engine configuration 
-│ ├── 📋 sdlc-pipeline/ # Templates and Prompts 
-│ ├── 1-planning/ # Project planning stage 
-│ ├── 2-requirements/ # Requirements analysis 
-│ ├── 3-design/ # System and software design 
-│ ├── 4-implementation/ # Development and coding 
-│ ├── 5-testing/ # Quality assurance 
-│ ├── 6-deployment/ # Release and deployment 
-│ ├── 7-maintenance/ # Operations and maintenance 
-│ └── shared/ # Common templates and utilities 
-│ ├── 📦 artifacts/ # Generated Artifacts Storage 
-│ ├── executions/ # Pipeline execution results 
-│ ├── templates/ # Processed templates 
-│ ├── backups/ # Artifact backups 
-│ └── metadata/ # Artifact metadata and indexing 
-│ ├── 📚 archive/ # Historical data and backups 
+├── 🌐 sdlc-pipeline-ui/        # React TypeScript Web Interface 
+│   ├── src/ 
+│   │ ├── components/           # Reusable UI components 
+│   │ ├── pages/                # Main application pages 
+│   │ ├── services/             # API and business logic 
+│   │ ├── hooks/                # Custom React hooks 
+│   │ └── types/                # TypeScript definitions 
+│   ├── public/                 # Static assets 
+│   ├── package.json            # Dependencies and scripts 
+│   └── Dockerfile              # Container configuration 
+│ 
+├── ⚙️ sdlc-pipeline-engine/        # Python Orchestration Engine 
+│       ├── sdlc_pipeline_engine/   # Core engine package 
+│       ├── ai_prompt_processors.py # AI integration layer 
+│       ├── artifact_manager.py     # Artifact storage and versioning 
+│       ├── workflow_engine.py      # Pipeline orchestration 
+│       ├── validation_engine.py    # Quality validation 
+│       ├── repository_connectors.py # External system integrations 
+│       ├── requirements.txt        # Python dependencies 
+│       └── config.yml              # Engine configuration 
+│ 
+├── 📋 sdlc-pipeline/               # Templates and Prompts 
+│       ├── 1-planning/             # Project planning stage 
+│       ├── 2-requirements/         # Requirements analysis 
+│       ├── 3-design/               # System and software design 
+│       ├── 4-implementation/       # Development and coding 
+│       ├── 5-testing/              # Quality assurance 
+│       ├── 6-deployment/           # Release and deployment 
+│       ├── 7-maintenance/          # Operations and maintenance 
+│       └── shared/                 # Common templates and utilities 
+│       
+├── 📦 artifacts/                   # Generated Artifacts Storage 
+│ 
+├── executions/                     # Pipeline execution results 
+│ 
+├── templates/                      # Processed templates 
+│ 
+├── backups/                        # Artifact backups 
+│ 
+└── metadata/                       # Artifact metadata and indexing 
+│ 
+├── 📚 archive/                     # Historical data and backups 
 └── 🔧 Configuration Files 
 ├── .gitignore 
 ├── docker-compose.yml 
