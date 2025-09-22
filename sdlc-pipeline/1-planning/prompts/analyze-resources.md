@@ -39,28 +39,21 @@ Analyze the project needs and map to required skills:
 ┌─────────────────────┬─────────────────────────────────────────────┬─────────────────────┬──────────────┬──────────┐
 │ Skill Category      │ Required Skills                             │ Proficiency Level   │ Person-Months│ Priority │
 ├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
-│ Backend Development │ {{technology_stack}} programming,           │ Senior/Mid/Junior   │    X months  │   High   │
-│                     │ API development                             │                     │              │          │
+│ Backend Development │ {{technology_stack}} programming, API dev   │ Senior/Mid/Junior   │    X months  │   High   │
 ├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
-│ Frontend            │ {{frontend_tech}}, UX/UI implementation     │ Senior/Mid          │    X months  │   High   │
-│ Development         │                                             │                     │              │          │
+│ Frontend Dev        │ {{frontend_tech}}, UX/UI implementation     │ Senior/Mid          │    X months  │   High   │
 ├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
-│ Database            │ Database design, optimization,              │ Senior              │    X months  │  Medium  │
-│                     │ administration                              │                     │              │          │
+│ Database            │ Database design,optimization,administration │ Senior              │    X months  │  Medium  │
 ├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
-│ DevOps              │ CI/CD, containerization,                    │ Senior              │    X months  │   High   │
-│                     │ cloud platforms                             │                     │              │          │
+│ DevOps              │ CI/CD, containerization, cloud platforms    │ Senior              │    X months  │   High   │
 ├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
-│ Quality Assurance   │ Test automation,                            │ Mid/Senior          │    X months  │  Medium  │
-│                     │ performance testing                         │                     │              │          │
+│ Quality Assurance   │ Test automation, performance testing        │ Mid/Senior          │    X months  │  Medium  │
 ├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
-│ Business Analysis   │ Requirements gathering,                     │ Senior              │    X months  │   High   │
-│                     │ stakeholder management                      │                     │              │          │
+│ Business Analysis   │ Requirement gathering,stakeholder management│ Senior              │    X months  │   High   │
 ├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
 │ Project Management  │ Agile/Scrum, risk management                │ Senior              │    X months  │   High   │
 ├─────────────────────┼─────────────────────────────────────────────┼─────────────────────┼──────────────┼──────────┤
-│ Architecture        │ System design,                              │ Senior              │    X months  │ Critical │
-│                     │ technical leadership                        │                     │              │          │
+│ Architecture        │ System design, technical leadership         │ Senior              │    X months  │ Critical │
 └─────────────────────┴─────────────────────────────────────────────┴─────────────────────┴──────────────┴──────────┘
 ```
 
