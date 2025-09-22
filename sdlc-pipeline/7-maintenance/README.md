@@ -1,7 +1,11 @@
 # Maintenance Stage
+
 ## Objective
+
 Enable continuous improvement, monitoring, and support for production systems through automated maintenance, proactive monitoring, and efficient incident management.
+
 ## Maintenance Types
+
 - **Corrective Maintenance**: Bug fixes and defect resolution
 - **Adaptive Maintenance**: Changes for environmental updates
 - **Perfective Maintenance**: Performance improvements and optimizations

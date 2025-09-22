@@ -1,5 +1,3 @@
-# sdlc-pipeline
-
 # GenAI-Powered SDLC Prompt Pipeline
 
 A comprehensive project framework that leverages Generative AI and structured prompts to handle every stage of the Software Development Life Cycle (SDLC). Each stage produces outputs that seamlessly feed into the next stage, enabling straight-through processing while allowing manual adjustments where necessary.
@@ -16,9 +14,9 @@ This framework provides standardized templates and prompts for:
 - **Maintenance**: Monitoring, Incident Management, Optimization
 
 ## Project Structure
-sdlc-pipeline/
 
 ```text
+sdlc-pipeline/
 ├── 1-planning/
 │ ├── templates/
 │ ├── prompts/

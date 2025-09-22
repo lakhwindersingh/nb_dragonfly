@@ -1,7 +1,11 @@
 # Testing Stage
+
 ## Objective
+
 Ensure software meets defined requirements and is free of defects through comprehensive testing strategies covering functional, non-functional, and security aspects.
+
 ## Testing Levels
+
 - **Unit Testing**: Individual component testing
 - **Integration Testing**: Component interaction testing
 - **System Testing**: End-to-end functionality testing

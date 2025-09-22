@@ -1,7 +1,11 @@
 # Deployment Stage
+
 ## Objective
+
 Deploy applications in production or staging environments using automated, reliable, and scalable deployment strategies with proper monitoring and rollback capabilities.
+
 ## Deployment Strategies
+
 - **Blue-Green Deployment**: Zero-downtime deployments
 - **Canary Deployment**: Gradual rollout with monitoring
 - **Rolling Deployment**: Sequential instance updates

@@ -362,7 +362,6 @@ Comprehensive templates covering:
 - **Project Management**: Jira, Azure DevOps, Linear
 - **Communication**: Slack, Microsoft Teams webhooks
 
----
 
 ## ⚙️ Installation & Setup
 
@@ -370,24 +369,24 @@ Comprehensive templates covering:
 
 1. **Python Backend Setup**
    ``` bash
-   cd sdlc-pipeline-engine
-   python -m venv venv
-   source venv/bin/activate  # Windows: venv\Scripts\activate
-   pip install -r requirements.txt
-   
-   # Configure environment variables
-   cp .env.example .env
-   # Edit .env with your API keys and settings
+       cd sdlc-pipeline-engine
+       python -m venv venv
+       source venv/bin/activate  # Windows: venv\Scripts\activate
+       pip install -r requirements.txt
+       
+       # Configure environment variables
+       cp .env.example .env
+       # Edit .env with your API keys and settings
    ```
 
 2. **React Frontend Setup**
    ``` bash
-   cd sdlc-pipeline-ui
-   npm install
-   # or yarn install
-   
-   # Start development server
-   npm start
+       cd sdlc-pipeline-ui
+       npm install
+       # or yarn install
+       
+       # Start development server
+       npm start
    ```
 
 3. **Database Setup** (Optional)
@@ -405,29 +404,29 @@ Comprehensive templates covering:
 
 #### Docker Compose (Recommended)
 
-    ```bash
-    # Clone and configure
-    git clone https://github.com/your-org/nb_dragonfly.git
-    cd nb_dragonfly
-
-    # Configure environment
-    cp .env.example .env
-    # Edit .env with production settings
-
-    # Deploy with Docker Compose
-    docker-compose up -d
+    ``` bash
+        # Clone and configure
+        git clone https://github.com/your-org/nb_dragonfly.git
+        cd nb_dragonfly
+    
+        # Configure environment
+        cp .env.example .env
+        # Edit .env with production settings
+    
+        # Deploy with Docker Compose
+        docker-compose up -d
     ```
 
 #### Kubernetes Deployment
 
-    ```bash
-    # Apply Kubernetes manifests
-    kubectl apply -f k8s/namespace.yaml
-    kubectl apply -f k8s/configmap.yaml
-    kubectl apply -f k8s/secrets.yaml
-    kubectl apply -f k8s/deployment.yaml
-    kubectl apply -f k8s/service.yaml
-    kubectl apply -f k8s/ingress.yaml
+    ``` bash
+        # Apply Kubernetes manifests
+        kubectl apply -f k8s/namespace.yaml
+        kubectl apply -f k8s/configmap.yaml
+        kubectl apply -f k8s/secrets.yaml
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
+        kubectl apply -f k8s/ingress.yaml
     ```
 
 #### Cloud Platform Deployment
@@ -435,108 +434,108 @@ Comprehensive templates covering:
 - **Azure**: Container Instances + PostgreSQL + Redis Cache
 - **Google Cloud**: Cloud Run + Cloud SQL + Memorystore
 
----
+
 
 ## 💡 Usage Examples
 
 ### Example 1: Creating a Web Application Pipeline
 
-    ```python
-    # Define pipeline configuration
-    pipeline_config = {
-        "name": "E-commerce Web App",
-        "business_domain": "retail",
-        "technology": "react-node-postgresql",
-        "timeline_months": 6,
-        "budget_range": "$100k-250k",
-    }
-
-    # Execute pipeline
-    async with SDLCPipelineOrchestrator() as orchestrator:
-        results = await orchestrator.execute_pipeline(pipeline_config)
+    ``` python
+        # Define pipeline configuration
+        pipeline_config = {
+            "name": "E-commerce Web App",
+            "business_domain": "retail",
+            "technology": "react-node-postgresql",
+            "timeline_months": 6,
+            "budget_range": "$100k-250k",
+        }
+    
+        # Execute pipeline
+        async with SDLCPipelineOrchestrator() as orchestrator:
+            results = await orchestrator.execute_pipeline(pipeline_config)
     ```
 
 ### Example 2: Individual Stage Execution
-    ```python
-    # Execute only requirements analysis
-    requirements_result = await orchestrator.execute_stage(
-        stage_id="requirements",
-        inputs={"spec": "Define authentication features and constraints"},
-    )
+    ``` python
+        # Execute only requirements analysis
+        requirements_result = await orchestrator.execute_stage(
+            stage_id="requirements",
+            inputs={"spec": "Define authentication features and constraints"},
+        )
     ```
 
 ### Example 3: Custom Pipeline Creation
-    ```yaml
-    # custom-pipeline.yml
-    name: "Microservices API Pipeline"
-    stages:
-      - id: "api-design"
-        type: "design"
-        ai_config:
-          model: "gpt-4"
-          temperature: 0.2
-        prompt_template: |
-          Design a RESTful API for {{ domain }} with:
-            - OpenAPI 3.0 specification
-            - JWT authentication
-            - Rate limiting
-            - Comprehensive error handling
+    ``` yaml
+        # custom-pipeline.yml
+        name: "Microservices API Pipeline"
+        stages:
+          - id: "api-design"
+            type: "design"
+            ai_config:
+              model: "gpt-4"
+              temperature: 0.2
+            prompt_template: |
+              Design a RESTful API for {{ domain }} with:
+                - OpenAPI 3.0 specification
+                - JWT authentication
+                - Rate limiting
+                - Comprehensive error handling
     ```
 
 
 ## ⚙️ Configuration
 
 ### Environment Variables
-    ```bash
-    # AI Provider Configuration
-    OPENAI_API_KEY=sk-your-openai-key
-    ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
-    AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
-    AZURE_OPENAI_API_KEY=your-azure-key
-
-    # Database Configuration
-    DATABASE_URL=postgresql://user:pass@localhost:5432/pipeline
-    REDIS_URL=redis://localhost:6379/0
-
-    # Repository Integrations
-    GITHUB_TOKEN=ghp_your-github-token
-    CONFLUENCE_URL=https://your-domain.atlassian.net
-    CONFLUENCE_TOKEN=your-confluence-token
-    JIRA_URL=https://your-domain.atlassian.net
-    JIRA_TOKEN=your-jira-token
-
-    # Security
-    JWT_SECRET=your-jwt-secret-key
-    ENCRYPTION_KEY=your-32-byte-encryption-key
-
-    # Monitoring
-    PROMETHEUS_PORT=9090
-    LOG_LEVEL=INFO
+    ``` bash
+        # AI Provider Configuration
+        OPENAI_API_KEY=sk-your-openai-key
+        ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
+        AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+        AZURE_OPENAI_API_KEY=your-azure-key
+    
+        # Database Configuration
+        DATABASE_URL=postgresql://user:pass@localhost:5432/pipeline
+        REDIS_URL=redis://localhost:6379/0
+    
+        # Repository Integrations
+        GITHUB_TOKEN=ghp_your-github-token
+        CONFLUENCE_URL=https://your-domain.atlassian.net
+        CONFLUENCE_TOKEN=your-confluence-token
+        JIRA_URL=https://your-domain.atlassian.net
+        JIRA_TOKEN=your-jira-token
+    
+        # Security
+        JWT_SECRET=your-jwt-secret-key
+        ENCRYPTION_KEY=your-32-byte-encryption-key
+    
+        # Monitoring
+        PROMETHEUS_PORT=9090
+        LOG_LEVEL=INFO
     ```
 ### Pipeline Configuration
 
-    ```yaml
-    # config.yml
-    pipeline_defaults:
-      ai_model: "gpt-4"
-      temperature: 0.3
-      max_tokens: 4000
-      timeout_minutes: 15
-
-    quality_gates:
-      enable_validation: true
-      require_approvals: true
-      min_quality_score: 0.85
-
-    repository_settings:
-      default_branch: "main"
-      auto_commit: true
-      commit_message_template: "[SDLC] {stage}: {artifact_name}"
-
-    notification_settings:
-      slack_webhook: "https://hooks.slack.com/..."
-      email_enabled: true
-      approval_notifications: true
+    ``` yaml
+        # config.yml
+        pipeline_defaults:
+          ai_model: "gpt-4"
+          temperature: 0.3
+          max_tokens: 4000
+          timeout_minutes: 15
+    
+        quality_gates:
+          enable_validation: true
+          require_approvals: true
+          min_quality_score: 0.85
+    
+        repository_settings:
+          default_branch: "main"
+          auto_commit: true
+          commit_message_template: "[SDLC] {stage}: {artifact_name}"
+    
+        notification_settings:
+          slack_webhook: "https://hooks.slack.com/..."
+          email_enabled: true
+          approval_notifications: true
     ```
 
 ---
@@ -546,8 +545,7 @@ Comprehensive templates covering:
 ### Repository Connectors
 
 #### Git Integration
-    ```python 
-    
+    ``` python
     git_config = { "type": "git", "url": "[https://github.com/your-org/project.git](https://github.com/your-org/project.git)", "branch": "main", "token": os.getenv("GITHUB_TOKEN"), "path_mappings": { "requirements": "docs/requirements/", "design": "docs/architecture/", "code": "src/" } }
     ```
 #### Confluence Integration
